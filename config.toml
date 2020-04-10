@@ -1,4 +1,4 @@
-baseURL = "http://example.org/"
+baseURL = "https://jr2sr.netlify.com/"
 languageCode = "en-us"
 title = "Junior 2 Senior"
 theme = "indigo"

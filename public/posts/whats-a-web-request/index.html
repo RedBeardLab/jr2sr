@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Whats a Web Request | Junior 2 Senior</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href=https://jr2sr.netlify.com/apple-touch-icon.png>
+    <link rel="icon" type="image/png" sizes="32x32" href=https://jr2sr.netlify.com/favicon-32x32.png>
+    <link rel="icon" type="image/png" sizes="16x16" href=https://jr2sr.netlify.com/favicon-16x16.png>
+    <link rel="manifest" href=https://jr2sr.netlify.com/site.webmanifest>
+    <link rel="mask-icon" href=https://jr2sr.netlify.com/safari-pinned-tab.svg color="#00416a">
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    
+    
+    
+    
+    <link rel="authorization_endpoint" href=https://indieauth.com/auth />
+    <link rel="token_endpoint" href=https://tokens.indieauth.com/token />
+    
+    
+    
+    
+    <link rel="stylesheet" href=https://jr2sr.netlify.com/css/fonts.css />
+    <link rel="stylesheet" href=https://jr2sr.netlify.com/css/style.css />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div id="sitelogo">
+        <a class="glyph" alt="Home" href="https://jr2sr.netlify.com/"><img src=https://jr2sr.netlify.com/images/site-logo.svg alt="Site Logo" height="64px" width="64px"></a>
+    </div>
+    <header>
+        <nav>
+    
+    <div id="page-nav">
+        <div class="page-nav-item">
+            <a href="https://jr2sr.netlify.com/">Home</a>
+        </div>
+        
+    </div>
+</nav>
+        
+    </header>
+
+
+
+
+<div id="content">
+    <article class="h-entry">
+        <header>
+            <h1 class="post-title p-name">Whats a Web Request</h1>
+            
+            <p class="post-date">Posted on
+                <time class="dt-published" datetime="2020-04-10T12:53:57&#43;02:00">
+                10 April, 2020 at 12:53 CEST
+                </time> 
+            </p>
+            
+            
+        </header>
+        <section class="content e-content">
+            <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The web and internet as a large are fundamental for today world, but how does it works under the hood?</p>
+</div>
+<div class="paragraph">
+<p>In this article we will talk about HTTP requests that are the fundamentals blocks that make the modern web possible.</p>
+</div>
+<div class="paragraph">
+<p>We wil explores how tools like <a href="https://requests.readthedocs.io/en/master/">Python <code>requests</code></a> or <a href="https://ruby-doc.org/stdlib-2.7.0/libdoc/net/http/rdoc/Net/HTTP.html">Ruby <code>Net::HTTP</code></a> or again the <a href="https://golang.org/pkg/net/http/">Go package <code>net/http</code></a> or any other library that you may use in any other language works.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_aha_moment">The Aha moment</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Reasoning about the topic become extremely simple as soon as we figure out what is an HTTP request, and the reality is extremely simple.</p>
+</div>
+<div class="paragraph">
+<p>An HTTP request is nothing more than a stream of bytes, almost always ASCII bytes that it is possible to read and interpretate. To put it even more simply, it is just a string formatted following some rule.</p>
+</div>
+<div class="paragraph">
+<p>The one below is already a complete HTTP requests and this is the most important concept. An HTTP request is nothing more that strings of text similar to this one.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>GET / HTTP/2
+Host: www.google.com
+User-Agent: curl/7.58.0
+Accept: */*</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>An HTTP response is not that different:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>HTTP/2 200
+date: Fri, 10 Apr 2020 11:25:36 GMT
+expires: -1
+cache-control: private, max-age=0
+content-type: text/html; charset=ISO-8859-1
+p3p: CP="This is not a P3P policy! See g.co/p3phelp for more info."
+server: gws
+x-xss-protection: 0
+x-frame-options: SAMEORIGIN
+set-cookie: 1P_JAR=2020-04-10-11; expires=Sun, 10-May-2020 11:25:36 GMT; path=/; domain=.google.com; Secure
+set-cookie: NID=202=lXbpl7jzwsRDvcSyw84CtGB7NO3J2HziT0SjF24N4joVsoUzXNRdc03yTeckZu2zQXc8TJty73IYg9ktX3yrtSb59lC1-jxyTprH_wGly4D2RiFC4Ww1T2Om69YYjxDtkgEDmQbqoYYyzahBQowvSM-q5JpF6hoC-gzLRTnnn38; expires=Sat, 10-Oct-2020 11:25:36 GMT; path=/; domain=.google.com; HttpOnly
+alt-svc: quic=":443"; ma=2592000; v="46,43",h3-Q050=":443"; ma=2592000,h3-Q049=":443"; ma=2592000,h3-Q048=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,h3-T050=":443"; ma=2592000
+accept-ranges: none
+vary: Accept-Encoding
+
+&lt;!doctype html&gt;&lt;html&gt; ...THE_HTML_OF_THE_GOOGLE_HOMEPAGE... &lt;/html&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>All those libraries and framework are just a way to create, interpretate and send over the networks strings that looks like this.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_http_rules_and_protocol">The HTTP rules and protocol</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The rules to create a correct HTTP request are encoded in an <a href="https://tools.ietf.org/html/rfc7230">RFC 7230</a> it can be interesting to explore the document and understand at least some of the details, but for most developer will be an overkill.
+However if your work orbitate a lot around the web infrastracture it can be necessary.</p>
+</div>
+<div class="paragraph">
+<p>For instance <a href="https://tools.ietf.org/html/rfc7230#section-3">Section 3 of RFC 7230</a> describe formally what is a <code>HTTP message</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>HTTP-message = start-line
+               *( header-field CRLF )
+               CRLF
+               [ message-body ]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This definition means that an <code>HTTP-message</code> is nothing else than a <code>start-line</code>, followed by 0 or more <code>header-field</code> each followed by a new line, another newline and an optional <code>message-body</code>.</p>
+</div>
+<div class="paragraph">
+<p>Keep reading the RFC we will discover what is <a href="https://tools.ietf.org/html/rfc7230#section-3.1.1"><code>start-line</code> on section 3.1</a> and so on.</p>
+</div>
+<div class="paragraph">
+<p>It turns out that the <code>start-line</code> of a request specify the method of the request, either <code>GET</code>, <code>HEAD</code>, <code>POST</code>, <code>PUT</code>, <code>DELETE</code>, <code>CONNECT</code>, <code>OPTIONS</code> or <code>TRACE</code> all documented in <a href="https://tools.ietf.org/html/rfc7231#section-4">RFC 7231 Section 4</a>.
+Most developer just need to be aware of all the possible methods, but they won&#8217;t use all of them.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_keeping_state_authentication_and_cookie">Keeping state, authentication and cookie</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The HTTP protocol is mostly stateless, there is nothing that forbid a client to request somebody private records on a social network protocol, after all an HTTP request is just a string formatted following some rules.</p>
+</div>
+<div class="paragraph">
+<p>However the server need and actually does forbid those requests.</p>
+</div>
+<div class="paragraph">
+<p>To overcome the limitation imposed by being a stateless protocol, HTTP relies on the concept of Cookies.</p>
+</div>
+<div class="paragraph">
+<p>A HTTP response, generated by an HTTP server, can includes the <code>Set-Cookie</code> header (the name is case insensitive, the request above to google.com returned <code>set-cookie</code>).
+The <code>Set-Cookie</code> header instruct the <code>user-agent</code> (the client, with some level of approximation) to store the value of the cookie and to send it to the server to any subsequent request to the sever using the <code>Cookie</code> header.</p>
+</div>
+<div class="paragraph">
+<p>Another <a href="https://tools.ietf.org/html/rfc6265">RFC (6265)</a> cover this topic extensively.</p>
+</div>
+<div class="paragraph">
+<p>For most developer is sufficient to know that the <code>Set-Cookie</code> header can provides some options that tweak what the client is suppose to do with the cookie.</p>
+</div>
+<div class="paragraph">
+<p>For instance the <code>Path</code> attribute indicate that the cookie should be returned only for requests against a specific URL path.</p>
+</div>
+<div class="paragraph">
+<p>The <code>Secure</code> indicate that the cookie should not be sent on insecure connections.</p>
+</div>
+<div class="paragraph">
+<p>Finally the <code>HttpOnly</code> indicate that the cookie should not be accessible outside the HTTP protocol, for instance it should not be read using the JS API on the browser.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_closing_thoughts">Closing thoughts</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>While the protocol itself is rather simple, after all it is just about concatenating strings and keep tracks of cookies, the necessities of modern software forced us to build complex systems to extract as much performance as possible while keeping an ergonomic interface.</p>
+</div>
+<div class="paragraph">
+<p>Most likely developers would like to make more request in parallel while maybe sharing some cookie but not all.</p>
+</div>
+<div class="paragraph">
+<p>All these real-world necessities and use case makes the software explode in complexity, but also in usefullness.</p>
+</div>
+<div class="paragraph">
+<p>However <code>HTTP</code> remains a simple protocol and the CPython codebase <a href="https://github.com/python/cpython/blob/3.8/Lib/http/client.py#L1096-L1098">offers a glimpse of this simplicty.</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-python" data-lang="python">request = '%s %s %s' % (method, url, self._http_vsn_str)
+self._output(self._encode_request(request))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It is creating the <code>start-line</code> of an HTTP message, just like we did at the very beginning of this post with <code>GET / HTTP/2</code></p>
+</div>
+<div class="sect2">
+<h3 id="_bonus_trivial">Bonus Trivial</h3>
+<div class="paragraph">
+<p>From the standard of <code>HTTP1.1</code> the headers are stricly optionals, indeed they are defined like this <code>*( header-field CRLF)</code> where the star (<code>*</code>) means <strong>zero</strong> or more repetition.
+However the same standard dictate that the <code>Host</code> header <a href="https://tools.ietf.org/html/rfc7230#section-5.4"><strong>must</strong> be present</a>.</p>
+</div>
+<div class="paragraph">
+<p>This clear inconsistency was introduced to keep backward compatibility, so that every <code>HTTP1.1</code> request is also a <code>HTTP1.0</code> request.</p>
+</div>
+<div class="paragraph">
+<p>This is a clear examples of how the world evolves from mistakes and error and also something as widespread and used as "the internet" was designed with some initial mistakes. After all we are human and the success of the <code>HTTP</code> was not sure.</p>
+</div>
+</div>
+</div>
+</div>
+
+        </section>
+        <footer>
+            <a class="permalink u-url" href="https://jr2sr.netlify.com/posts/whats-a-web-request/"></a>
+            
+        </footer>
+    </article>
+</div>
+
+    
+    <div id="footer">
+      
+      <nav id="article-skip">
+        <div class="next">
+          
+          <p>&nbsp;</p>
+          
+        </div>
+        <div class="top">
+          <a alt="Top of page" href="#">Top</a>
+        </div>
+        <div class="prev">
+          
+          <a alt="Older article" href="https://jr2sr.netlify.com/posts/start-here/">Older &rarr;</a>
+          
+        </div>
+      </nav>
+      
+      <aside id="social">
+  <div id="social-icons">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+</aside>
+
+      
+    </div>
+
+
+</body>
+</html>

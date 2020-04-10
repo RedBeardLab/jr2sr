@@ -1,25 +1,36 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on My New Hugo Site</title>
-    <link>http://example.org/posts/</link>
-    <description>Recent content in Posts on My New Hugo Site</description>
+    <title>Posts on Junior 2 Senior</title>
+    <link>https://jr2sr.netlify.com/posts/</link>
+    <description>Recent content in Posts on Junior 2 Senior</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 04 Apr 2020 23:19:06 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 10 Apr 2020 12:53:57 +0200</lastBuildDate>
     
-	<atom:link href="http://example.org/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jr2sr.netlify.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Whats a Web Request</title>
+      <link>https://jr2sr.netlify.com/posts/whats-a-web-request/</link>
+      <pubDate>Fri, 10 Apr 2020 12:53:57 +0200</pubDate>
+      
+      <guid>https://jr2sr.netlify.com/posts/whats-a-web-request/</guid>
+      <description>The web and internet as a large are fundamental for today world, but how does it works under the hood?
+ In this article we will talk about HTTP requests that are the fundamentals blocks that make the modern web possible.
+ We wil explores how tools like Python requests or Ruby Net::HTTP or again the Go package net/http or any other library that you may use in any other language works.</description>
+    </item>
+    
+    <item>
       <title>Start Here</title>
-      <link>http://example.org/posts/start-here/</link>
+      <link>https://jr2sr.netlify.com/posts/start-here/</link>
       <pubDate>Sat, 04 Apr 2020 23:19:06 +0200</pubDate>
       
-      <guid>http://example.org/posts/start-here/</guid>
+      <guid>https://jr2sr.netlify.com/posts/start-here/</guid>
       <description>Junior 2 Senior is an online, text based, serie where I try to unload all my knowledge for younger computer engineers that want to accellerate their carreer path.
  The goal is to provide all the necessary notion and way of reasoning around problems for people to be hired in high-tech companies.
- In this series we will not talk about the latest javascript framework. Different resources are more apt for it.</description>
+ The serie is based only on fundamental concepts. We will focus only on those concepts that were important 20 years ago, are important now, and will be important for at least the next 20 years.</description>
     </item>
     
   </channel>
