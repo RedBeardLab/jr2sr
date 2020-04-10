@@ -110,6 +110,12 @@ However if your work orbitate a lot around the web infrastracture it can be nece
 &lt;p&gt;It turns out that the &lt;code&gt;start-line&lt;/code&gt; of a request specify the method of the request, either &lt;code&gt;GET&lt;/code&gt;, &lt;code&gt;HEAD&lt;/code&gt;, &lt;code&gt;POST&lt;/code&gt;, &lt;code&gt;PUT&lt;/code&gt;, &lt;code&gt;DELETE&lt;/code&gt;, &lt;code&gt;CONNECT&lt;/code&gt;, &lt;code&gt;OPTIONS&lt;/code&gt; or &lt;code&gt;TRACE&lt;/code&gt; all documented in &lt;a href=&#34;https://tools.ietf.org/html/rfc7231#section-4&#34;&gt;RFC 7231 Section 4&lt;/a&gt;.
 Most developer just need to be aware of all the possible methods, but they won&amp;#8217;t use all of them.&lt;/p&gt;
 &lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Then it specify what is the target of the request, in our case the root directory &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;And finally it specify what protocol to use in the communication, in this case we use &lt;code&gt;HTTP/2&lt;/code&gt;, another common one is &lt;code&gt;HTTP/1.1&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
