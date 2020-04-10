@@ -1,0 +1,40 @@
+---
+title: "Start Here"
+date: 2020-04-04T23:19:06+02:00
+draft: false
+---
+
+= Start Here
+
+Junior 2 Senior is an online, text based, serie where I try to unload all my knowledge for younger computer engineers that want to accellerate their carreer path.
+
+The goal is to provide all the necessary notion and way of reasoning around problems for people to be hired in high-tech companies.
+
+The serie is based only on fundamental concepts. We will focus only on those concepts that were important 20 years ago, are important now, and will be important for at least the next 20 years.
+
+We will cover very broad topics without going too deeply into any, there are already a lot of resources, references, and article to dive deep into all the topic we will cover, the value of this publication will be in uncover in an organic way all the small things that senior computer engineers should know. It is left to the reader decide which topic explore further and when. 
+
+Some people will need to understand better the internals of compilers, while for other it would be more beneficial to study how the sorting in a database work. In this pubblication we will explore both.
+
+
+== Work in progress
+
+The series is a work in progress, I will update the webiste twice for week. At the beginning most of the updates will be new articles, eventually corrections and clarification will become prevalent.
+
+Mistakes will be made, and I will be grateful to whoever point them out.
+
+== Community
+
+Paying a small fee is possible to:
+
+1. Register to a slack channel where to ask question
+2. Subscribe to the discourse forum
+3. Ask support for preparing technical interviews
+
+== Outline
+
+The outline of the serie is in progress, new topic will be added and stuff will be moved.
+
+1. link:../whats-a-web-request[What is a web request]
+2. DNS
+3. Strings
