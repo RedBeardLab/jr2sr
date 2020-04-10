@@ -1,10 +1,13 @@
 ---
-title: "Whats a Web Request"
+title: "What is a Web Request"
 date: 2020-04-10T12:53:57+02:00
 draft: false
 ---
 
+
 = The web
+
+image::/whats-a-web-request.jpg[Networks Cables - Photo by Jordan Harrison on Unsplash ]
 
 The web and internet as a large are fundamental for today world, but how does it works under the hood?
 

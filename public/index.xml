@@ -11,13 +11,18 @@
     
     
     <item>
-      <title>Whats a Web Request</title>
+      <title>What is a Web Request</title>
       <link>https://jr2sr.netlify.com/posts/whats-a-web-request/</link>
       <pubDate>Fri, 10 Apr 2020 12:53:57 +0200</pubDate>
       
       <guid>https://jr2sr.netlify.com/posts/whats-a-web-request/</guid>
       <description>&lt;div id=&#34;preamble&#34;&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.com/whats-a-web-request.jpg&#34; alt=&#34;Networks Cables - Photo by Jordan Harrison on Unsplash&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The web and internet as a large are fundamental for today world, but how does it works under the hood?&lt;/p&gt;
 &lt;/div&gt;
