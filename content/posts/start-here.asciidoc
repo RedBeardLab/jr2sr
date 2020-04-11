@@ -6,7 +6,7 @@ draft: false
 
 = Start Here
 
-Junior 2 Senior is an online, text based, serie where I try to unload all my knowledge for younger computer engineers that want to accellerate their carreer path.
+Junior 2 Senior is technical course where I try to unload all my knowledge for younger computer engineers that want to accellerate their carreer path.
 
 The goal is to provide all the necessary notion and way of reasoning around problems for people to be hired in high-tech companies.
 
@@ -16,25 +16,79 @@ We will cover very broad topics without going too deeply into any, there are alr
 
 Some people will need to understand better the internals of compilers, while for other it would be more beneficial to study how the sorting in a database work. In this pubblication we will explore both.
 
+Moreover we will suggest some exercise to actually learn by doing and making sure that you really got the main ideas down to the important details.
 
-== Work in progress
+== What it is about
 
-The series is a work in progress, I will update the webiste twice for week. At the beginning most of the updates will be new articles, eventually corrections and clarification will become prevalent.
+The course is about getting you up to speed with all those arguments that are fundamental for computer egineers but to which younger engineers might have not been exposed yet.
 
-Mistakes will be made, and I will be grateful to whoever point them out.
+It is about making sure you have all the notion necessary to go above expectations.
 
-== Community
+It is about overcoming imposter syndrome having studied and understood those fundamental topics on which everything else is based.
 
-Paying a small fee is possible to:
+All the topic covered are much deeper than what could be covered, but it will be up to the reader keep digging for what it is more interesting.
 
-1. Register to a slack channel where to ask question
-2. Subscribe to the discourse forum
-3. Ask support for preparing technical interviews
+== A different course
+
+Technical books are usually about a specific topic, say "Graphical programming with GPU".
+Those kind of books and courses go extremelly deeply about the specific topic teaching all the important and not so important bits.
+Those resources are fundamental if you are specializing in a particular field.
+
+This course is different, it is about exposing you to most of the fundamental concepts that any senior engineer should know.
+
+== Structure
+
+The course is composed of two part.
+
+. A book
+. A community
+
+The book is digital and you will have access to all the version and the errata. It is in presale here.
+
+The community is about sharing solution with the exercises, clarify part of the books that are not clear, ask further questions, suggest new topics, and helping each other. 
+It will also be possible to ask support during technical interview preparation.
+The community is still not open.
 
 == Outline
 
-The outline of the serie is in progress, new topic will be added and stuff will be moved.
+The outline of the book is in progress, new topic will be added and stuff will be moved.
 
-1. link:../whats-a-web-request[What is a web request]
-2. DNS
-3. Strings
+But this is a rough idea.
+
+. The web basics: *Learn the fundamental blocks of the modern web*
+.. link:../whats-a-web-request[What is a web request]
+.. DNS
+.. Sockets
+.. UDP
+.. TCP
+.. Media Streaming
+
+. Understaing low level memory: *How memory works and what are the implication*
+.. Memory
+.. Strings
+.. Pointers
+.. Data Structures
+.. On disk data structure
+.. Disk Storage vs Memory
+.. Caches
+
+. How code runs: *How do we go from source code to make computer do stuff*
+.. Compilation
+.. Interpretation
+.. Stack vs Heap
+.. Memory layout
+.. Shared libraries
+.. Building Software
+
+. Multiple core: *CPU are not getting any faster, but we are getting more of them, how to use them*
+.. Threads
+.. Process
+.. Communication
+.. Atomic variables
+
+. Linux: *Working with the basic linux API*
+.. glibc
+.. IO
+.. Filesystems
+.. Software Installation
+
