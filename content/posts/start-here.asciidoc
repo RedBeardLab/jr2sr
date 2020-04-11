@@ -6,21 +6,21 @@ draft: false
 
 = Start Here
 
-Junior 2 Senior is technical course where I try to unload all my knowledge for younger computer engineers that want to accellerate their carreer path.
+Junior 2 Senior is technical course where I try to unload all my knowledge for younger computer engineers that want to accelerate their career path.
 
 The goal is to provide all the necessary notion and way of reasoning around problems for people to be hired in high-tech companies.
 
-The serie is based only on fundamental concepts. We will focus only on those concepts that were important 20 years ago, are important now, and will be important for at least the next 20 years.
+The course is based only on fundamental concepts. We will focus only on those concepts that were important 20 years ago, are important now, and will be important for at least the next 20 years.
 
 We will cover very broad topics without going too deeply into any, there are already a lot of resources, references, and article to dive deep into all the topic we will cover, the value of this publication will be in uncover in an organic way all the small things that senior computer engineers should know. It is left to the reader decide which topic explore further and when. 
 
-Some people will need to understand better the internals of compilers, while for other it would be more beneficial to study how the sorting in a database work. In this pubblication we will explore both.
+Some people will need to understand better the internals of compilers, while for other it would be more beneficial to study how the sorting in a database work. In this course we will explore both.
 
 Moreover we will suggest some exercise to actually learn by doing and making sure that you really got the main ideas down to the important details.
 
 == What it is about
 
-The course is about getting you up to speed with all those arguments that are fundamental for computer egineers but to which younger engineers might have not been exposed yet.
+The course is about getting you up to speed with all those arguments that are fundamental for computer engineers but to which younger engineers might have not been exposed yet.
 
 It is about making sure you have all the notion necessary to go above expectations.
 
@@ -31,7 +31,7 @@ All the topic covered are much deeper than what could be covered, but it will be
 == A different course
 
 Technical books are usually about a specific topic, say "Graphical programming with GPU".
-Those kind of books and courses go extremelly deeply about the specific topic teaching all the important and not so important bits.
+Those kind of books and courses go extremely deeply about the specific topic teaching all the important and not so important bits.
 Those resources are fundamental if you are specializing in a particular field.
 
 This course is different, it is about exposing you to most of the fundamental concepts that any senior engineer should know.
@@ -63,7 +63,7 @@ But this is a rough idea.
 .. TCP
 .. Media Streaming
 
-. Understaing low level memory: *How memory works and what are the implication*
+. Understanding low level memory: *How memory works and what are the implication*
 .. Memory
 .. Strings
 .. Pointers
