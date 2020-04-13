@@ -23,13 +23,13 @@
     </item>
     
     <item>
-      <title>Start Here</title>
-      <link>https://jr2sr.netlify.com/posts/start-here/</link>
+      <title>Junior 2 Senior</title>
+      <link>https://jr2sr.netlify.com/posts/start_here/</link>
       <pubDate>Sat, 04 Apr 2020 23:19:06 +0200</pubDate>
       
-      <guid>https://jr2sr.netlify.com/posts/start-here/</guid>
-      <description>Junior 2 Senior is technical course where I try to unload all my knowledge for younger computer engineers that want to accelerate their career path.
- The goal is to provide all the necessary notion and way of reasoning around problems for people to be hired in high-tech companies.
+      <guid>https://jr2sr.netlify.com/posts/start_here/</guid>
+      <description>Junior 2 Senior is a technical course where I unload all my knowledge for younger computer engineers that want to speed up their career path.
+ The goal is to provide all the necessary notions and mental models to work around problems for people to be hired in high-tech companies.
  The course is based only on fundamental concepts. We will focus only on those concepts that were important 20 years ago, are important now, and will be important for at least the next 20 years.</description>
     </item>
     

@@ -23,6 +23,7 @@
             </p>
             <hr class="post-underline">
             {{ end }}
+	    {{ partial "to_course" . }}
         </header>
         <section class="content e-content">
             {{ .Content }}
@@ -40,7 +41,9 @@
         </footer>
     </article>
 
-  {{ partial "signup.html" .}}
+  {{ partial "to_course" . }}
+
+  {{ partial "signup.html" . }}
 
 </div>
 {{ partial "footer.html" . }}

@@ -64,6 +64,19 @@
             </p>
             
             
+	    
+<br>
+
+<div style="background-color: #ffff645e; padding: 1.5em; margin-bottom: 1em;">
+  <p><b>What is a Web Request</b> is part of <a href="https://gumroad.com/l/junior2senior">Junior2Senior</a> a course to help you grow as software engineers.</p>
+  <p>It is about unloading all the knowledge that I accumulate over my career to younger engineers to help speed up their own career.</p>
+  <p>The book is actually on pre-sale 50% off for only 19$.</p>
+  <script src="https://gumroad.com/js/gumroad.js"></script>
+  <div style="text-align: center;">
+    <a class="gumroad-button" href="https://gum.co/HjDwM" target="_blank">Buy Junior2Senior</a>
+  </div>
+</div>
+
         </header>
         <section class="content e-content">
             <div id="preamble">
@@ -151,7 +164,7 @@ However if your work orbitate a lot around the web infrastracture it can be nece
 </div>
 </div>
 <div class="paragraph">
-<p>This definition means that an <code>HTTP-message</code> is nothing else than a <code>start-line</code>, followed by 0 or more <code>header-field</code> each followed by a new line, another newline and an optional <code>message-body</code>.</p>
+<p>This definition means that an <code>HTTP-message</code> is nothing else than a <code>start-line</code>, followed by 0 or more <code>header-field</code> each followed by a CRLF (a new line <code>\r\n</code>), another newline and an optional <code>message-body</code>.</p>
 </div>
 <div class="paragraph">
 <p>Keep reading the RFC we will discover what is <a href="https://tools.ietf.org/html/rfc7230#section-3.1.1"><code>start-line</code> on section 3.1</a> and so on.</p>
@@ -225,6 +238,20 @@ self._output(self._encode_request(request))</code></pre>
 <div class="paragraph">
 <p>It is creating the <code>start-line</code> of an HTTP message, just like we did at the very beginning of this post with <code>GET / HTTP/2</code></p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exercises">Exercises</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Create a function to create HTTP requests.
+As input you can expect the methods (<code>GET</code>, <code>POST</code>, etc&#8230;&#8203;), the host and the URL of the resource.
+You can expand the little function to support also headers?
+And how would you manage cookies?</p>
+</div>
+<div class="paragraph">
+<p>On the next section we will discover DNS, sockets and TCP. So it will be possible to actually send a request and read back the response.</p>
+</div>
 <div class="sect2">
 <h3 id="_bonus_trivial">Bonus Trivial</h3>
 <div class="paragraph">
@@ -247,6 +274,20 @@ However the same standard dictate that the <code>Host</code> header <a href="htt
             
         </footer>
     </article>
+
+  
+<br>
+
+<div style="background-color: #ffff645e; padding: 1.5em; margin-bottom: 1em;">
+  <p><b>What is a Web Request</b> is part of <a href="https://gumroad.com/l/junior2senior">Junior2Senior</a> a course to help you grow as software engineers.</p>
+  <p>It is about unloading all the knowledge that I accumulate over my career to younger engineers to help speed up their own career.</p>
+  <p>The book is actually on pre-sale 50% off for only 19$.</p>
+  <script src="https://gumroad.com/js/gumroad.js"></script>
+  <div style="text-align: center;">
+    <a class="gumroad-button" href="https://gum.co/HjDwM" target="_blank">Buy Junior2Senior</a>
+  </div>
+</div>
+
 
   <br>
 <p>Signup to receive notification about new articles</p>
@@ -288,7 +329,7 @@ However the same standard dictate that the <code>Host</code> header <a href="htt
         </div>
         <div class="prev">
           
-          <a alt="Older article" href="https://jr2sr.netlify.com/posts/start-here/">Older &rarr;</a>
+          <a alt="Older article" href="https://jr2sr.netlify.com/posts/start_here/">Older &rarr;</a>
           
         </div>
       </nav>

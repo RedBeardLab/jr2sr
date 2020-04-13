@@ -5,7 +5,7 @@
     <description>Recent content on Junior 2 Senior</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Apr 2020 12:53:57 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 04 Apr 2020 23:19:06 +0200</lastBuildDate>
     
         <atom:link href="https://jr2sr.netlify.com/index.xml" rel="self" type="application/rss+xml" />
     
@@ -101,7 +101,7 @@ However if your work orbitate a lot around the web infrastracture it can be nece
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;This definition means that an &lt;code&gt;HTTP-message&lt;/code&gt; is nothing else than a &lt;code&gt;start-line&lt;/code&gt;, followed by 0 or more &lt;code&gt;header-field&lt;/code&gt; each followed by a new line, another newline and an optional &lt;code&gt;message-body&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This definition means that an &lt;code&gt;HTTP-message&lt;/code&gt; is nothing else than a &lt;code&gt;start-line&lt;/code&gt;, followed by 0 or more &lt;code&gt;header-field&lt;/code&gt; each followed by a CRLF (a new line &lt;code&gt;\r\n&lt;/code&gt;), another newline and an optional &lt;code&gt;message-body&lt;/code&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Keep reading the RFC we will discover what is &lt;a href=&#34;https://tools.ietf.org/html/rfc7230#section-3.1.1&#34;&gt;&lt;code&gt;start-line&lt;/code&gt; on section 3.1&lt;/a&gt; and so on.&lt;/p&gt;
@@ -175,6 +175,20 @@ self._output(self._encode_request(request))&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;It is creating the &lt;code&gt;start-line&lt;/code&gt; of an HTTP message, just like we did at the very beginning of this post with &lt;code&gt;GET / HTTP/2&lt;/code&gt;&lt;/p&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_exercises&#34;&gt;Exercises&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Create a function to create HTTP requests.
+As input you can expect the methods (&lt;code&gt;GET&lt;/code&gt;, &lt;code&gt;POST&lt;/code&gt;, etc&amp;#8230;&amp;#8203;), the host and the URL of the resource.
+You can expand the little function to support also headers?
+And how would you manage cookies?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;On the next section we will discover DNS, sockets and TCP. So it will be possible to actually send a request and read back the response.&lt;/p&gt;
+&lt;/div&gt;
 &lt;div class=&#34;sect2&#34;&gt;
 &lt;h3 id=&#34;_bonus_trivial&#34;&gt;Bonus Trivial&lt;/h3&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
@@ -194,30 +208,30 @@ However the same standard dictate that the &lt;code&gt;Host&lt;/code&gt; header 
     </item>
     
     <item>
-      <title>Start Here</title>
-      <link>https://jr2sr.netlify.com/posts/start-here/</link>
+      <title>Junior 2 Senior</title>
+      <link>https://jr2sr.netlify.com/posts/start_here/</link>
       <pubDate>Sat, 04 Apr 2020 23:19:06 +0200</pubDate>
       
-      <guid>https://jr2sr.netlify.com/posts/start-here/</guid>
+      <guid>https://jr2sr.netlify.com/posts/start_here/</guid>
       <description>&lt;div id=&#34;preamble&#34;&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Junior 2 Senior is technical course where I try to unload all my knowledge for younger computer engineers that want to accelerate their career path.&lt;/p&gt;
+&lt;p&gt;Junior 2 Senior is a technical course where I unload all my knowledge for younger computer engineers that want to speed up their career path.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;The goal is to provide all the necessary notion and way of reasoning around problems for people to be hired in high-tech companies.&lt;/p&gt;
+&lt;p&gt;The goal is to provide all the necessary notions and mental models to work around problems for people to be hired in high-tech companies.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The course is based only on fundamental concepts. We will focus only on those concepts that were important 20 years ago, are important now, and will be important for at least the next 20 years.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;We will cover very broad topics without going too deeply into any, there are already a lot of resources, references, and article to dive deep into all the topic we will cover, the value of this publication will be in uncover in an organic way all the small things that senior computer engineers should know. It is left to the reader decide which topic explore further and when.&lt;/p&gt;
+&lt;p&gt;We will cover very broad topics without going too deep into any, there are already a lot of resources, references and articles to dive deep into all the topics we will cover. The purpose of this publication is to uncover organically all the small things that senior computer engineers should know. It is left to the reader to decide which topic explores further and when.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Some people will need to understand better the internals of compilers, while for other it would be more beneficial to study how the sorting in a database work. In this course we will explore both.&lt;/p&gt;
+&lt;p&gt;Some people will need to understand better the internals of compilers, while for others it would be more beneficial to study how the sorting inside a database works. In this course, we will explore both.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Moreover we will suggest some exercise to actually learn by doing and making sure that you really got the main ideas down to the important details.&lt;/p&gt;
+&lt;p&gt;We will suggest some exercises to help you learn by doing. Making sure that you understand the main ideas down to the important details.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -225,16 +239,16 @@ However the same standard dictate that the &lt;code&gt;Host&lt;/code&gt; header 
 &lt;h2 id=&#34;_what_it_is_about&#34;&gt;What it is about&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;The course is about getting you up to speed with all those arguments that are fundamental for computer engineers but to which younger engineers might have not been exposed yet.&lt;/p&gt;
+&lt;p&gt;The course is about getting you up to speed with all those topics that are fundamental for computer engineers but to which younger engineers might have not been exposed yet.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;It is about making sure you have all the notion necessary to go above expectations.&lt;/p&gt;
+&lt;p&gt;It is about making sure you have all the notion to go above expectations.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;It is about overcoming imposter syndrome having studied and understood those fundamental topics on which everything else is based.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;All the topic covered are much deeper than what could be covered, but it will be up to the reader keep digging for what it is more interesting.&lt;/p&gt;
+&lt;p&gt;All the topics covered are much deeper than what could be cover, but it will be up to the reader to keep digging for what it is more interesting.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -243,11 +257,11 @@ However the same standard dictate that the &lt;code&gt;Host&lt;/code&gt; header 
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Technical books are usually about a specific topic, say &#34;Graphical programming with GPU&#34;.
-Those kind of books and courses go extremely deeply about the specific topic teaching all the important and not so important bits.
+Those kinds of books and courses go extremely deeply about the specific topic, teaching all the important and not so important bits.
 Those resources are fundamental if you are specializing in a particular field.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;This course is different, it is about exposing you to most of the fundamental concepts that any senior engineer should know.&lt;/p&gt;
+&lt;p&gt;This course is different, it is about exposing you to the fundamental concepts that any senior engineer should know.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -255,7 +269,7 @@ Those resources are fundamental if you are specializing in a particular field.&l
 &lt;h2 id=&#34;_structure&#34;&gt;Structure&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;The course is composed of two part.&lt;/p&gt;
+&lt;p&gt;The course is composed of two-part.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
@@ -268,7 +282,7 @@ Those resources are fundamental if you are specializing in a particular field.&l
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;The book is digital and you will have access to all the version and the errata. It is in presale here.&lt;/p&gt;
+&lt;p&gt;The book is digital and you will have access to all the versions and the errata. &lt;a href=&#34;https://gumroad.com/l/junior2senior&#34;&gt;It is in presale here.&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The community is about sharing solution with the exercises, clarify part of the books that are not clear, ask further questions, suggest new topics, and helping each other.
@@ -281,7 +295,7 @@ The community is still not open.&lt;/p&gt;
 &lt;h2 id=&#34;_outline&#34;&gt;Outline&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;The outline of the book is in progress, new topic will be added and stuff will be moved.&lt;/p&gt;
+&lt;p&gt;The outline of the book is in progress, new topics will be added and stuff will be moved.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;But this is a rough idea.&lt;/p&gt;
@@ -314,7 +328,7 @@ The community is still not open.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Understanding low level memory: &lt;strong&gt;How memory works and what are the implication&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Understanding low-level memory: &lt;strong&gt;How memory works and what are the implication&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;olist loweralpha&#34;&gt;
 &lt;ol class=&#34;loweralpha&#34; type=&#34;a&#34;&gt;
 &lt;li&gt;
@@ -330,7 +344,7 @@ The community is still not open.&lt;/p&gt;
 &lt;p&gt;Data Structures&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;On disk data structure&lt;/p&gt;
+&lt;p&gt;On-disk data structure&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Disk Storage vs Memory&lt;/p&gt;
@@ -342,7 +356,7 @@ The community is still not open.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;How code runs: &lt;strong&gt;How do we go from source code to make computer do stuff&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;How code runs: &lt;strong&gt;How do we go from source code to make computers do stuff&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;olist loweralpha&#34;&gt;
 &lt;ol class=&#34;loweralpha&#34; type=&#34;a&#34;&gt;
 &lt;li&gt;
@@ -367,7 +381,7 @@ The community is still not open.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Multiple core: &lt;strong&gt;CPU are not getting any faster, but we are getting more of them, how to use them&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Multiple cores: &lt;strong&gt;CPU are not getting any faster, but we are getting more of them, how to use them&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;olist loweralpha&#34;&gt;
 &lt;ol class=&#34;loweralpha&#34; type=&#34;a&#34;&gt;
 &lt;li&gt;
@@ -386,7 +400,7 @@ The community is still not open.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Linux: &lt;strong&gt;Working with the basic linux API&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Linux: &lt;strong&gt;Working with the basic Linux API&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;olist loweralpha&#34;&gt;
 &lt;ol class=&#34;loweralpha&#34; type=&#34;a&#34;&gt;
 &lt;li&gt;

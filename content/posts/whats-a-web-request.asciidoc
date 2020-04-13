@@ -67,7 +67,7 @@ HTTP-message = start-line
                [ message-body ]
 ```
 
-This definition means that an `HTTP-message` is nothing else than a `start-line`, followed by 0 or more `header-field` each followed by a new line, another newline and an optional `message-body`.
+This definition means that an `HTTP-message` is nothing else than a `start-line`, followed by 0 or more `header-field` each followed by a CRLF (a new line `\r\n`), another newline and an optional `message-body`.
 
 Keep reading the RFC we will discover what is link:https://tools.ietf.org/html/rfc7230#section-3.1.1[`start-line` on section 3.1] and so on.
 
@@ -115,6 +115,15 @@ self._output(self._encode_request(request))
 ```
 
 It is creating the `start-line` of an HTTP message, just like we did at the very beginning of this post with `GET / HTTP/2`
+
+== Exercises
+
+Create a function to create HTTP requests.
+As input you can expect the methods (`GET`, `POST`, etc...), the host and the URL of the resource.
+You can expand the little function to support also headers?
+And how would you manage cookies?
+
+On the next section we will discover DNS, sockets and TCP. So it will be possible to actually send a request and read back the response.
 
 === Bonus Trivial
 

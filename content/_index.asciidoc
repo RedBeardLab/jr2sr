@@ -1,0 +1,94 @@
+---
+title: "Junior 2 Senior"
+date: 2020-04-04T23:19:06+02:00
+draft: false
+---
+
+= Start Here
+
+Junior 2 Senior is a technical course where I unload all my knowledge for younger computer engineers that want to speed up their career path.
+
+The goal is to provide all the necessary notions and mental models to work around problems for people to be hired in high-tech companies.
+
+The course is based only on fundamental concepts. We will focus only on those concepts that were important 20 years ago, are important now, and will be important for at least the next 20 years.
+
+We will cover very broad topics without going too deep into any, there are already a lot of resources, references and articles to dive deep into all the topics we will cover. The purpose of this publication is to uncover organically all the small things that senior computer engineers should know. It is left to the reader to decide which topic explores further and when. 
+
+Some people will need to understand better the internals of compilers, while for others it would be more beneficial to study how the sorting inside a database works. In this course, we will explore both.
+
+We will suggest some exercises to help you learn by doing. Making sure that you understand the main ideas down to the important details.
+
+== What it is about
+
+The course is about getting you up to speed with all those topics that are fundamental for computer engineers but to which younger engineers might have not been exposed yet.
+
+It is about making sure you have all the notion to go above expectations.
+
+It is about overcoming imposter syndrome having studied and understood those fundamental topics on which everything else is based.
+
+All the topics covered are much deeper than what could be cover, but it will be up to the reader to keep digging for what it is more interesting.
+
+== A different course
+
+Technical books are usually about a specific topic, say "Graphical programming with GPU".
+Those kinds of books and courses go extremely deeply about the specific topic, teaching all the important and not so important bits.
+Those resources are fundamental if you are specializing in a particular field.
+
+This course is different, it is about exposing you to the fundamental concepts that any senior engineer should know.
+
+== Structure
+
+The course is composed of two-part.
+
+. A book
+. A community
+
+The book is digital and you will have access to all the versions and the errata. link:https://gumroad.com/l/junior2senior[It is in presale here.]
+
+The community is about sharing solution with the exercises, clarify part of the books that are not clear, ask further questions, suggest new topics, and helping each other. 
+It will also be possible to ask support during technical interview preparation.
+The community is still not open.
+
+== Outline
+
+The outline of the book is in progress, new topics will be added and stuff will be moved.
+
+But this is a rough idea.
+
+. The web basics: *Learn the fundamental blocks of the modern web*
+.. link:../whats-a-web-request[What is a web request]
+.. DNS
+.. Sockets
+.. UDP
+.. TCP
+.. Media Streaming
+
+. Understanding low-level memory: *How memory works and what are the implication*
+.. Memory
+.. Strings
+.. Pointers
+.. Data Structures
+.. On-disk data structure
+.. Disk Storage vs Memory
+.. Caches
+
+. How code runs: *How do we go from source code to make computers do stuff*
+.. Compilation
+.. Interpretation
+.. Stack vs Heap
+.. Memory layout
+.. Shared libraries
+.. Building Software
+
+. Multiple cores: *CPU are not getting any faster, but we are getting more of them, how to use them*
+.. Threads
+.. Process
+.. Communication
+.. Atomic variables
+
+. Linux: *Working with the basic Linux API*
+.. glibc
+.. IO
+.. Filesystems
+.. Software Installation
+
