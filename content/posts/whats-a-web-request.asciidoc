@@ -9,19 +9,19 @@ draft: false
 
 image::/whats-a-web-request.jpg[Networks Cables - Photo by Jordan Harrison on Unsplash ]
 
-The web and internet as a large are fundamental for today world, but how does it works under the hood?
+The web and internet as a large are fundamental for today's world, but how does it work under the hood?
 
-In this article we will talk about HTTP requests that are the fundamentals blocks that make the modern web possible.
+In this article, we will talk about HTTP requests that are the fundamentals blocks that make the modern web possible.
 
-We wil explores how tools like link:https://requests.readthedocs.io/en/master/[Python `requests`] or link:https://ruby-doc.org/stdlib-2.7.0/libdoc/net/http/rdoc/Net/HTTP.html[Ruby `Net::HTTP`] or again the link:https://golang.org/pkg/net/http/[Go package `net/http`] or any other library that you may use in any other language works.
+We will explore how tools like link:https://requests.readthedocs.io/en/master/[Python `requests`] or link:https://ruby-doc.org/stdlib-2.7.0/libdoc/net/http/rdoc/Net/HTTP.html[Ruby `Net::HTTP`] or again the link:https://golang.org/pkg/net/http/[Go package `net/http`] or any other library that you may use in any other language works.
 
 == The Aha moment
 
-Reasoning about the topic become extremely simple as soon as we figure out what is an HTTP request, and the reality is extremely simple.
+Reasoning about the topic becomes extremely simple as soon as we figure out what is an HTTP request, and the reality is extremely simple.
 
-An HTTP request is nothing more than a stream of bytes, almost always ASCII bytes that it is possible to read and interpretate. To put it even more simply, it is just a string formatted following some rule.
+An HTTP request is nothing more than a stream of bytes, almost always ASCII bytes that it is possible to read and interpret. To put it even more simply, it is just a string formatted following some rule.
 
-The one below is already a complete HTTP requests and this is the most important concept. An HTTP request is nothing more that strings of text similar to this one.
+The one below is already a complete HTTP request and this is the most important concept. An HTTP request is nothing more than strings of text similar to this one.
 
 ```
 GET / HTTP/2
@@ -51,14 +51,14 @@ vary: Accept-Encoding
 <!doctype html><html> ...THE_HTML_OF_THE_GOOGLE_HOMEPAGE... </html> 
 ```
 
-All those libraries and framework are just a way to create, interpretate and send over the networks strings that looks like this.
+All those libraries and frameworks are just a way to create, interpret and send over the network strings that look like this.
 
 == The HTTP rules and protocol
 
 The rules to create a correct HTTP request are encoded in an link:https://tools.ietf.org/html/rfc7230[RFC 7230] it can be interesting to explore the document and understand at least some of the details, but for most developer will be an overkill. 
-However if your work orbitate a lot around the web infrastracture it can be necessary.
+However, if your work orbit a lot around the web infrastructure it can be necessary.
 
-For instance link:https://tools.ietf.org/html/rfc7230#section-3[Section 3 of RFC 7230] describe formally what is a `HTTP message`.
+For instance, link:https://tools.ietf.org/html/rfc7230#section-3[Section 3 of RFC 7230] describe formally what is an `HTTP message`.
 
 ```
 HTTP-message = start-line
@@ -67,47 +67,47 @@ HTTP-message = start-line
                [ message-body ]
 ```
 
-This definition means that an `HTTP-message` is nothing else than a `start-line`, followed by 0 or more `header-field` each followed by a CRLF (a new line `\r\n`), another newline and an optional `message-body`.
+This definition means that an `HTTP-message` is nothing else than a `start-line`, followed by 0 or more `header-field` each followed by a CRLF (a new line `\r\n`), another new line and an optional `message-body`.
 
 Keep reading the RFC we will discover what is link:https://tools.ietf.org/html/rfc7230#section-3.1.1[`start-line` on section 3.1] and so on.
 
 It turns out that the `start-line` of a request specify the method of the request, either `GET`, `HEAD`, `POST`, `PUT`, `DELETE`, `CONNECT`, `OPTIONS` or `TRACE` all documented in link:https://tools.ietf.org/html/rfc7231#section-4[RFC 7231 Section 4]. 
-Most developer just need to be aware of all the possible methods, but they won't use all of them.
+Most developers just need to be aware of all the possible methods, but they won't use all of them.
 
-Then it specify what is the target of the request, in our case the root directory `/`.
+Then it specifies what is the target of the request, in our case the root directory `/`.
 
-And finally it specify what protocol to use in the communication, in this case we use `HTTP/2`, another common one is `HTTP/1.1`.
+And finally, it specifies what protocol to use in the communication, in this case, we use `HTTP/2`, another common one is `HTTP/1.1`.
 
-== Keeping state, authentication and cookie
+== Keeping state, authentication, and cookie
 
-The HTTP protocol is mostly stateless, there is nothing that forbid a client to request somebody private records on a social network protocol, after all an HTTP request is just a string formatted following some rules.
+The HTTP protocol is mostly stateless, there is nothing that forbids a client to request somebody private records on a social network protocol after all an HTTP request is just a string formatted following some rules.
 
-However the server need and actually does forbid those requests.
+However, the server needs to forbid those requests.
 
 To overcome the limitation imposed by being a stateless protocol, HTTP relies on the concept of Cookies.
 
-A HTTP response, generated by an HTTP server, can includes the `Set-Cookie` header (the name is case insensitive, the request above to google.com returned `set-cookie`).
-The `Set-Cookie` header instruct the `user-agent` (the client, with some level of approximation) to store the value of the cookie and to send it to the server to any subsequent request to the sever using the `Cookie` header.
+An HTTP response, generated by an HTTP server, can include the `Set-Cookie` header (the name is case insensitive, the request above to google.com returned `set-cookie`).
+The `Set-Cookie` header instructs the `user-agent` (the client, with some level of approximation) to store the value of the cookie and to send it to the server to any subsequent request using the `Cookie` header.
 
-Another link:https://tools.ietf.org/html/rfc6265[RFC (6265)] cover this topic extensively.
+Another link:https://tools.ietf.org/html/rfc6265[RFC (6265)] covers this topic extensively.
 
-For most developer is sufficient to know that the `Set-Cookie` header can provides some options that tweak what the client is suppose to do with the cookie. 
+For most developer is sufficient to know that the `Set-Cookie` header provides some options to tweak how the client manages the cookie.
 
-For instance the `Path` attribute indicate that the cookie should be returned only for requests against a specific URL path.
+For instance, the `Path` attribute indicates that the cookie should be sent only for requests against a specific URL path.
 
-The `Secure` indicate that the cookie should not be sent on insecure connections.
+The `Secure` indicates that the cookie should not be sent on insecure connections.
 
-Finally the `HttpOnly` indicate that the cookie should not be accessible outside the HTTP protocol, for instance it should not be read using the JS API on the browser.
+Finally the `HttpOnly` indicate that the cookie should not be accessible outside the HTTP protocol, for instance, it should not be read using the JS API on the browser.
 
 == Closing thoughts
 
-While the protocol itself is rather simple, after all it is just about concatenating strings and keep tracks of cookies, the necessities of modern software forced us to build complex systems to extract as much performance as possible while keeping an ergonomic interface.
+While the protocol itself is rather simple, after all, it is just about concatenating strings and keep tracks of cookies, the necessities of modern software forced us to build complex systems to extract as much performance as possible while keeping an ergonomic interface.
 
-Most likely developers would like to make more request in parallel while maybe sharing some cookie but not all.
+Most likely developers would like to make more requests in parallel while maybe sharing some cookies but not all.
 
-All these real-world necessities and use case makes the software explode in complexity, but also in usefullness.
+All these real-world necessities and use case makes the software explode in complexity, but also in usefulness.
 
-However `HTTP` remains a simple protocol and the CPython codebase link:https://github.com/python/cpython/blob/3.8/Lib/http/client.py#L1096-L1098[offers a glimpse of this simplicty.]
+However `HTTP` remains a simple protocol and the CPython codebase link:https://github.com/python/cpython/blob/3.8/Lib/http/client.py#L1096-L1098[offers a glimpse of this simplicity.]
 
 ```python
 request = '%s %s %s' % (method, url, self._http_vsn_str)
@@ -119,18 +119,18 @@ It is creating the `start-line` of an HTTP message, just like we did at the very
 == Exercises
 
 Create a function to create HTTP requests.
-As input you can expect the methods (`GET`, `POST`, etc...), the host and the URL of the resource.
+As input, you can expect the methods (`GET`, `POST`, etc...), the host and the URL of the resource.
 You can expand the little function to support also headers?
 And how would you manage cookies?
 
-On the next section we will discover DNS, sockets and TCP. So it will be possible to actually send a request and read back the response.
+In the next section, we will discover DNS, sockets, and TCP. So it will be possible to actually send a request and read back the response.
 
 === Bonus Trivial
 
-From the standard of `HTTP1.1` the headers are stricly optionals, indeed they are defined like this `\*( header-field CRLF)` where the star (`*`) means *zero* or more repetition. 
-However the same standard dictate that the `Host` header link:https://tools.ietf.org/html/rfc7230#section-5.4[*must* be present].
+From the standard of `HTTP1.1`, the headers are strictly optional, indeed they are defined like this `\*( header-field CRLF)` where the star (`*`) means *zero* or more repetition. 
+However, the same standard dictates that the `Host` header link:https://tools.ietf.org/html/rfc7230#section-5.4[*must* be present].
 
-This clear inconsistency was introduced to keep backward compatibility, so that every `HTTP1.1` request is also a `HTTP1.0` request.
+This clear inconsistency was introduced to keep backward compatibility so that every `HTTP1.1` request is also an `HTTP1.0` request.
 
-This is a clear examples of how the world evolves from mistakes and error and also something as widespread and used as "the internet" was designed with some initial mistakes. After all we are human and the success of the `HTTP` was not sure.
+This is a clear example of how the world evolves from mistakes and error and also something as widespread and used as "the internet" was designed with some initial mistakes. After all, we are human and the success of the `HTTP` was not sure.
 

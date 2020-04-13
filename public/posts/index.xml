@@ -17,9 +17,9 @@
       <pubDate>Fri, 10 Apr 2020 12:53:57 +0200</pubDate>
       
       <guid>https://jr2sr.netlify.com/posts/whats-a-web-request/</guid>
-      <description>The web and internet as a large are fundamental for today world, but how does it works under the hood?
- In this article we will talk about HTTP requests that are the fundamentals blocks that make the modern web possible.
- We wil explores how tools like Python requests or Ruby Net::HTTP or again the Go package net/http or any other library that you may use in any other language works.</description>
+      <description>The web and internet as a large are fundamental for today&amp;#8217;s world, but how does it work under the hood?
+ In this article, we will talk about HTTP requests that are the fundamentals blocks that make the modern web possible.
+ We will explore how tools like Python requests or Ruby Net::HTTP or again the Go package net/http or any other library that you may use in any other language works.</description>
     </item>
     
     <item>

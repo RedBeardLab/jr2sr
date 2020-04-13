@@ -88,13 +88,13 @@
 </div>
 </div>
 <div class="paragraph">
-<p>The web and internet as a large are fundamental for today world, but how does it works under the hood?</p>
+<p>The web and internet as a large are fundamental for today&#8217;s world, but how does it work under the hood?</p>
 </div>
 <div class="paragraph">
-<p>In this article we will talk about HTTP requests that are the fundamentals blocks that make the modern web possible.</p>
+<p>In this article, we will talk about HTTP requests that are the fundamentals blocks that make the modern web possible.</p>
 </div>
 <div class="paragraph">
-<p>We wil explores how tools like <a href="https://requests.readthedocs.io/en/master/">Python <code>requests</code></a> or <a href="https://ruby-doc.org/stdlib-2.7.0/libdoc/net/http/rdoc/Net/HTTP.html">Ruby <code>Net::HTTP</code></a> or again the <a href="https://golang.org/pkg/net/http/">Go package <code>net/http</code></a> or any other library that you may use in any other language works.</p>
+<p>We will explore how tools like <a href="https://requests.readthedocs.io/en/master/">Python <code>requests</code></a> or <a href="https://ruby-doc.org/stdlib-2.7.0/libdoc/net/http/rdoc/Net/HTTP.html">Ruby <code>Net::HTTP</code></a> or again the <a href="https://golang.org/pkg/net/http/">Go package <code>net/http</code></a> or any other library that you may use in any other language works.</p>
 </div>
 </div>
 </div>
@@ -102,13 +102,13 @@
 <h2 id="_the_aha_moment">The Aha moment</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Reasoning about the topic become extremely simple as soon as we figure out what is an HTTP request, and the reality is extremely simple.</p>
+<p>Reasoning about the topic becomes extremely simple as soon as we figure out what is an HTTP request, and the reality is extremely simple.</p>
 </div>
 <div class="paragraph">
-<p>An HTTP request is nothing more than a stream of bytes, almost always ASCII bytes that it is possible to read and interpretate. To put it even more simply, it is just a string formatted following some rule.</p>
+<p>An HTTP request is nothing more than a stream of bytes, almost always ASCII bytes that it is possible to read and interpret. To put it even more simply, it is just a string formatted following some rule.</p>
 </div>
 <div class="paragraph">
-<p>The one below is already a complete HTTP requests and this is the most important concept. An HTTP request is nothing more that strings of text similar to this one.</p>
+<p>The one below is already a complete HTTP request and this is the most important concept. An HTTP request is nothing more than strings of text similar to this one.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -142,7 +142,7 @@ vary: Accept-Encoding
 </div>
 </div>
 <div class="paragraph">
-<p>All those libraries and framework are just a way to create, interpretate and send over the networks strings that looks like this.</p>
+<p>All those libraries and frameworks are just a way to create, interpret and send over the network strings that look like this.</p>
 </div>
 </div>
 </div>
@@ -151,10 +151,10 @@ vary: Accept-Encoding
 <div class="sectionbody">
 <div class="paragraph">
 <p>The rules to create a correct HTTP request are encoded in an <a href="https://tools.ietf.org/html/rfc7230">RFC 7230</a> it can be interesting to explore the document and understand at least some of the details, but for most developer will be an overkill.
-However if your work orbitate a lot around the web infrastracture it can be necessary.</p>
+However, if your work orbit a lot around the web infrastructure it can be necessary.</p>
 </div>
 <div class="paragraph">
-<p>For instance <a href="https://tools.ietf.org/html/rfc7230#section-3">Section 3 of RFC 7230</a> describe formally what is a <code>HTTP message</code>.</p>
+<p>For instance, <a href="https://tools.ietf.org/html/rfc7230#section-3">Section 3 of RFC 7230</a> describe formally what is an <code>HTTP message</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -165,53 +165,53 @@ However if your work orbitate a lot around the web infrastracture it can be nece
 </div>
 </div>
 <div class="paragraph">
-<p>This definition means that an <code>HTTP-message</code> is nothing else than a <code>start-line</code>, followed by 0 or more <code>header-field</code> each followed by a CRLF (a new line <code>\r\n</code>), another newline and an optional <code>message-body</code>.</p>
+<p>This definition means that an <code>HTTP-message</code> is nothing else than a <code>start-line</code>, followed by 0 or more <code>header-field</code> each followed by a CRLF (a new line <code>\r\n</code>), another new line and an optional <code>message-body</code>.</p>
 </div>
 <div class="paragraph">
 <p>Keep reading the RFC we will discover what is <a href="https://tools.ietf.org/html/rfc7230#section-3.1.1"><code>start-line</code> on section 3.1</a> and so on.</p>
 </div>
 <div class="paragraph">
 <p>It turns out that the <code>start-line</code> of a request specify the method of the request, either <code>GET</code>, <code>HEAD</code>, <code>POST</code>, <code>PUT</code>, <code>DELETE</code>, <code>CONNECT</code>, <code>OPTIONS</code> or <code>TRACE</code> all documented in <a href="https://tools.ietf.org/html/rfc7231#section-4">RFC 7231 Section 4</a>.
-Most developer just need to be aware of all the possible methods, but they won&#8217;t use all of them.</p>
+Most developers just need to be aware of all the possible methods, but they won&#8217;t use all of them.</p>
 </div>
 <div class="paragraph">
-<p>Then it specify what is the target of the request, in our case the root directory <code>/</code>.</p>
+<p>Then it specifies what is the target of the request, in our case the root directory <code>/</code>.</p>
 </div>
 <div class="paragraph">
-<p>And finally it specify what protocol to use in the communication, in this case we use <code>HTTP/2</code>, another common one is <code>HTTP/1.1</code>.</p>
+<p>And finally, it specifies what protocol to use in the communication, in this case, we use <code>HTTP/2</code>, another common one is <code>HTTP/1.1</code>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_keeping_state_authentication_and_cookie">Keeping state, authentication and cookie</h2>
+<h2 id="_keeping_state_authentication_and_cookie">Keeping state, authentication, and cookie</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The HTTP protocol is mostly stateless, there is nothing that forbid a client to request somebody private records on a social network protocol, after all an HTTP request is just a string formatted following some rules.</p>
+<p>The HTTP protocol is mostly stateless, there is nothing that forbids a client to request somebody private records on a social network protocol after all an HTTP request is just a string formatted following some rules.</p>
 </div>
 <div class="paragraph">
-<p>However the server need and actually does forbid those requests.</p>
+<p>However, the server needs to forbid those requests.</p>
 </div>
 <div class="paragraph">
 <p>To overcome the limitation imposed by being a stateless protocol, HTTP relies on the concept of Cookies.</p>
 </div>
 <div class="paragraph">
-<p>A HTTP response, generated by an HTTP server, can includes the <code>Set-Cookie</code> header (the name is case insensitive, the request above to google.com returned <code>set-cookie</code>).
-The <code>Set-Cookie</code> header instruct the <code>user-agent</code> (the client, with some level of approximation) to store the value of the cookie and to send it to the server to any subsequent request to the sever using the <code>Cookie</code> header.</p>
+<p>An HTTP response, generated by an HTTP server, can include the <code>Set-Cookie</code> header (the name is case insensitive, the request above to google.com returned <code>set-cookie</code>).
+The <code>Set-Cookie</code> header instructs the <code>user-agent</code> (the client, with some level of approximation) to store the value of the cookie and to send it to the server to any subsequent request using the <code>Cookie</code> header.</p>
 </div>
 <div class="paragraph">
-<p>Another <a href="https://tools.ietf.org/html/rfc6265">RFC (6265)</a> cover this topic extensively.</p>
+<p>Another <a href="https://tools.ietf.org/html/rfc6265">RFC (6265)</a> covers this topic extensively.</p>
 </div>
 <div class="paragraph">
-<p>For most developer is sufficient to know that the <code>Set-Cookie</code> header can provides some options that tweak what the client is suppose to do with the cookie.</p>
+<p>For most developer is sufficient to know that the <code>Set-Cookie</code> header provides some options to tweak how the client manages the cookie.</p>
 </div>
 <div class="paragraph">
-<p>For instance the <code>Path</code> attribute indicate that the cookie should be returned only for requests against a specific URL path.</p>
+<p>For instance, the <code>Path</code> attribute indicates that the cookie should be sent only for requests against a specific URL path.</p>
 </div>
 <div class="paragraph">
-<p>The <code>Secure</code> indicate that the cookie should not be sent on insecure connections.</p>
+<p>The <code>Secure</code> indicates that the cookie should not be sent on insecure connections.</p>
 </div>
 <div class="paragraph">
-<p>Finally the <code>HttpOnly</code> indicate that the cookie should not be accessible outside the HTTP protocol, for instance it should not be read using the JS API on the browser.</p>
+<p>Finally the <code>HttpOnly</code> indicate that the cookie should not be accessible outside the HTTP protocol, for instance, it should not be read using the JS API on the browser.</p>
 </div>
 </div>
 </div>
@@ -219,16 +219,16 @@ The <code>Set-Cookie</code> header instruct the <code>user-agent</code> (the cli
 <h2 id="_closing_thoughts">Closing thoughts</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>While the protocol itself is rather simple, after all it is just about concatenating strings and keep tracks of cookies, the necessities of modern software forced us to build complex systems to extract as much performance as possible while keeping an ergonomic interface.</p>
+<p>While the protocol itself is rather simple, after all, it is just about concatenating strings and keep tracks of cookies, the necessities of modern software forced us to build complex systems to extract as much performance as possible while keeping an ergonomic interface.</p>
 </div>
 <div class="paragraph">
-<p>Most likely developers would like to make more request in parallel while maybe sharing some cookie but not all.</p>
+<p>Most likely developers would like to make more requests in parallel while maybe sharing some cookies but not all.</p>
 </div>
 <div class="paragraph">
-<p>All these real-world necessities and use case makes the software explode in complexity, but also in usefullness.</p>
+<p>All these real-world necessities and use case makes the software explode in complexity, but also in usefulness.</p>
 </div>
 <div class="paragraph">
-<p>However <code>HTTP</code> remains a simple protocol and the CPython codebase <a href="https://github.com/python/cpython/blob/3.8/Lib/http/client.py#L1096-L1098">offers a glimpse of this simplicty.</a></p>
+<p>However <code>HTTP</code> remains a simple protocol and the CPython codebase <a href="https://github.com/python/cpython/blob/3.8/Lib/http/client.py#L1096-L1098">offers a glimpse of this simplicity.</a></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -246,24 +246,24 @@ self._output(self._encode_request(request))</code></pre>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Create a function to create HTTP requests.
-As input you can expect the methods (<code>GET</code>, <code>POST</code>, etc&#8230;&#8203;), the host and the URL of the resource.
+As input, you can expect the methods (<code>GET</code>, <code>POST</code>, etc&#8230;&#8203;), the host and the URL of the resource.
 You can expand the little function to support also headers?
 And how would you manage cookies?</p>
 </div>
 <div class="paragraph">
-<p>On the next section we will discover DNS, sockets and TCP. So it will be possible to actually send a request and read back the response.</p>
+<p>In the next section, we will discover DNS, sockets, and TCP. So it will be possible to actually send a request and read back the response.</p>
 </div>
 <div class="sect2">
 <h3 id="_bonus_trivial">Bonus Trivial</h3>
 <div class="paragraph">
-<p>From the standard of <code>HTTP1.1</code> the headers are stricly optionals, indeed they are defined like this <code>*( header-field CRLF)</code> where the star (<code>*</code>) means <strong>zero</strong> or more repetition.
-However the same standard dictate that the <code>Host</code> header <a href="https://tools.ietf.org/html/rfc7230#section-5.4"><strong>must</strong> be present</a>.</p>
+<p>From the standard of <code>HTTP1.1</code>, the headers are strictly optional, indeed they are defined like this <code>*( header-field CRLF)</code> where the star (<code>*</code>) means <strong>zero</strong> or more repetition.
+However, the same standard dictates that the <code>Host</code> header <a href="https://tools.ietf.org/html/rfc7230#section-5.4"><strong>must</strong> be present</a>.</p>
 </div>
 <div class="paragraph">
-<p>This clear inconsistency was introduced to keep backward compatibility, so that every <code>HTTP1.1</code> request is also a <code>HTTP1.0</code> request.</p>
+<p>This clear inconsistency was introduced to keep backward compatibility so that every <code>HTTP1.1</code> request is also an <code>HTTP1.0</code> request.</p>
 </div>
 <div class="paragraph">
-<p>This is a clear examples of how the world evolves from mistakes and error and also something as widespread and used as "the internet" was designed with some initial mistakes. After all we are human and the success of the <code>HTTP</code> was not sure.</p>
+<p>This is a clear example of how the world evolves from mistakes and error and also something as widespread and used as "the internet" was designed with some initial mistakes. After all, we are human and the success of the <code>HTTP</code> was not sure.</p>
 </div>
 </div>
 </div>
