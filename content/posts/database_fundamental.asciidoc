@@ -1,0 +1,55 @@
+---
+title: "Database Fundamental"
+date: 2020-04-27T20:40:24+02:00
+draft: false
+---
+
+= Databases
+
+Databases are fundamental in all web application, website, API, CRUD.
+
+Lately, new software around databases starts to blossom.
+
+An example is GraphQL. It provides a more handy, mobile-friendly, interface to access data. Often on top of classical databases. 
+New tools don't allow us to skip the underneath fundamental knowledge. But they force us to understand how things work under the hood much deeper.
+So, now it is even more important to understand why some queries are slow and why some are fast.
+A new tool on top of established technology it means that we need to master the underline technology much better. Abstractions are leaky. And to use efficiently the new tools we need to know how they work.
+
+Fortunately, the basic concepts of database systems are simple. But powerful.
+
+== Why databases
+
+First, we need to understand why we need databases. Why we don't store all the data in memory?
+
+Unfortunately, software is unreliable. Computers can lose power. Software can crash because of bugs or because of bad input from the user. 
+How often did you lose all your progress in an import World document?
+
+Moreover, memory is expensive. Disks are much cheaper than RAM. 
+And disks don't need electric power to keep the data stored safely.
+Databases help us in keeping data store safely and they are fast to search for information and records of interest. Even with a huge amount of data.
+
+Databases make it feels like we have an infinite amount of fast memory that does not care if our software crash or if the computer lose power.
+
+Of course, it is more complex than this.
+
+== Files and Data structures
+
+Databases store information on disks. But disks are different from RAM. In RAM it is fast to read a new piece of data from a random location or address. In disk, this is not true. It is very slow to read data from the beginning of a file and immediately after from the end of the same file.
+
+Databases optimize for this constraint. They place data in such a way that it is fast to check if a record is the one we care about.
+
+Databases store data in a tree data structure, usually a B+-tree. Which make fast to access data by a key, the primary key.
+
+Sometimes we need to manipulate data not based on the primary key, but based on some other property. In such cases, there are two main solutions.
+Or we access the whole dataset and filter out all the data we don't need or we use indexes.
+
+Indexes are data-structure stored on disk. They help us to retrieve information quickly without scanning the whole dataset.
+
+There are different kinds of indexes. The most common are based on B+-trees, others are based on hash tables. Each type of index helps in different types of queries.
+
+== Recap
+
+1. Databases give us the illusion to have a huge amount to fast, reliable storage.
+2. They store information on disk, so they must adopt smart data-structures to make access to data fast
+3. Indexes help us retrieve information fast.
+

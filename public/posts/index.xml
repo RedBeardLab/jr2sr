@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Junior 2 Senior</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Apr 2020 12:53:57 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 27 Apr 2020 20:40:24 +0200</lastBuildDate>
     
 	<atom:link href="https://jr2sr.netlify.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Database Fundamental</title>
+      <link>https://jr2sr.netlify.com/posts/database_fundamental/</link>
+      <pubDate>Mon, 27 Apr 2020 20:40:24 +0200</pubDate>
+      
+      <guid>https://jr2sr.netlify.com/posts/database_fundamental/</guid>
+      <description>Databases are fundamental in all web application, website, API, CRUD.
+ Lately, new software around databases starts to blossom.
+ An example is GraphQL. It provides a more handy, mobile-friendly, interface to access data. Often on top of classical databases. New tools don&amp;#8217;t allow us to skip the underneath fundamental knowledge. But they force us to understand how things work under the hood much deeper. So, now it is even more important to understand why some queries are slow and why some are fast.</description>
+    </item>
     
     <item>
       <title>What is a Web Request</title>

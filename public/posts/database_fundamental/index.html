@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Database Fundamental | Junior 2 Senior</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href=https://jr2sr.netlify.com/apple-touch-icon.png>
+    <link rel="icon" type="image/png" sizes="32x32" href=https://jr2sr.netlify.com/favicon-32x32.png>
+    <link rel="icon" type="image/png" sizes="16x16" href=https://jr2sr.netlify.com/favicon-16x16.png>
+    <link rel="manifest" href=https://jr2sr.netlify.com/site.webmanifest>
+    <link rel="mask-icon" href=https://jr2sr.netlify.com/safari-pinned-tab.svg color="#00416a">
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    
+    
+    
+    
+    <link rel="authorization_endpoint" href=https://indieauth.com/auth />
+    <link rel="token_endpoint" href=https://tokens.indieauth.com/token />
+    
+    
+    
+    
+    <link rel="stylesheet" href=https://jr2sr.netlify.com/css/fonts.css />
+    <link rel="stylesheet" href=https://jr2sr.netlify.com/css/style.css />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div id="sitelogo">
+        <a class="glyph" alt="Home" href="https://jr2sr.netlify.com/"><img src=https://jr2sr.netlify.com/images/site-logo.svg alt="Site Logo" height="64px" width="64px"></a>
+    </div>
+    <header>
+        <nav>
+    
+    <div id="page-nav">
+        <div class="page-nav-item">
+            <a href="https://jr2sr.netlify.com/">Home</a>
+        </div>
+        
+    </div>
+</nav>
+        
+    </header>
+
+
+
+
+<div id="content">
+    <article class="h-entry">
+        <header>
+            <h1 class="post-title p-name">Database Fundamental</h1>
+            
+            <p class="post-date">Posted on
+                <time class="dt-published" datetime="2020-04-27T20:40:24&#43;02:00">
+                27 April, 2020 at 20:40 CEST
+                </time> 
+            </p>
+            
+            
+	    
+<br>
+
+<div style="background-color: #ffff645e; padding: 1.5em; margin-bottom: 1em;">
+  <p><b>Database Fundamental</b> is part of <a href="https://gumroad.com/l/junior2senior">Junior2Senior</a> a course to help you grow as software engineers.</p>
+  <p>It is about unloading all the knowledge that I accumulate over my career to younger engineers to help speed up their own career.</p>
+  <p>The book is actually on pre-sale 50% off for only 19$.</p>
+  <script src="https://gumroad.com/js/gumroad.js"></script>
+  <div style="text-align: center;">
+    <a class="gumroad-button" href="https://gum.co/HjDwM" target="_blank">Buy Junior2Senior</a>
+  </div>
+   <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=1912938&conversionId=2134425&fmt=gif" /> 
+</div>
+
+        </header>
+        <section class="content e-content">
+            <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Databases are fundamental in all web application, website, API, CRUD.</p>
+</div>
+<div class="paragraph">
+<p>Lately, new software around databases starts to blossom.</p>
+</div>
+<div class="paragraph">
+<p>An example is GraphQL. It provides a more handy, mobile-friendly, interface to access data. Often on top of classical databases.
+New tools don&#8217;t allow us to skip the underneath fundamental knowledge. But they force us to understand how things work under the hood much deeper.
+So, now it is even more important to understand why some queries are slow and why some are fast.
+A new tool on top of established technology it means that we need to master the underline technology much better. Abstractions are leaky. And to use efficiently the new tools we need to know how they work.</p>
+</div>
+<div class="paragraph">
+<p>Fortunately, the basic concepts of database systems are simple. But powerful.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_why_databases">Why databases</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>First, we need to understand why we need databases. Why we don&#8217;t store all the data in memory?</p>
+</div>
+<div class="paragraph">
+<p>Unfortunately, software is unreliable. Computers can lose power. Software can crash because of bugs or because of bad input from the user.
+How often did you lose all your progress in an import World document?</p>
+</div>
+<div class="paragraph">
+<p>Moreover, memory is expensive. Disks are much cheaper than RAM.
+And disks don&#8217;t need electric power to keep the data stored safely.
+Databases help us in keeping data store safely and they are fast to search for information and records of interest. Even with a huge amount of data.</p>
+</div>
+<div class="paragraph">
+<p>Databases make it feels like we have an infinite amount of fast memory that does not care if our software crash or if the computer lose power.</p>
+</div>
+<div class="paragraph">
+<p>Of course, it is more complex than this.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_files_and_data_structures">Files and Data structures</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Databases store information on disks. But disks are different from RAM. In RAM it is fast to read a new piece of data from a random location or address. In disk, this is not true. It is very slow to read data from the beginning of a file and immediately after from the end of the same file.</p>
+</div>
+<div class="paragraph">
+<p>Databases optimize for this constraint. They place data in such a way that it is fast to check if a record is the one we care about.</p>
+</div>
+<div class="paragraph">
+<p>Databases store data in a tree data structure, usually a B+-tree. Which make fast to access data by a key, the primary key.</p>
+</div>
+<div class="paragraph">
+<p>Sometimes we need to manipulate data not based on the primary key, but based on some other property. In such cases, there are two main solutions.
+Or we access the whole dataset and filter out all the data we don&#8217;t need or we use indexes.</p>
+</div>
+<div class="paragraph">
+<p>Indexes are data-structure stored on disk. They help us to retrieve information quickly without scanning the whole dataset.</p>
+</div>
+<div class="paragraph">
+<p>There are different kinds of indexes. The most common are based on B+-trees, others are based on hash tables. Each type of index helps in different types of queries.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_recap">Recap</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Databases give us the illusion to have a huge amount to fast, reliable storage.</p>
+</li>
+<li>
+<p>They store information on disk, so they must adopt smart data-structures to make access to data fast</p>
+</li>
+<li>
+<p>Indexes help us retrieve information fast.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+        </section>
+        <footer>
+            <a class="permalink u-url" href="https://jr2sr.netlify.com/posts/database_fundamental/"></a>
+            
+        </footer>
+    </article>
+
+  
+<br>
+
+<div style="background-color: #ffff645e; padding: 1.5em; margin-bottom: 1em;">
+  <p><b>Database Fundamental</b> is part of <a href="https://gumroad.com/l/junior2senior">Junior2Senior</a> a course to help you grow as software engineers.</p>
+  <p>It is about unloading all the knowledge that I accumulate over my career to younger engineers to help speed up their own career.</p>
+  <p>The book is actually on pre-sale 50% off for only 19$.</p>
+  <script src="https://gumroad.com/js/gumroad.js"></script>
+  <div style="text-align: center;">
+    <a class="gumroad-button" href="https://gum.co/HjDwM" target="_blank">Buy Junior2Senior</a>
+  </div>
+   <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=1912938&conversionId=2134425&fmt=gif" /> 
+</div>
+
+
+  <br>
+<p>Signup to receive notification about new articles</p>
+
+
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+ 
+</style>
+<div id="mc_embed_signup">
+  <form action="https://rhcloud.us5.list-manage.com/subscribe/post?u=2c818251de1f8592ef01e8ad0&amp;id=fc2722647b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+      <label for="mce-EMAIL">Subscribe to Junior 2 Senior</label>
+      <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+      
+      <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2c818251de1f8592ef01e8ad0_fc2722647b" tabindex="-1" value=""></div>
+      <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+
+
+
+</div>
+
+    
+    <div id="footer">
+      
+      <nav id="article-skip">
+        <div class="next">
+          
+          <p>&nbsp;</p>
+          
+        </div>
+        <div class="top">
+          <a alt="Top of page" href="#">Top</a>
+        </div>
+        <div class="prev">
+          
+          <a alt="Older article" href="https://jr2sr.netlify.com/posts/whats-a-web-request/">Older &rarr;</a>
+          
+        </div>
+      </nav>
+      
+      <aside id="social">
+  <div id="social-icons">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+</aside>
+
+      
+    </div>
+
+
+</body>
+</html>

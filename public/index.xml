@@ -11,6 +11,99 @@
     
     
     <item>
+      <title>Database Fundamental</title>
+      <link>https://jr2sr.netlify.com/posts/database_fundamental/</link>
+      <pubDate>Mon, 27 Apr 2020 20:40:24 +0200</pubDate>
+      
+      <guid>https://jr2sr.netlify.com/posts/database_fundamental/</guid>
+      <description>&lt;div id=&#34;preamble&#34;&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Databases are fundamental in all web application, website, API, CRUD.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Lately, new software around databases starts to blossom.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;An example is GraphQL. It provides a more handy, mobile-friendly, interface to access data. Often on top of classical databases.
+New tools don&amp;#8217;t allow us to skip the underneath fundamental knowledge. But they force us to understand how things work under the hood much deeper.
+So, now it is even more important to understand why some queries are slow and why some are fast.
+A new tool on top of established technology it means that we need to master the underline technology much better. Abstractions are leaky. And to use efficiently the new tools we need to know how they work.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Fortunately, the basic concepts of database systems are simple. But powerful.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_why_databases&#34;&gt;Why databases&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;First, we need to understand why we need databases. Why we don&amp;#8217;t store all the data in memory?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Unfortunately, software is unreliable. Computers can lose power. Software can crash because of bugs or because of bad input from the user.
+How often did you lose all your progress in an import World document?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Moreover, memory is expensive. Disks are much cheaper than RAM.
+And disks don&amp;#8217;t need electric power to keep the data stored safely.
+Databases help us in keeping data store safely and they are fast to search for information and records of interest. Even with a huge amount of data.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Databases make it feels like we have an infinite amount of fast memory that does not care if our software crash or if the computer lose power.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Of course, it is more complex than this.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_files_and_data_structures&#34;&gt;Files and Data structures&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Databases store information on disks. But disks are different from RAM. In RAM it is fast to read a new piece of data from a random location or address. In disk, this is not true. It is very slow to read data from the beginning of a file and immediately after from the end of the same file.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Databases optimize for this constraint. They place data in such a way that it is fast to check if a record is the one we care about.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Databases store data in a tree data structure, usually a B+-tree. Which make fast to access data by a key, the primary key.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Sometimes we need to manipulate data not based on the primary key, but based on some other property. In such cases, there are two main solutions.
+Or we access the whole dataset and filter out all the data we don&amp;#8217;t need or we use indexes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Indexes are data-structure stored on disk. They help us to retrieve information quickly without scanning the whole dataset.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;There are different kinds of indexes. The most common are based on B+-trees, others are based on hash tables. Each type of index helps in different types of queries.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_recap&#34;&gt;Recap&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Databases give us the illusion to have a huge amount to fast, reliable storage.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;They store information on disk, so they must adopt smart data-structures to make access to data fast&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Indexes help us retrieve information fast.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>What is a Web Request</title>
       <link>https://jr2sr.netlify.com/posts/whats-a-web-request/</link>
       <pubDate>Fri, 10 Apr 2020 12:53:57 +0200</pubDate>
@@ -307,7 +400,7 @@ The community is still not open.&lt;/p&gt;
 &lt;div class=&#34;olist loweralpha&#34;&gt;
 &lt;ol class=&#34;loweralpha&#34; type=&#34;a&#34;&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;../whats-a-web-request&#34;&gt;What is a web request&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;posts/whats-a-web-request&#34;&gt;What is a web request&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;DNS&lt;/p&gt;
