@@ -11,6 +11,99 @@
     
     
     <item>
+      <title>Always check your resources before to free them</title>
+      <link>https://jr2sr.netlify.com/posts/check_your_resources/</link>
+      <pubDate>Wed, 29 Apr 2020 22:05:02 +0200</pubDate>
+      
+      <guid>https://jr2sr.netlify.com/posts/check_your_resources/</guid>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Today I fixed a minor bug in our production code.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;The software is written in Go(lang) and makes extensive use of the &lt;code&gt;defer&lt;/code&gt; statement.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;The &lt;code&gt;defer&lt;/code&gt; statement, take a function invocation and run it after the current function returns.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;They are very handy for clean-up tasks. A classical example is the acquisition of a lock. Or closing a file.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Without &lt;code&gt;defer&lt;/code&gt; you would get your resource at the beginning of the function, use it, and then clean-up.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;In the case of locks, you would acquire the lock, do the work in the critical section, release the lock, and the return.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;In case of files, you would open the file, write and read to the file, and then close the file.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;With this approach, every return path must be checked. As soon as you add a new return path, you must make sure that it closes all the resources it may have acquired. This is simpler to say than to do.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Code bases grow larger and larger and it gets messy to check all the possible returns path. And it also looks ugly and not DRY.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;code&gt;defer&lt;/code&gt; solve this problem. As soon as you get the resource you defer its cleanup. As soon as you acquire the lock, you defer the release of it. As soon as you open a file, you defer closing it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;You want to put the &lt;code&gt;defer&lt;/code&gt; as close as possible to the resource initialization for two reasons.
+First of all, it is clearer when reading the code.
+Second, the closer the two calls are, the less it is likely that some hidden return path sneaks into the acquisition and the cleanup.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;But you don&amp;#8217;t want to put it too close. Before invoking the &lt;code&gt;defer&lt;/code&gt; you must make sure that the resource is valid.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Today bug was about an HTTP call. I was making the HTTP call and immediately after I was closing its body to avoid leaking resources.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-golang&#34; data-lang=&#34;golang&#34;&gt;client := &amp;amp;http.Client{}
+resp, err := client.Do(req)
+defer resp.Body.Close()
+if resp.StatusCode &amp;gt;= 400 {
+	err = fmt.Errorf(&#34;Some error happened %s&#34;, resp.Status)
+	return
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Unfortunately, sometimes, the network fails. And today it failed.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;The network failed, the &lt;code&gt;StatusCode&lt;/code&gt; was greater than 400 and the functions returned early. As soon as the function returned, it invoked the &lt;code&gt;defer&lt;/code&gt; statement: &lt;code&gt;resp.Body.Close()&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Since the requested had failed, the &lt;code&gt;Body&lt;/code&gt; was not there and there was a &lt;code&gt;nil&lt;/code&gt; pointer.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;The &lt;code&gt;defer&lt;/code&gt; ended up calling the &lt;code&gt;Close()&lt;/code&gt; method of &lt;code&gt;nil&lt;/code&gt; and this caused a runtime panic, blowing it up in production.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;I corrected the code with:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-golang&#34; data-lang=&#34;golang&#34;&gt;client := &amp;amp;http.Client{}
+resp, err := client.Do(req)
+if err != nil {
+        err = fmt.Errorf(&#34;The HTTP request failed %s&#34;, err)
+        return
+}
+defer resp.Body.Close()&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;First, I check that the request succeed. If the request succeed, the &lt;code&gt;Body&lt;/code&gt; is something we can &lt;code&gt;Close()&lt;/code&gt;, and so we can &lt;code&gt;defer&lt;/code&gt; its closing.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;If the request failed, for whatever reason, we return early, without deferring the close of the Body, that does not exist.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Database Fundamental</title>
       <link>https://jr2sr.netlify.com/posts/database_fundamental/</link>
       <pubDate>Mon, 27 Apr 2020 20:40:24 +0200</pubDate>
@@ -25,10 +118,19 @@
 &lt;p&gt;Lately, new software around databases starts to blossom.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;An example is GraphQL. It provides a more handy, mobile-friendly, interface to access data. Often on top of classical databases.
-New tools don&amp;#8217;t allow us to skip the underneath fundamental knowledge. But they force us to understand how things work under the hood much deeper.
-So, now it is even more important to understand why some queries are slow and why some are fast.
-A new tool on top of established technology it means that we need to master the underline technology much better. Abstractions are leaky. And to use efficiently the new tools we need to know how they work.&lt;/p&gt;
+&lt;p&gt;An example is GraphQL.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;It provides a more handy, mobile-friendly, interface to access data. Often on top of classical databases.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;New tools don&amp;#8217;t allow us to skip the underneath fundamental knowledge. But they force us to understand how things work under the hood much deeper.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Now, it is even more important to understand why some queries are slow and why some are fast.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;A new tool on top of established technology it means that we need to master the underline technology much better. Abstractions are leaky. And to use efficiently the new tools we need to know how they work.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Fortunately, the basic concepts of database systems are simple. But powerful.&lt;/p&gt;
@@ -42,13 +144,19 @@ A new tool on top of established technology it means that we need to master the 
 &lt;p&gt;First, we need to understand why we need databases. Why we don&amp;#8217;t store all the data in memory?&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Unfortunately, software is unreliable. Computers can lose power. Software can crash because of bugs or because of bad input from the user.
-How often did you lose all your progress in an import World document?&lt;/p&gt;
+&lt;p&gt;Unfortunately, software is unreliable. Computers can lose power. Software can crash because of bugs or because of bad input from the user.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Moreover, memory is expensive. Disks are much cheaper than RAM.
-And disks don&amp;#8217;t need electric power to keep the data stored safely.
-Databases help us in keeping data store safely and they are fast to search for information and records of interest. Even with a huge amount of data.&lt;/p&gt;
+&lt;p&gt;How often did you lose all your progress in an import World document?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Moreover, memory is expensive. Disks are much cheaper than RAM.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;And disks don&amp;#8217;t need electric power to keep the data stored safely.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Databases help us in keeping data store safely and they are fast to search for information and records of interest. Even with a huge amount of data.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Databases make it feels like we have an infinite amount of fast memory that does not care if our software crash or if the computer lose power.&lt;/p&gt;
@@ -62,7 +170,13 @@ Databases help us in keeping data store safely and they are fast to search for i
 &lt;h2 id=&#34;_files_and_data_structures&#34;&gt;Files and Data structures&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Databases store information on disks. But disks are different from RAM. In RAM it is fast to read a new piece of data from a random location or address. In disk, this is not true. It is very slow to read data from the beginning of a file and immediately after from the end of the same file.&lt;/p&gt;
+&lt;p&gt;Databases store information on disks. But disks are different from RAM.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;In RAM it is fast to read a new piece of data from a random location or address.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;In disk, this is not true. It is very slow to read data from the beginning of a file and immediately after from the end of the same file.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Databases optimize for this constraint. They place data in such a way that it is fast to check if a record is the one we care about.&lt;/p&gt;

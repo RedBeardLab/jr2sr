@@ -2,3 +2,7 @@ baseURL = "https://jr2sr.netlify.com/"
 languageCode = "en-us"
 title = "Junior 2 Senior"
 theme = "indigo"
+
+[params]
+  Author = "Paul DiGian"
+  TwitterUser = "@DigianPaul"

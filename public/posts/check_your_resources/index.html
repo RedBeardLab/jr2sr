@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Database Fundamental | Junior 2 Senior</title>
+    <title>Always check your resources before to free them | Junior 2 Senior</title>
     <meta name="description" content="">
     <meta name="author" content="">
     
@@ -55,11 +55,11 @@
 <div id="content">
     <article class="h-entry">
         <header>
-            <h1 class="post-title p-name">Database Fundamental</h1>
+            <h1 class="post-title p-name">Always check your resources before to free them</h1>
             
             <p class="post-date">Posted on
-                <time class="dt-published" datetime="2020-04-27T20:40:24&#43;02:00">
-                27 April, 2020 at 20:40 CEST
+                <time class="dt-published" datetime="2020-04-29T22:05:02&#43;02:00">
+                29 April, 2020 at 22:05 CEST
                 </time>  by <a href="https://jr2sr.netlify.com/" class="p-author h-card" rel="author">Paul DiGian</a>
             </p>
             
@@ -68,7 +68,7 @@
 <br>
 
 <div style="background-color: #ffff645e; padding: 1.5em; margin-bottom: 1em;">
-  <p><b>Database Fundamental</b> is part of <a href="https://gumroad.com/l/junior2senior">Junior2Senior</a> a course to help you grow as software engineers.</p>
+  <p><b>Always check your resources before to free them</b> is part of <a href="https://gumroad.com/l/junior2senior">Junior2Senior</a> a course to help you grow as software engineers.</p>
   <p>It is about unloading all the knowledge that I accumulate over my career to younger engineers to help speed up their own career.</p>
   <p> You can follow me on twitter as well 
     <a href="https://twitter.com/DigianPaul?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-dnt="true" data-show-count="false">Follow @DigianPaul</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -82,115 +82,94 @@
 
         </header>
         <section class="content e-content">
-            <div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>Databases are fundamental in all web application, website, API, CRUD.</p>
+            <div class="paragraph">
+<p>Today I fixed a minor bug in our production code.</p>
 </div>
 <div class="paragraph">
-<p>Lately, new software around databases starts to blossom.</p>
+<p>The software is written in Go(lang) and makes extensive use of the <code>defer</code> statement.</p>
 </div>
 <div class="paragraph">
-<p>An example is GraphQL.</p>
+<p>The <code>defer</code> statement, take a function invocation and run it after the current function returns.</p>
 </div>
 <div class="paragraph">
-<p>It provides a more handy, mobile-friendly, interface to access data. Often on top of classical databases.</p>
+<p>They are very handy for clean-up tasks. A classical example is the acquisition of a lock. Or closing a file.</p>
 </div>
 <div class="paragraph">
-<p>New tools don&#8217;t allow us to skip the underneath fundamental knowledge. But they force us to understand how things work under the hood much deeper.</p>
+<p>Without <code>defer</code> you would get your resource at the beginning of the function, use it, and then clean-up.</p>
 </div>
 <div class="paragraph">
-<p>Now, it is even more important to understand why some queries are slow and why some are fast.</p>
+<p>In the case of locks, you would acquire the lock, do the work in the critical section, release the lock, and the return.</p>
 </div>
 <div class="paragraph">
-<p>A new tool on top of established technology it means that we need to master the underline technology much better. Abstractions are leaky. And to use efficiently the new tools we need to know how they work.</p>
+<p>In case of files, you would open the file, write and read to the file, and then close the file.</p>
 </div>
 <div class="paragraph">
-<p>Fortunately, the basic concepts of database systems are simple. But powerful.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_why_databases">Why databases</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>First, we need to understand why we need databases. Why we don&#8217;t store all the data in memory?</p>
+<p>With this approach, every return path must be checked. As soon as you add a new return path, you must make sure that it closes all the resources it may have acquired. This is simpler to say than to do.</p>
 </div>
 <div class="paragraph">
-<p>Unfortunately, software is unreliable. Computers can lose power. Software can crash because of bugs or because of bad input from the user.</p>
+<p>Code bases grow larger and larger and it gets messy to check all the possible returns path. And it also looks ugly and not DRY.</p>
 </div>
 <div class="paragraph">
-<p>How often did you lose all your progress in an import World document?</p>
+<p><code>defer</code> solve this problem. As soon as you get the resource you defer its cleanup. As soon as you acquire the lock, you defer the release of it. As soon as you open a file, you defer closing it.</p>
 </div>
 <div class="paragraph">
-<p>Moreover, memory is expensive. Disks are much cheaper than RAM.</p>
+<p>You want to put the <code>defer</code> as close as possible to the resource initialization for two reasons.
+First of all, it is clearer when reading the code.
+Second, the closer the two calls are, the less it is likely that some hidden return path sneaks into the acquisition and the cleanup.</p>
 </div>
 <div class="paragraph">
-<p>And disks don&#8217;t need electric power to keep the data stored safely.</p>
+<p>But you don&#8217;t want to put it too close. Before invoking the <code>defer</code> you must make sure that the resource is valid.</p>
 </div>
 <div class="paragraph">
-<p>Databases help us in keeping data store safely and they are fast to search for information and records of interest. Even with a huge amount of data.</p>
+<p>Today bug was about an HTTP call. I was making the HTTP call and immediately after I was closing its body to avoid leaking resources.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-golang" data-lang="golang">client := &amp;http.Client{}
+resp, err := client.Do(req)
+defer resp.Body.Close()
+if resp.StatusCode &gt;= 400 {
+	err = fmt.Errorf("Some error happened %s", resp.Status)
+	return
+}</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Databases make it feels like we have an infinite amount of fast memory that does not care if our software crash or if the computer lose power.</p>
+<p>Unfortunately, sometimes, the network fails. And today it failed.</p>
 </div>
 <div class="paragraph">
-<p>Of course, it is more complex than this.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_files_and_data_structures">Files and Data structures</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Databases store information on disks. But disks are different from RAM.</p>
+<p>The network failed, the <code>StatusCode</code> was greater than 400 and the functions returned early. As soon as the function returned, it invoked the <code>defer</code> statement: <code>resp.Body.Close()</code>.</p>
 </div>
 <div class="paragraph">
-<p>In RAM it is fast to read a new piece of data from a random location or address.</p>
+<p>Since the requested had failed, the <code>Body</code> was not there and there was a <code>nil</code> pointer.</p>
 </div>
 <div class="paragraph">
-<p>In disk, this is not true. It is very slow to read data from the beginning of a file and immediately after from the end of the same file.</p>
+<p>The <code>defer</code> ended up calling the <code>Close()</code> method of <code>nil</code> and this caused a runtime panic, blowing it up in production.</p>
 </div>
 <div class="paragraph">
-<p>Databases optimize for this constraint. They place data in such a way that it is fast to check if a record is the one we care about.</p>
+<p>I corrected the code with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-golang" data-lang="golang">client := &amp;http.Client{}
+resp, err := client.Do(req)
+if err != nil {
+        err = fmt.Errorf("The HTTP request failed %s", err)
+        return
+}
+defer resp.Body.Close()</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Databases store data in a tree data structure, usually a B+-tree. Which make fast to access data by a key, the primary key.</p>
+<p>First, I check that the request succeed. If the request succeed, the <code>Body</code> is something we can <code>Close()</code>, and so we can <code>defer</code> its closing.</p>
 </div>
 <div class="paragraph">
-<p>Sometimes we need to manipulate data not based on the primary key, but based on some other property. In such cases, there are two main solutions.
-Or we access the whole dataset and filter out all the data we don&#8217;t need or we use indexes.</p>
-</div>
-<div class="paragraph">
-<p>Indexes are data-structure stored on disk. They help us to retrieve information quickly without scanning the whole dataset.</p>
-</div>
-<div class="paragraph">
-<p>There are different kinds of indexes. The most common are based on B+-trees, others are based on hash tables. Each type of index helps in different types of queries.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_recap">Recap</h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Databases give us the illusion to have a huge amount to fast, reliable storage.</p>
-</li>
-<li>
-<p>They store information on disk, so they must adopt smart data-structures to make access to data fast</p>
-</li>
-<li>
-<p>Indexes help us retrieve information fast.</p>
-</li>
-</ol>
-</div>
-</div>
+<p>If the request failed, for whatever reason, we return early, without deferring the close of the Body, that does not exist.</p>
 </div>
 
         </section>
         <footer>
-            <a class="permalink u-url" href="https://jr2sr.netlify.com/posts/database_fundamental/"></a>
+            <a class="permalink u-url" href="https://jr2sr.netlify.com/posts/check_your_resources/"></a>
             
         </footer>
     </article>
@@ -199,7 +178,7 @@ Or we access the whole dataset and filter out all the data we don&#8217;t need o
 <br>
 
 <div style="background-color: #ffff645e; padding: 1.5em; margin-bottom: 1em;">
-  <p><b>Database Fundamental</b> is part of <a href="https://gumroad.com/l/junior2senior">Junior2Senior</a> a course to help you grow as software engineers.</p>
+  <p><b>Always check your resources before to free them</b> is part of <a href="https://gumroad.com/l/junior2senior">Junior2Senior</a> a course to help you grow as software engineers.</p>
   <p>It is about unloading all the knowledge that I accumulate over my career to younger engineers to help speed up their own career.</p>
   <p> You can follow me on twitter as well 
     <a href="https://twitter.com/DigianPaul?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-dnt="true" data-show-count="false">Follow @DigianPaul</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -244,7 +223,7 @@ Or we access the whole dataset and filter out all the data we don&#8217;t need o
       <nav id="article-skip">
         <div class="next">
           
-          <a alt="Newer article" href="https://jr2sr.netlify.com/posts/check_your_resources/">&larr; Newer</a>
+          <p>&nbsp;</p>
           
         </div>
         <div class="top">
@@ -252,7 +231,7 @@ Or we access the whole dataset and filter out all the data we don&#8217;t need o
         </div>
         <div class="prev">
           
-          <a alt="Older article" href="https://jr2sr.netlify.com/posts/whats-a-web-request/">Older &rarr;</a>
+          <a alt="Older article" href="https://jr2sr.netlify.com/posts/database_fundamental/">Older &rarr;</a>
           
         </div>
       </nav>

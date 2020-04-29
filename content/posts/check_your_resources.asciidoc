@@ -1,0 +1,70 @@
+---
+title: "Always check your resources before to free them"
+date: 2020-04-29T22:05:02+02:00
+draft: false
+---
+
+= Always check your resources before to free them
+
+Today I fixed a minor bug in our production code.
+
+The software is written in Go(lang) and makes extensive use of the `defer` statement.
+
+The `defer` statement, take a function invocation and run it after the current function returns.
+
+They are very handy for clean-up tasks. A classical example is the acquisition of a lock. Or closing a file.
+                                                                                                         
+Without `defer` you would get your resource at the beginning of the function, use it, and then clean-up.
+
+In the case of locks, you would acquire the lock, do the work in the critical section, release the lock, and the return.
+
+In case of files, you would open the file, write and read to the file, and then close the file.
+                                                                                                                                                                                                          
+With this approach, every return path must be checked. As soon as you add a new return path, you must make sure that it closes all the resources it may have acquired. This is simpler to say than to do.
+                                                                                                                                
+Code bases grow larger and larger and it gets messy to check all the possible returns path. And it also looks ugly and not DRY.
+
+`defer` solve this problem. As soon as you get the resource you defer its cleanup. As soon as you acquire the lock, you defer the release of it. As soon as you open a file, you defer closing it.
+                                                                                                 
+You want to put the `defer` as close as possible to the resource initialization for two reasons.
+First of all, it is clearer when reading the code. 
+Second, the closer the two calls are, the less it is likely that some hidden return path sneaks into the acquisition and the cleanup.
+
+But you don't want to put it too close. Before invoking the `defer` you must make sure that the resource is valid.
+
+Today bug was about an HTTP call. I was making the HTTP call and immediately after I was closing its body to avoid leaking resources.
+
+```golang                
+client := &http.Client{}    
+resp, err := client.Do(req)
+defer resp.Body.Close()      
+if resp.StatusCode >= 400 {                             
+	err = fmt.Errorf("Some error happened %s", resp.Status)
+	return
+}  
+```
+
+Unfortunately, sometimes, the network fails. And today it failed.
+
+The network failed, the `StatusCode` was greater than 400 and the functions returned early. As soon as the function returned, it invoked the `defer` statement: `resp.Body.Close()`.
+
+Since the requested had failed, the `Body` was not there and there was a `nil` pointer.
+
+The `defer` ended up calling the `Close()` method of `nil` and this caused a runtime panic, blowing it up in production.
+
+I corrected the code with:
+
+```golang
+client := &http.Client{}                                                                                                                                                          
+resp, err := client.Do(req)                                                                                                                              
+if err != nil { 
+        err = fmt.Errorf("The HTTP request failed %s", err)                                                         
+        return 
+} 
+defer resp.Body.Close()
+```
+
+First, I check that the request succeed. If the request succeed, the `Body` is something we can `Close()`, and so we can `defer` its closing.
+
+If the request failed, for whatever reason, we return early, without deferring the close of the Body, that does not exist.
+
