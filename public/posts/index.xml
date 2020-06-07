@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Junior 2 Senior</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 29 Apr 2020 22:05:02 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 07 Jun 2020 18:25:44 +0200</lastBuildDate>
     
 	<atom:link href="https://jr2sr.netlify.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>DNS</title>
+      <link>https://jr2sr.netlify.com/posts/dns/</link>
+      <pubDate>Sun, 07 Jun 2020 18:25:44 +0200</pubDate>
+      
+      <guid>https://jr2sr.netlify.com/posts/dns/</guid>
+      <description>In the first article, we describe what is a web/HTTP request. Requests are directed toward a host and a port. The port is defined by the protocol, HTTP goes to port 80, HTTPS goes to 443. The host is defined by the request as a string. A possible host is &#34;google.com&#34; or &#34;facebook.com&#34;.
+ However, packets are routed over the internet using IP addresses, numbers, while hosts are strings. Each IP packet contains its source and its destination.</description>
+    </item>
     
     <item>
       <title>Always check your resources before to free them</title>

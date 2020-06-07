@@ -56,8 +56,8 @@ The outline of the book is in progress, new topics will be added and stuff will 
 But this is a rough idea.
 
 . The web basics: *Learn the fundamental blocks of the modern web*
-.. link:posts/whats-a-web-request[What is a web request]
-.. DNS
+.. link:/posts/whats-a-web-request[What is a web request]
+.. link:/posts/dns[DNS]
 .. Sockets
 .. UDP
 .. TCP

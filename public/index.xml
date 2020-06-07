@@ -11,6 +11,340 @@
     
     
     <item>
+      <title>DNS</title>
+      <link>https://jr2sr.netlify.com/posts/dns/</link>
+      <pubDate>Sun, 07 Jun 2020 18:25:44 +0200</pubDate>
+      
+      <guid>https://jr2sr.netlify.com/posts/dns/</guid>
+      <description>&lt;div id=&#34;preamble&#34;&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;In the first article, we describe what is a web/HTTP request. Requests are directed toward a host and a port.
+The port is defined by the protocol, HTTP goes to port 80, HTTPS goes to 443. The host is defined by the request as a string.
+A possible host is &#34;google.com&#34; or &#34;facebook.com&#34;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;However, packets are routed over the internet using IP addresses, numbers, while hosts are strings.
+Each IP packet contains its source and its destination. The router reads the IP address of the destination and forwards the packets toward the best route to reach the destination.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;DNS serves the basic goal of translating the string that represents the host (&#34;google.com&#34;) in a number, the IP address (116.98.109.34).&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_scratching_the_surface&#34;&gt;Scratching the surface&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;At its most basic level, DNS are services that take as input a host string and return the IP address of the host.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;$DIG example&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_dns_record_type&#34;&gt;DNS record type&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;DNS can store different kinds of records. The most common record type is &lt;code&gt;A&lt;/code&gt; that stores IPv4 addresses. The &lt;code&gt;AAAA&lt;/code&gt; record stores IPv6 addresses.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Another important record type is the &lt;code&gt;CNAME&lt;/code&gt; (or ALIAS) record type. It is useful if a single machine, with only one IP address, runs multiple services on different ports.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;The &lt;code&gt;TXT&lt;/code&gt; record type can contain arbitrary information, it is usually used to verify the ownership of a domain name.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Other record types are available and widely used, but the working principle is the same for all.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_resolve_dns_query&#34;&gt;Resolve DNS query&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;DNS works like any other internet service, but with some peculiarity.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;First of all, the IP address of the DNSs are widely know, for instance, the one provided by google is 8.8.8.8 and the one by Cloudflare is 1.1.1.1&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Then DNS works mostly over UDP and not over TCP.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;The use of UDP is mostly for performance. Performance is the most strict requirement for DNS. DNS must be fast.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;DNS queries fit into a single UDP packet, as well as DNS answers.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_need_for_speed&#34;&gt;Need for speed&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;The use of UDP over TCP is mostly due to performance requirements. Any application needs to make multiple DNS queries, they must be fast.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Even if fast, it is still impractical to make a DNS query for each network request. Moreover, when visiting a website, most requests are against the same host in a short amount of time.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;To address the problem DNS is aggressively cached on different layers.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Caching is not sufficient, eventually, the value stores in the DNS record change and the DNS must be updated. For this reason, DNS records provide also a TTL value, Time To Live.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;After the TTL expires, the DNS value is considered outdated and it must be requested again from the authoritative domain.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_server_cache&#34;&gt;Server cache&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;The first level of DNS cache is the server level. DNS servers don&amp;#8217;t store all the values of all the domains, but only a small subset.
+If a request for an unknown domain comes, they recursively redirect the request to other DNS until they don&amp;#8217;t get the answer from the authoritative (main) DNS.
+The answer is then cached until the TTL expires.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_client_cache&#34;&gt;Client cache&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;While server cached helps a lot in reducing the latency of DNS queries, it cannot be as fast as a local copy.
+Hence the first level of cache regarding the name server happens in the local machine.
+The OS intercepts DNS requests and returns a cached answer, as long as the TTL is not expired.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_ttl_and_propagation_time&#34;&gt;TTL and propagation time&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Caching the result of DNS queries has the huge benefits of making it fast. The downside is that updates to DNS take time. All the TTL needs to expire before we can see the updated values.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;For this reason, and for their capabilities to store arbitrary values, DNS servers are considered the biggest and more used eventual consistent databases.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;It can take up to 2 days for the information to propagate in the DNS servers. For most applications, the delay is much smaller, a few hours at the very maximum in my experience using AWS Route53 or Cloudfront.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_dns_console&#34;&gt;DNS console&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;After you buy a domain name you can set all the DNS values relative to that domain and all its subdomains.
+All the DNS interfaces are similar, offering pretty much the same functionality.
+Your DNS provider is mostly a matter of taste and convenience.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_aws_route53&#34;&gt;AWS Route53&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;I like to use Amazon Route53 service, that allows buying the domain and set the records in the same interface.
+I like Amazon Route53 because:
+DNS is a fundamental service for AWS, it will always work
+They provide very clear, simple, and cheap pricing
+ I trust Amazon don&amp;#8217;t screw people over a few dollars in the domain registration fee, unlike other vendors.
+A domain on AWS cost ~12$ / year plus few cents if your domain is extremely popular or if you need special features.
+Beware that other vendors sell your domain at a much higher price BUT they provide a hefty discount for the first year. So it seems like you are buying it for 4$ and the second year they start charging you 50$ / year.
+In my opinion, it is just not worth doing business with them.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_trivial&#34;&gt;Trivial&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;The DNS service of Amazon is called Route53, while Route is quite clear, why not Route 66, much more iconic. Or Route 101? Because 53 is the port used by the DNS protocol.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_the_console&#34;&gt;The console&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;The console of AWS Route53 looks like this, for each of your domain.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.com/DNS/aws_console_base.png&#34; alt=&#34;AWS Route53 Base console&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;We will focus on the big table. The navigation on the right is for more (advanced) features of AWS Route53.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;From the table we can immediately see the name of the record (first column), the record type (&lt;code&gt;A&lt;/code&gt;, &lt;code&gt;NS&lt;/code&gt;, &lt;code&gt;AAAA&lt;/code&gt;, &lt;code&gt;CNAME&lt;/code&gt;, etc&amp;#8230;&amp;#8203;) and the value of the record.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.com/DNS/aws_console_zoom.png&#34; alt=&#34;AWS Route53 Base console zoomed in&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;The highlighted rows are all &lt;code&gt;A&lt;/code&gt; records. It is interesting to note how the root domain manage:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;The root domain itself, making &lt;code&gt;redbeardlab.com&lt;/code&gt; point to the IP address &lt;code&gt;212.47.232.249&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The sub-domain, making &lt;code&gt;simplesql.redbeardlab.com&lt;/code&gt; point to &lt;code&gt;212.47.253.152&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;All other sub-domain levels, in this case making &lt;code&gt;telemetrics.redisql.redbeardlab.com&lt;/code&gt; point to &lt;code&gt;51.15.142.13&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.com/DNS/aws_console_A_records.png&#34; alt=&#34;AWS Route53 Base console A records&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;The &lt;code&gt;AAAA&lt;/code&gt; records are very similar to the &lt;code&gt;A&lt;/code&gt; record.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.com/DNS/aws_console_AAAA_record.png&#34; alt=&#34;AWS Route53 Base console AAAA records&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;In this example we make &lt;code&gt;telemetrics.redisql.redbeardlab.com&lt;/code&gt; point to &lt;code&gt;2001:bc8:4400:2c00::2b:c17&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;This does not generate an ambiguity with the &lt;code&gt;A&lt;/code&gt; record above.
+If the client ask for the IPv4 address the server returns &lt;code&gt;51.15.142.13&lt;/code&gt;.
+While, if the client ask for the IPv6 address the server returns &lt;code&gt;2001:bc8:4400:2c00::2b:c17&lt;/code&gt;.
+In this particular case, both address points to the same machine.
+But they could point to different servers offering completely different services.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;The &lt;code&gt;CNAME&lt;/code&gt; record creates an alias.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.com/DNS/aws_console_CNAME_record.png&#34; alt=&#34;AWS Route53 Base console CNAME records&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;In the first example we set the host &lt;code&gt;redisql.redbeardlab.com&lt;/code&gt; to point to &lt;code&gt;redbeardlab.github.io&lt;/code&gt;.
+In this way we can serve, under the domain we control, content from Github pages, for free. Quite convenient.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;In the second case we redirect all the call to AWS Cloudfront, a CDN managed by AWS.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;When a client find a &lt;code&gt;CNAME&lt;/code&gt; it stop asking for the original host IP address and start asking for the IP address of the ALIAS.
+If a client goes to &lt;code&gt;redisql.redbeardlab.com&lt;/code&gt;, at first it will try to find the IP address of &lt;code&gt;redisql.redbeardlab.com&lt;/code&gt;, however the DNS server will say that the IP address does not exists, but it exists an alias, &lt;code&gt;redbeardlab.github.io&lt;/code&gt;. At this point the client will start looking to the IP address of &lt;code&gt;redbeardlab.github.io&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;The &lt;code&gt;TXT&lt;/code&gt; fields was used for verifying the ownership of the domain against Google.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.com/DNS/aws_console_TXT_record.png&#34; alt=&#34;AWS Route53 Base console TXT records&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;This is the most common use I encounter, but other use for the &lt;code&gt;TXT&lt;/code&gt; field are possible.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Finally the &lt;code&gt;NS&lt;/code&gt; record, declare who manage the DNS entry.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.com/DNS/aws_console_NS_record.png&#34; alt=&#34;AWS Route53 Base console NS records&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;In this case the DNS is managed by&amp;#8230;&amp;#8203; Cloudflare.
+So all we said above is ignored by a real DNS client that will make its queries not agains AWS Route53 but against Cloudflare.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;While the TTL (Time To Live) for most record is set to 300 or 600 seconds (5 to 10 minutes) the TTL for the &lt;code&gt;NS&lt;/code&gt; is set to a much larger value, 7200 seconds (2 hours).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;This is to be expected, you don&amp;#8217;t change often the &lt;code&gt;NS&lt;/code&gt; value, once you set your DNS provider you tend to stick to it. Morever, change the &lt;code&gt;NS&lt;/code&gt; value is expensive, all the queries need to be directed to a completely different service that need time to accomodate it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_note_on_name_server_configuration_in_aws_route53&#34;&gt;Note on Name Server configuration in AWS Route53&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Unfortunately, in Route53, is not sufficient to set the &lt;code&gt;Name Server&lt;/code&gt; record set, but it is also necessary to set the name servers in another setting.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Under &lt;code&gt;&#39;Register Domains&#39; &amp;gt; $your_domain&lt;/code&gt; and then &#34;Add or edit name servers&#34;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;I find a good practise to keep in sync the values.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_cloudflare&#34;&gt;Cloudflare&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Another very reputable DNS provider is Cloudflare. They don&amp;#8217;t sell you domain names directly, but they can manage them for you.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;So you will need to buy your domain somewhere else, also an AWS Route53, and then let Cloudflare manage it. This is what I did above.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;This is done setting up the authoritative name server to point to Cloudflare.
+It is as simple as adding a new record (of type &lt;code&gt;NS&lt;/code&gt;) to your existing DNS records (modulo the extra setting in AWS Route53).
+From that moment on, beside propagation delay, all the DNS queries will be redirected toward the new authoritative name server.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_the_console_2&#34;&gt;The console&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;The console of Cloudflare is different to the one of Route53, but overall they contains the same informations and it is equally simple to use.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.com/DNS/cloudflare_console.png&#34; alt=&#34;Cloudflare DNS console&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;We can recognize the same kind of information:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;the &lt;code&gt;A&lt;/code&gt; fields that points to IPv4 addresses&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;the &lt;code&gt;AAAA&lt;/code&gt; fiels that points to IPv6 addresses&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;the &lt;code&gt;CNAME&lt;/code&gt; used for alias&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;the &lt;code&gt;TXT&lt;/code&gt; again used for domain ownership verification&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;the &lt;code&gt;MX&lt;/code&gt; used for email routing, with a priority&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;The &#34;Proxy Status&#34; column in the Cloudflare console indicate whenever Cloudflare takes care only of the DNS (&lt;code&gt;DNS only&lt;/code&gt;) or also to cache and manage with their services the request to the domain.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_recap&#34;&gt;Recap&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Hopefully this articles is helpful if you are setting up your DNS or if you are getting started with webservices.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;If you have any question I would love to expand the article and help you out, feel free to reach over on &lt;a href=&#34;https://twitter.com/pauldigian&#34;&gt;twitter @pauldigian&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Always check your resources before to free them</title>
       <link>https://jr2sr.netlify.com/posts/check_your_resources/</link>
       <pubDate>Wed, 29 Apr 2020 22:05:02 +0200</pubDate>
@@ -514,10 +848,10 @@ The community is still not open.&lt;/p&gt;
 &lt;div class=&#34;olist loweralpha&#34;&gt;
 &lt;ol class=&#34;loweralpha&#34; type=&#34;a&#34;&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;posts/whats-a-web-request&#34;&gt;What is a web request&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://jr2sr.netlify.com/posts/whats-a-web-request&#34;&gt;What is a web request&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;DNS&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://jr2sr.netlify.com/posts/dns&#34;&gt;DNS1&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Sockets&lt;/p&gt;
