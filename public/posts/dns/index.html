@@ -94,7 +94,7 @@ A possible host is "google.com" or "facebook.com".</p>
 Each IP packet contains its source and its destination. The router reads the IP address of the destination and forwards the packets toward the best route to reach the destination.</p>
 </div>
 <div class="paragraph">
-<p>DNS serves the basic goal of translating the string that represents the host ("google.com") in a number, the IP address (116.98.109.34).</p>
+<p>DNS serves have the basic goal of translating the string that represents the host ("google.com") in a number, the IP address (116.98.109.34).</p>
 </div>
 </div>
 </div>
@@ -104,8 +104,17 @@ Each IP packet contains its source and its destination. The router reads the IP 
 <div class="paragraph">
 <p>At its most basic level, DNS are services that take as input a host string and return the IP address of the host.</p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>$ dig +noall +answer -t A google.com
+google.com.		275	IN	A	216.58.205.46
+$ dig +noall +answer -t AAAA google.com
+google.com.		257	IN	AAAA	2a00:1450:4009:81b::200e</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>$DIG example</p>
+<p>In the first line we translate the host "google.com" into an IPv4 address (<code>216.58.205.46</code>).
+In the second line, for the same host, we retrieve its IPv6 (<code>2a00:1450:4009:81b::200e</code>).</p>
 </div>
 </div>
 </div>
@@ -113,7 +122,7 @@ Each IP packet contains its source and its destination. The router reads the IP 
 <h2 id="_dns_record_type">DNS record type</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>DNS can store different kinds of records. The most common record type is <code>A</code> that stores IPv4 addresses. The <code>AAAA</code> record stores IPv6 addresses.</p>
+<p>DNS can store different kinds of records beside IP addresses. The most common record type is <code>A</code> that stores IPv4 addresses. The <code>AAAA</code> record stores IPv6 addresses.</p>
 </div>
 <div class="paragraph">
 <p>Another important record type is the <code>CNAME</code> (or ALIAS) record type. It is useful if a single machine, with only one IP address, runs multiple services on different ports.</p>
@@ -225,7 +234,7 @@ In my opinion, it is just not worth doing business with them.</p>
 <div class="sect3">
 <h4 id="_the_console">The console</h4>
 <div class="paragraph">
-<p>The console of AWS Route53 looks like this, for each of your domain.</p>
+<p>The console of AWS Route53 looks like this, for each of your domains.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -236,7 +245,7 @@ In my opinion, it is just not worth doing business with them.</p>
 <p>We will focus on the big table. The navigation on the right is for more (advanced) features of AWS Route53.</p>
 </div>
 <div class="paragraph">
-<p>From the table we can immediately see the name of the record (first column), the record type (<code>A</code>, <code>NS</code>, <code>AAAA</code>, <code>CNAME</code>, etc&#8230;&#8203;) and the value of the record.</p>
+<p>From the table, we can immediately see the name of the record (first column), the record type (<code>A</code>, <code>NS</code>, <code>AAAA</code>, <code>CNAME</code>, etc&#8230;&#8203;) and the value of the record.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -277,9 +286,9 @@ In my opinion, it is just not worth doing business with them.</p>
 </div>
 <div class="paragraph">
 <p>This does not generate an ambiguity with the <code>A</code> record above.
-If the client ask for the IPv4 address the server returns <code>51.15.142.13</code>.
+If the client asks for the IPv4 address the server returns <code>51.15.142.13</code>.
 While, if the client ask for the IPv6 address the server returns <code>2001:bc8:4400:2c00::2b:c17</code>.
-In this particular case, both address points to the same machine.
+In this particular case, both addresses point to the same machine.
 But they could point to different servers offering completely different services.</p>
 </div>
 <div class="paragraph">
@@ -291,18 +300,18 @@ But they could point to different servers offering completely different services
 </div>
 </div>
 <div class="paragraph">
-<p>In the first example we set the host <code>redisql.redbeardlab.com</code> to point to <code>redbeardlab.github.io</code>.
+<p>In the first example, we set the host <code>redisql.redbeardlab.com</code> to point to <code>redbeardlab.github.io</code>.
 In this way we can serve, under the domain we control, content from Github pages, for free. Quite convenient.</p>
 </div>
 <div class="paragraph">
-<p>In the second case we redirect all the call to AWS Cloudfront, a CDN managed by AWS.</p>
+<p>In the second case we redirect all the calls to AWS Cloudfront, a CDN managed by AWS.</p>
 </div>
 <div class="paragraph">
-<p>When a client find a <code>CNAME</code> it stop asking for the original host IP address and start asking for the IP address of the ALIAS.
-If a client goes to <code>redisql.redbeardlab.com</code>, at first it will try to find the IP address of <code>redisql.redbeardlab.com</code>, however the DNS server will say that the IP address does not exists, but it exists an alias, <code>redbeardlab.github.io</code>. At this point the client will start looking to the IP address of <code>redbeardlab.github.io</code>.</p>
+<p>When a client finds a <code>CNAME</code> it stops asking for the original host IP address and starts asking for the IP address of the ALIAS.
+If a client goes to <code>redisql.redbeardlab.com</code>, at first it will try to find the IP address of <code>redisql.redbeardlab.com</code>, however, the DNS server will say that the IP address does not exist, but it exists an alias, <code>redbeardlab.github.io</code>. At this point, the client will start looking for the IP address of <code>redbeardlab.github.io</code>.</p>
 </div>
 <div class="paragraph">
-<p>The <code>TXT</code> fields was used for verifying the ownership of the domain against Google.</p>
+<p>The <code>TXT</code> fields were used for verifying the ownership of the domain against Google.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -310,10 +319,10 @@ If a client goes to <code>redisql.redbeardlab.com</code>, at first it will try t
 </div>
 </div>
 <div class="paragraph">
-<p>This is the most common use I encounter, but other use for the <code>TXT</code> field are possible.</p>
+<p>This is the most common use I encounter, but other uses for the <code>TXT</code> field are possible.</p>
 </div>
 <div class="paragraph">
-<p>Finally the <code>NS</code> record, declare who manage the DNS entry.</p>
+<p>Finally, the <code>NS</code> record, declare who manage the DNS entry.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -321,26 +330,26 @@ If a client goes to <code>redisql.redbeardlab.com</code>, at first it will try t
 </div>
 </div>
 <div class="paragraph">
-<p>In this case the DNS is managed by&#8230;&#8203; Cloudflare.
-So all we said above is ignored by a real DNS client that will make its queries not agains AWS Route53 but against Cloudflare.</p>
+<p>In this case, the DNS is managed by&#8230;&#8203; Cloudflare.
+So all we said above is ignored by a real DNS client that will make its queries not against AWS Route53 but against Cloudflare.</p>
 </div>
 <div class="paragraph">
-<p>While the TTL (Time To Live) for most record is set to 300 or 600 seconds (5 to 10 minutes) the TTL for the <code>NS</code> is set to a much larger value, 7200 seconds (2 hours).</p>
+<p>While the TTL (Time To Live) for most records is set to 300 or 600 seconds (5 to 10 minutes) the TTL for the <code>NS</code> is set to a much larger value, 7200 seconds (2 hours).</p>
 </div>
 <div class="paragraph">
-<p>This is to be expected, you don&#8217;t change often the <code>NS</code> value, once you set your DNS provider you tend to stick to it. Morever, change the <code>NS</code> value is expensive, all the queries need to be directed to a completely different service that need time to accomodate it.</p>
+<p>This is to be expected, you don&#8217;t change often the <code>NS</code> value, once you set your DNS provider you tend to stick to it. Moreover, change the <code>NS</code> value is expensive, all the queries need to be directed to a completely different service that needs time to accommodate it.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_note_on_name_server_configuration_in_aws_route53">Note on Name Server configuration in AWS Route53</h4>
 <div class="paragraph">
-<p>Unfortunately, in Route53, is not sufficient to set the <code>Name Server</code> record set, but it is also necessary to set the name servers in another setting.</p>
+<p>Unfortunately, in Route53, it is not sufficient to set the <code>Name Server</code> record set, but it is also necessary to set the name servers in another setting.</p>
 </div>
 <div class="paragraph">
 <p>Under <code>'Register Domains' &gt; $your_domain</code> and then "Add or edit name servers".</p>
 </div>
 <div class="paragraph">
-<p>I find a good practise to keep in sync the values.</p>
+<p>I find a good practice to keep the two values in sync.</p>
 </div>
 </div>
 </div>
@@ -360,7 +369,7 @@ From that moment on, beside propagation delay, all the DNS queries will be redir
 <div class="sect3">
 <h4 id="_the_console_2">The console</h4>
 <div class="paragraph">
-<p>The console of Cloudflare is different to the one of Route53, but overall they contains the same informations and it is equally simple to use.</p>
+<p>The console of Cloudflare is different from the one of Route53, but overall they contain the same information and it is equally simple to use.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -373,10 +382,10 @@ From that moment on, beside propagation delay, all the DNS queries will be redir
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>the <code>A</code> fields that points to IPv4 addresses</p>
+<p>the <code>A</code> fields that point to IPv4 addresses</p>
 </li>
 <li>
-<p>the <code>AAAA</code> fiels that points to IPv6 addresses</p>
+<p>the <code>AAAA</code> fields that point to IPv6 addresses</p>
 </li>
 <li>
 <p>the <code>CNAME</code> used for alias</p>
@@ -390,7 +399,7 @@ From that moment on, beside propagation delay, all the DNS queries will be redir
 </ol>
 </div>
 <div class="paragraph">
-<p>The "Proxy Status" column in the Cloudflare console indicate whenever Cloudflare takes care only of the DNS (<code>DNS only</code>) or also to cache and manage with their services the request to the domain.</p>
+<p>The "Proxy Status" column in the Cloudflare console indicates whenever Cloudflare takes care only of the DNS (<code>DNS only</code>) or also to cache and manage with their services the request to the domain.</p>
 </div>
 </div>
 </div>
@@ -400,7 +409,7 @@ From that moment on, beside propagation delay, all the DNS queries will be redir
 <h2 id="_recap">Recap</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Hopefully this articles is helpful if you are setting up your DNS or if you are getting started with webservices.</p>
+<p>Hopefully, this article is helpful if you are setting up your DNS or if you are getting started with web services.</p>
 </div>
 <div class="paragraph">
 <p>If you have any question I would love to expand the article and help you out, feel free to reach over on <a href="https://twitter.com/pauldigian">twitter @pauldigian</a>.</p>

@@ -28,7 +28,7 @@ A possible host is &#34;google.com&#34; or &#34;facebook.com&#34;.&lt;/p&gt;
 Each IP packet contains its source and its destination. The router reads the IP address of the destination and forwards the packets toward the best route to reach the destination.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;DNS serves the basic goal of translating the string that represents the host (&#34;google.com&#34;) in a number, the IP address (116.98.109.34).&lt;/p&gt;
+&lt;p&gt;DNS serves have the basic goal of translating the string that represents the host (&#34;google.com&#34;) in a number, the IP address (116.98.109.34).&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -38,8 +38,17 @@ Each IP packet contains its source and its destination. The router reads the IP 
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;At its most basic level, DNS are services that take as input a host string and return the IP address of the host.&lt;/p&gt;
 &lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code&gt;$ dig +noall +answer -t A google.com
+google.com.		275	IN	A	216.58.205.46
+$ dig +noall +answer -t AAAA google.com
+google.com.		257	IN	AAAA	2a00:1450:4009:81b::200e&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;$DIG example&lt;/p&gt;
+&lt;p&gt;In the first line we translate the host &#34;google.com&#34; into an IPv4 address (&lt;code&gt;216.58.205.46&lt;/code&gt;).
+In the second line, for the same host, we retrieve its IPv6 (&lt;code&gt;2a00:1450:4009:81b::200e&lt;/code&gt;).&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -47,7 +56,7 @@ Each IP packet contains its source and its destination. The router reads the IP 
 &lt;h2 id=&#34;_dns_record_type&#34;&gt;DNS record type&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;DNS can store different kinds of records. The most common record type is &lt;code&gt;A&lt;/code&gt; that stores IPv4 addresses. The &lt;code&gt;AAAA&lt;/code&gt; record stores IPv6 addresses.&lt;/p&gt;
+&lt;p&gt;DNS can store different kinds of records beside IP addresses. The most common record type is &lt;code&gt;A&lt;/code&gt; that stores IPv4 addresses. The &lt;code&gt;AAAA&lt;/code&gt; record stores IPv6 addresses.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Another important record type is the &lt;code&gt;CNAME&lt;/code&gt; (or ALIAS) record type. It is useful if a single machine, with only one IP address, runs multiple services on different ports.&lt;/p&gt;
@@ -159,7 +168,7 @@ In my opinion, it is just not worth doing business with them.&lt;/p&gt;
 &lt;div class=&#34;sect3&#34;&gt;
 &lt;h4 id=&#34;_the_console&#34;&gt;The console&lt;/h4&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;The console of AWS Route53 looks like this, for each of your domain.&lt;/p&gt;
+&lt;p&gt;The console of AWS Route53 looks like this, for each of your domains.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
@@ -170,7 +179,7 @@ In my opinion, it is just not worth doing business with them.&lt;/p&gt;
 &lt;p&gt;We will focus on the big table. The navigation on the right is for more (advanced) features of AWS Route53.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;From the table we can immediately see the name of the record (first column), the record type (&lt;code&gt;A&lt;/code&gt;, &lt;code&gt;NS&lt;/code&gt;, &lt;code&gt;AAAA&lt;/code&gt;, &lt;code&gt;CNAME&lt;/code&gt;, etc&amp;#8230;&amp;#8203;) and the value of the record.&lt;/p&gt;
+&lt;p&gt;From the table, we can immediately see the name of the record (first column), the record type (&lt;code&gt;A&lt;/code&gt;, &lt;code&gt;NS&lt;/code&gt;, &lt;code&gt;AAAA&lt;/code&gt;, &lt;code&gt;CNAME&lt;/code&gt;, etc&amp;#8230;&amp;#8203;) and the value of the record.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
@@ -211,9 +220,9 @@ In my opinion, it is just not worth doing business with them.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;This does not generate an ambiguity with the &lt;code&gt;A&lt;/code&gt; record above.
-If the client ask for the IPv4 address the server returns &lt;code&gt;51.15.142.13&lt;/code&gt;.
+If the client asks for the IPv4 address the server returns &lt;code&gt;51.15.142.13&lt;/code&gt;.
 While, if the client ask for the IPv6 address the server returns &lt;code&gt;2001:bc8:4400:2c00::2b:c17&lt;/code&gt;.
-In this particular case, both address points to the same machine.
+In this particular case, both addresses point to the same machine.
 But they could point to different servers offering completely different services.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
@@ -225,18 +234,18 @@ But they could point to different servers offering completely different services
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;In the first example we set the host &lt;code&gt;redisql.redbeardlab.com&lt;/code&gt; to point to &lt;code&gt;redbeardlab.github.io&lt;/code&gt;.
+&lt;p&gt;In the first example, we set the host &lt;code&gt;redisql.redbeardlab.com&lt;/code&gt; to point to &lt;code&gt;redbeardlab.github.io&lt;/code&gt;.
 In this way we can serve, under the domain we control, content from Github pages, for free. Quite convenient.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;In the second case we redirect all the call to AWS Cloudfront, a CDN managed by AWS.&lt;/p&gt;
+&lt;p&gt;In the second case we redirect all the calls to AWS Cloudfront, a CDN managed by AWS.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;When a client find a &lt;code&gt;CNAME&lt;/code&gt; it stop asking for the original host IP address and start asking for the IP address of the ALIAS.
-If a client goes to &lt;code&gt;redisql.redbeardlab.com&lt;/code&gt;, at first it will try to find the IP address of &lt;code&gt;redisql.redbeardlab.com&lt;/code&gt;, however the DNS server will say that the IP address does not exists, but it exists an alias, &lt;code&gt;redbeardlab.github.io&lt;/code&gt;. At this point the client will start looking to the IP address of &lt;code&gt;redbeardlab.github.io&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;When a client finds a &lt;code&gt;CNAME&lt;/code&gt; it stops asking for the original host IP address and starts asking for the IP address of the ALIAS.
+If a client goes to &lt;code&gt;redisql.redbeardlab.com&lt;/code&gt;, at first it will try to find the IP address of &lt;code&gt;redisql.redbeardlab.com&lt;/code&gt;, however, the DNS server will say that the IP address does not exist, but it exists an alias, &lt;code&gt;redbeardlab.github.io&lt;/code&gt;. At this point, the client will start looking for the IP address of &lt;code&gt;redbeardlab.github.io&lt;/code&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;The &lt;code&gt;TXT&lt;/code&gt; fields was used for verifying the ownership of the domain against Google.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;TXT&lt;/code&gt; fields were used for verifying the ownership of the domain against Google.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
@@ -244,10 +253,10 @@ If a client goes to &lt;code&gt;redisql.redbeardlab.com&lt;/code&gt;, at first i
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;This is the most common use I encounter, but other use for the &lt;code&gt;TXT&lt;/code&gt; field are possible.&lt;/p&gt;
+&lt;p&gt;This is the most common use I encounter, but other uses for the &lt;code&gt;TXT&lt;/code&gt; field are possible.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Finally the &lt;code&gt;NS&lt;/code&gt; record, declare who manage the DNS entry.&lt;/p&gt;
+&lt;p&gt;Finally, the &lt;code&gt;NS&lt;/code&gt; record, declare who manage the DNS entry.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
@@ -255,26 +264,26 @@ If a client goes to &lt;code&gt;redisql.redbeardlab.com&lt;/code&gt;, at first i
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;In this case the DNS is managed by&amp;#8230;&amp;#8203; Cloudflare.
-So all we said above is ignored by a real DNS client that will make its queries not agains AWS Route53 but against Cloudflare.&lt;/p&gt;
+&lt;p&gt;In this case, the DNS is managed by&amp;#8230;&amp;#8203; Cloudflare.
+So all we said above is ignored by a real DNS client that will make its queries not against AWS Route53 but against Cloudflare.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;While the TTL (Time To Live) for most record is set to 300 or 600 seconds (5 to 10 minutes) the TTL for the &lt;code&gt;NS&lt;/code&gt; is set to a much larger value, 7200 seconds (2 hours).&lt;/p&gt;
+&lt;p&gt;While the TTL (Time To Live) for most records is set to 300 or 600 seconds (5 to 10 minutes) the TTL for the &lt;code&gt;NS&lt;/code&gt; is set to a much larger value, 7200 seconds (2 hours).&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;This is to be expected, you don&amp;#8217;t change often the &lt;code&gt;NS&lt;/code&gt; value, once you set your DNS provider you tend to stick to it. Morever, change the &lt;code&gt;NS&lt;/code&gt; value is expensive, all the queries need to be directed to a completely different service that need time to accomodate it.&lt;/p&gt;
+&lt;p&gt;This is to be expected, you don&amp;#8217;t change often the &lt;code&gt;NS&lt;/code&gt; value, once you set your DNS provider you tend to stick to it. Moreover, change the &lt;code&gt;NS&lt;/code&gt; value is expensive, all the queries need to be directed to a completely different service that needs time to accommodate it.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect3&#34;&gt;
 &lt;h4 id=&#34;_note_on_name_server_configuration_in_aws_route53&#34;&gt;Note on Name Server configuration in AWS Route53&lt;/h4&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Unfortunately, in Route53, is not sufficient to set the &lt;code&gt;Name Server&lt;/code&gt; record set, but it is also necessary to set the name servers in another setting.&lt;/p&gt;
+&lt;p&gt;Unfortunately, in Route53, it is not sufficient to set the &lt;code&gt;Name Server&lt;/code&gt; record set, but it is also necessary to set the name servers in another setting.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Under &lt;code&gt;&#39;Register Domains&#39; &amp;gt; $your_domain&lt;/code&gt; and then &#34;Add or edit name servers&#34;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;I find a good practise to keep in sync the values.&lt;/p&gt;
+&lt;p&gt;I find a good practice to keep the two values in sync.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -294,7 +303,7 @@ From that moment on, beside propagation delay, all the DNS queries will be redir
 &lt;div class=&#34;sect3&#34;&gt;
 &lt;h4 id=&#34;_the_console_2&#34;&gt;The console&lt;/h4&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;The console of Cloudflare is different to the one of Route53, but overall they contains the same informations and it is equally simple to use.&lt;/p&gt;
+&lt;p&gt;The console of Cloudflare is different from the one of Route53, but overall they contain the same information and it is equally simple to use.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
@@ -307,10 +316,10 @@ From that moment on, beside propagation delay, all the DNS queries will be redir
 &lt;div class=&#34;olist arabic&#34;&gt;
 &lt;ol class=&#34;arabic&#34;&gt;
 &lt;li&gt;
-&lt;p&gt;the &lt;code&gt;A&lt;/code&gt; fields that points to IPv4 addresses&lt;/p&gt;
+&lt;p&gt;the &lt;code&gt;A&lt;/code&gt; fields that point to IPv4 addresses&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;the &lt;code&gt;AAAA&lt;/code&gt; fiels that points to IPv6 addresses&lt;/p&gt;
+&lt;p&gt;the &lt;code&gt;AAAA&lt;/code&gt; fields that point to IPv6 addresses&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;the &lt;code&gt;CNAME&lt;/code&gt; used for alias&lt;/p&gt;
@@ -324,7 +333,7 @@ From that moment on, beside propagation delay, all the DNS queries will be redir
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;The &#34;Proxy Status&#34; column in the Cloudflare console indicate whenever Cloudflare takes care only of the DNS (&lt;code&gt;DNS only&lt;/code&gt;) or also to cache and manage with their services the request to the domain.&lt;/p&gt;
+&lt;p&gt;The &#34;Proxy Status&#34; column in the Cloudflare console indicates whenever Cloudflare takes care only of the DNS (&lt;code&gt;DNS only&lt;/code&gt;) or also to cache and manage with their services the request to the domain.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -334,7 +343,7 @@ From that moment on, beside propagation delay, all the DNS queries will be redir
 &lt;h2 id=&#34;_recap&#34;&gt;Recap&lt;/h2&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Hopefully this articles is helpful if you are setting up your DNS or if you are getting started with webservices.&lt;/p&gt;
+&lt;p&gt;Hopefully, this article is helpful if you are setting up your DNS or if you are getting started with web services.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;If you have any question I would love to expand the article and help you out, feel free to reach over on &lt;a href=&#34;https://twitter.com/pauldigian&#34;&gt;twitter @pauldigian&lt;/a&gt;.&lt;/p&gt;
@@ -851,7 +860,7 @@ The community is still not open.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://jr2sr.netlify.com/posts/whats-a-web-request&#34;&gt;What is a web request&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://jr2sr.netlify.com/posts/dns&#34;&gt;DNS1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://jr2sr.netlify.com/posts/dns&#34;&gt;DNS&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Sockets&lt;/p&gt;
