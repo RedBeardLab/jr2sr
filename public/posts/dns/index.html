@@ -85,16 +85,31 @@
             <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In the first article, we describe what is a web/HTTP request. Requests are directed toward a host and a port.
-The port is defined by the protocol, HTTP goes to port 80, HTTPS goes to 443. The host is defined by the request as a string.
-A possible host is "google.com" or "facebook.com".</p>
+<p><a href="../whats-a-web-request">In the first article, we describe what is a web/HTTP request.</a>
+Requests are directed toward a host and a port.</p>
 </div>
 <div class="paragraph">
-<p>However, packets are routed over the internet using IP addresses, numbers, while hosts are strings.
-Each IP packet contains its source and its destination. The router reads the IP address of the destination and forwards the packets toward the best route to reach the destination.</p>
+<p>The port is defined by the protocol, HTTP goes to port 80, HTTPS goes to 443. The host is defined by the request as a string.</p>
 </div>
 <div class="paragraph">
-<p>DNS serves have the basic goal of translating the string that represents the host ("google.com") in a number, the IP address (116.98.109.34).</p>
+<p>A possible host is "google.com" another is "facebook.com".</p>
+</div>
+<div class="paragraph">
+<p>However, packets are routed over the internet using IP addresses, numbers, while hosts are strings.</p>
+</div>
+<div class="paragraph">
+<p>Each IP packet must contain its source and its destination to be delivered. And the host of the source address and of the destination address must be encoded as IP addresses.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/DNS/IPpacket.png" alt="IP packet">
+</div>
+</div>
+<div class="paragraph">
+<p>In order to create the IP packet and to deliver it to the internet, we need to convert the host name "kitty.com" in its IP address <code>53.125.12.9</code>.</p>
+</div>
+<div class="paragraph">
+<p>DNS serves have the basic goal of translating the string that represents the host ("google.com") in a number, the IP address (<code>116.98.109.34</code>) so that a valid IP packet can be generated.</p>
 </div>
 </div>
 </div>
@@ -103,6 +118,12 @@ Each IP packet contains its source and its destination. The router reads the IP 
 <div class="sectionbody">
 <div class="paragraph">
 <p>At its most basic level, DNS are services that take as input a host string and return the IP address of the host.</p>
+</div>
+<div class="paragraph">
+<p>A simple utility to test DNS is <code>dig</code>. In its most basic invocation, <code>dig</code> takes an input an host and returns its IPv4.</p>
+</div>
+<div class="paragraph">
+<p>The following examples have different options to provide a more concise output.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -113,8 +134,10 @@ google.com.		257	IN	AAAA	2a00:1450:4009:81b::200e</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In the first line we translate the host "google.com" into an IPv4 address (<code>216.58.205.46</code>).
-In the second line, for the same host, we retrieve its IPv6 (<code>2a00:1450:4009:81b::200e</code>).</p>
+<p>In the first line we translate the host "google.com" into an IPv4 address (<code>216.58.205.46</code>).</p>
+</div>
+<div class="paragraph">
+<p>In the second line, for the same host, we retrieve its IPv6 (<code>2a00:1450:4009:81b::200e</code>).</p>
 </div>
 </div>
 </div>
@@ -142,16 +165,19 @@ In the second line, for the same host, we retrieve its IPv6 (<code>2a00:1450:400
 <p>DNS works like any other internet service, but with some peculiarity.</p>
 </div>
 <div class="paragraph">
-<p>First of all, the IP address of the DNSs are widely know, for instance, the one provided by google is 8.8.8.8 and the one by Cloudflare is 1.1.1.1</p>
+<p>First of all, the IP address of the DNSs are widely know, for instance, the one provided by google is <code>8.8.8.8</code> and the one by Cloudflare is <code>1.1.1.1</code>.</p>
 </div>
 <div class="paragraph">
-<p>Then DNS works mostly over UDP and not over TCP.</p>
+<p>Then DNS works mostly over UDP and not over TCP. The use of UDP is mostly for performance.</p>
 </div>
 <div class="paragraph">
-<p>The use of UDP is mostly for performance. Performance is the most strict requirement for DNS. DNS must be fast.</p>
+<p>Performance is the most strict requirement for DNS.</p>
 </div>
 <div class="paragraph">
-<p>DNS queries fit into a single UDP packet, as well as DNS answers.</p>
+<p>DNS must be fast.</p>
+</div>
+<div class="paragraph">
+<p>In order to keep communication as concise and fast as possible, almost all packets DNS queries and responses fit into a single UDP packet and are limited to 512 bytes. If the DNS answer is bigger other communications protocols are used.</p>
 </div>
 </div>
 </div>
@@ -159,7 +185,7 @@ In the second line, for the same host, we retrieve its IPv6 (<code>2a00:1450:400
 <h2 id="_need_for_speed">Need for speed</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The use of UDP over TCP is mostly due to performance requirements. Any application needs to make multiple DNS queries, they must be fast.</p>
+<p>The use of UDP over TCP is mostly due to performance requirements. Any application needs to make multiple DNS queries, it must be fast.</p>
 </div>
 <div class="paragraph">
 <p>Even if fast, it is still impractical to make a DNS query for each network request. Moreover, when visiting a website, most requests are against the same host in a short amount of time.</p>
@@ -168,7 +194,7 @@ In the second line, for the same host, we retrieve its IPv6 (<code>2a00:1450:400
 <p>To address the problem DNS is aggressively cached on different layers.</p>
 </div>
 <div class="paragraph">
-<p>Caching is not sufficient, eventually, the value stores in the DNS record change and the DNS must be updated. For this reason, DNS records provide also a TTL value, Time To Live.</p>
+<p>Cached values eventually goes stale and they must be updated. For this reason, DNS records provide also a TTL value, Time To Live.</p>
 </div>
 <div class="paragraph">
 <p>After the TTL expires, the DNS value is considered outdated and it must be requested again from the authoritative domain.</p>
@@ -176,32 +202,44 @@ In the second line, for the same host, we retrieve its IPv6 (<code>2a00:1450:400
 <div class="sect2">
 <h3 id="_server_cache">Server cache</h3>
 <div class="paragraph">
-<p>The first level of DNS cache is the server level. DNS servers don&#8217;t store all the values of all the domains, but only a small subset.
-If a request for an unknown domain comes, they recursively redirect the request to other DNS until they don&#8217;t get the answer from the authoritative (main) DNS.
+<p>The first level of DNS cache is the server level.
+DNS servers don&#8217;t store all the values of all the domains, but only a small subset.</p>
+</div>
+<div class="paragraph">
+<p>If a request for an unknown domain comes, they recursively redirect the request to other DNS until they don&#8217;t get the answer from the authoritative (main) DNS.
 The answer is then cached until the TTL expires.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_client_cache">Client cache</h3>
 <div class="paragraph">
-<p>While server cached helps a lot in reducing the latency of DNS queries, it cannot be as fast as a local copy.
-Hence the first level of cache regarding the name server happens in the local machine.
-The OS intercepts DNS requests and returns a cached answer, as long as the TTL is not expired.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_ttl_and_propagation_time">TTL and propagation time</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Caching the result of DNS queries has the huge benefits of making it fast. The downside is that updates to DNS take time. All the TTL needs to expire before we can see the updated values.</p>
+<p>While server cached helps a lot in reducing the latency of DNS queries, it cannot be as fast as a local copy.</p>
 </div>
 <div class="paragraph">
-<p>For this reason, and for their capabilities to store arbitrary values, DNS servers are considered the biggest and more used eventual consistent databases.</p>
+<p>Hence the first level of cache regarding the name server happens in the local machine.</p>
+</div>
+<div class="paragraph">
+<p>The OS intercepts DNS requests and returns a cached answer, as long as the TTL is not expired.
+As soon as the TTL expires a new request to the server is made and the answer cached again.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ttl_and_propagation_time">TTL and propagation time</h3>
+<div class="paragraph">
+<p>Caching the result of DNS queries has the huge benefits of making it fast. The downside is that updates to DNS take time.</p>
+</div>
+<div class="paragraph">
+<p>All the TTL needs to expire before all the users can see the updated values.</p>
 </div>
 <div class="paragraph">
 <p>It can take up to 2 days for the information to propagate in the DNS servers. For most applications, the delay is much smaller, a few hours at the very maximum in my experience using AWS Route53 or Cloudfront.</p>
+</div>
+<div class="sect3">
+<h4 id="_trivial">Trivial</h4>
+<div class="paragraph">
+<p>DNS can store arbitrary information, and eventually all the DNS servers will agree on a specific values. For these reasons DNS are considered the biggest and more widely deployed eventual consistet databases.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -209,24 +247,46 @@ The OS intercepts DNS requests and returns a cached answer, as long as the TTL i
 <h2 id="_dns_console">DNS console</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After you buy a domain name you can set all the DNS values relative to that domain and all its subdomains.
-All the DNS interfaces are similar, offering pretty much the same functionality.
-Your DNS provider is mostly a matter of taste and convenience.</p>
+<p>After you buy a domain name you can set all the DNS values relative to that domain and all its subdomains.</p>
+</div>
+<div class="paragraph">
+<p>All the DNS interfaces are similar, offering pretty much the same functionality.</p>
+</div>
+<div class="paragraph">
+<p>Your DNS provider is mostly a matter of taste and convenience.</p>
 </div>
 <div class="sect2">
 <h3 id="_aws_route53">AWS Route53</h3>
 <div class="paragraph">
-<p>I like to use Amazon Route53 service, that allows buying the domain and set the records in the same interface.
-I like Amazon Route53 because:
-DNS is a fundamental service for AWS, it will always work
-They provide very clear, simple, and cheap pricing
- I trust Amazon don&#8217;t screw people over a few dollars in the domain registration fee, unlike other vendors.
-A domain on AWS cost ~12$ / year plus few cents if your domain is extremely popular or if you need special features.
-Beware that other vendors sell your domain at a much higher price BUT they provide a hefty discount for the first year. So it seems like you are buying it for 4$ and the second year they start charging you 50$ / year.
-In my opinion, it is just not worth doing business with them.</p>
+<p>I like to use Amazon Route53 service, that allows buying the domain and set the records in the same interface.</p>
+</div>
+<div class="paragraph">
+<p>I like Amazon Route53 because:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>DNS is a fundamental service for AWS, it will always work</p>
+</li>
+<li>
+<p>They provide very clear, simple, and cheap pricing</p>
+</li>
+<li>
+<p>I trust Amazon don&#8217;t screw people over a few dollars in the domain registration fee, unlike other vendors.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>A domain on AWS cost ~12$ / year plus few cents if your domain is extremely popular or if you need special features.</p>
+</div>
+<div class="paragraph">
+<p>Beware that other vendors sell your domain at a much higher price BUT they provide a hefty discount for the first year. So it seems like you are buying it for 4$ and the second year they start charging you 50$ / year.</p>
+</div>
+<div class="paragraph">
+<p>In my opinion, it is just not worth doing business with them.</p>
 </div>
 <div class="sect3">
-<h4 id="_trivial">Trivial</h4>
+<h4 id="_trivial_2">Trivial</h4>
 <div class="paragraph">
 <p>The DNS service of Amazon is called Route53, while Route is quite clear, why not Route 66, much more iconic. Or Route 101? Because 53 is the port used by the DNS protocol.</p>
 </div>

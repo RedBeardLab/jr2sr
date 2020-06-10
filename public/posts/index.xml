@@ -17,8 +17,10 @@
       <pubDate>Sun, 07 Jun 2020 18:25:44 +0200</pubDate>
       
       <guid>https://jr2sr.netlify.com/posts/dns/</guid>
-      <description>In the first article, we describe what is a web/HTTP request. Requests are directed toward a host and a port. The port is defined by the protocol, HTTP goes to port 80, HTTPS goes to 443. The host is defined by the request as a string. A possible host is &#34;google.com&#34; or &#34;facebook.com&#34;.
- However, packets are routed over the internet using IP addresses, numbers, while hosts are strings. Each IP packet contains its source and its destination.</description>
+      <description>In the first article, we describe what is a web/HTTP request. Requests are directed toward a host and a port.
+ The port is defined by the protocol, HTTP goes to port 80, HTTPS goes to 443. The host is defined by the request as a string.
+ A possible host is &#34;google.com&#34; another is &#34;facebook.com&#34;.
+ However, packets are routed over the internet using IP addresses, numbers, while hosts are strings.</description>
     </item>
     
     <item>
