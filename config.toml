@@ -1,4 +1,4 @@
-baseURL = "https://jr2sr.netlify.com/"
+baseURL = "https://jr2sr.netlify.app/"
 languageCode = "en-us"
 title = "Junior 2 Senior"
 theme = "indigo"

@@ -1,21 +1,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Junior 2 Senior</title>
-    <link>https://jr2sr.netlify.com/</link>
+    <link>https://jr2sr.netlify.app/</link>
     <description>Recent content on Junior 2 Senior</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 04 Apr 2020 23:19:06 +0200</lastBuildDate>
     
-        <atom:link href="https://jr2sr.netlify.com/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://jr2sr.netlify.app/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>DNS</title>
-      <link>https://jr2sr.netlify.com/posts/dns/</link>
+      <link>https://jr2sr.netlify.app/posts/dns/</link>
       <pubDate>Sun, 07 Jun 2020 18:25:44 +0200</pubDate>
       
-      <guid>https://jr2sr.netlify.com/posts/dns/</guid>
+      <guid>https://jr2sr.netlify.app/posts/dns/</guid>
       <description>&lt;div id=&#34;preamble&#34;&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
@@ -36,7 +36,7 @@ Requests are directed toward a host and a port.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;https://jr2sr.netlify.com/DNS/IPpacket.png&#34; alt=&#34;IP packet&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.app/DNS/IPpacket.png&#34; alt=&#34;IP packet&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
@@ -232,7 +232,7 @@ As soon as the TTL expires a new request to the server is made and the answer ca
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;https://jr2sr.netlify.com/DNS/aws_console_base.png&#34; alt=&#34;AWS Route53 Base console&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.app/DNS/aws_console_base.png&#34; alt=&#34;AWS Route53 Base console&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
@@ -243,7 +243,7 @@ As soon as the TTL expires a new request to the server is made and the answer ca
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;https://jr2sr.netlify.com/DNS/aws_console_zoom.png&#34; alt=&#34;AWS Route53 Base console zoomed in&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.app/DNS/aws_console_zoom.png&#34; alt=&#34;AWS Route53 Base console zoomed in&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
@@ -264,7 +264,7 @@ As soon as the TTL expires a new request to the server is made and the answer ca
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;https://jr2sr.netlify.com/DNS/aws_console_A_records.png&#34; alt=&#34;AWS Route53 Base console A records&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.app/DNS/aws_console_A_records.png&#34; alt=&#34;AWS Route53 Base console A records&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
@@ -272,7 +272,7 @@ As soon as the TTL expires a new request to the server is made and the answer ca
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;https://jr2sr.netlify.com/DNS/aws_console_AAAA_record.png&#34; alt=&#34;AWS Route53 Base console AAAA records&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.app/DNS/aws_console_AAAA_record.png&#34; alt=&#34;AWS Route53 Base console AAAA records&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
@@ -290,7 +290,7 @@ But they could point to different servers offering completely different services
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;https://jr2sr.netlify.com/DNS/aws_console_CNAME_record.png&#34; alt=&#34;AWS Route53 Base console CNAME records&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.app/DNS/aws_console_CNAME_record.png&#34; alt=&#34;AWS Route53 Base console CNAME records&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
@@ -309,7 +309,7 @@ If a client goes to &lt;code&gt;redisql.redbeardlab.com&lt;/code&gt;, at first i
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;https://jr2sr.netlify.com/DNS/aws_console_TXT_record.png&#34; alt=&#34;AWS Route53 Base console TXT records&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.app/DNS/aws_console_TXT_record.png&#34; alt=&#34;AWS Route53 Base console TXT records&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
@@ -320,7 +320,7 @@ If a client goes to &lt;code&gt;redisql.redbeardlab.com&lt;/code&gt;, at first i
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;https://jr2sr.netlify.com/DNS/aws_console_NS_record.png&#34; alt=&#34;AWS Route53 Base console NS records&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.app/DNS/aws_console_NS_record.png&#34; alt=&#34;AWS Route53 Base console NS records&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
@@ -367,7 +367,7 @@ From that moment on, beside propagation delay, all the DNS queries will be redir
 &lt;/div&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;https://jr2sr.netlify.com/DNS/cloudflare_console.png&#34; alt=&#34;Cloudflare DNS console&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.app/DNS/cloudflare_console.png&#34; alt=&#34;Cloudflare DNS console&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
@@ -415,10 +415,10 @@ From that moment on, beside propagation delay, all the DNS queries will be redir
     
     <item>
       <title>Always check your resources before to free them</title>
-      <link>https://jr2sr.netlify.com/posts/check_your_resources/</link>
+      <link>https://jr2sr.netlify.app/posts/check_your_resources/</link>
       <pubDate>Wed, 29 Apr 2020 22:05:02 +0200</pubDate>
       
-      <guid>https://jr2sr.netlify.com/posts/check_your_resources/</guid>
+      <guid>https://jr2sr.netlify.app/posts/check_your_resources/</guid>
       <description>&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Today I fixed a minor bug in our production code.&lt;/p&gt;
 &lt;/div&gt;
@@ -508,10 +508,10 @@ defer resp.Body.Close()&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Database Fundamental</title>
-      <link>https://jr2sr.netlify.com/posts/database_fundamental/</link>
+      <link>https://jr2sr.netlify.app/posts/database_fundamental/</link>
       <pubDate>Mon, 27 Apr 2020 20:40:24 +0200</pubDate>
       
-      <guid>https://jr2sr.netlify.com/posts/database_fundamental/</guid>
+      <guid>https://jr2sr.netlify.app/posts/database_fundamental/</guid>
       <description>&lt;div id=&#34;preamble&#34;&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
@@ -622,15 +622,15 @@ Or we access the whole dataset and filter out all the data we don&amp;#8217;t ne
     
     <item>
       <title>What is a Web Request</title>
-      <link>https://jr2sr.netlify.com/posts/whats-a-web-request/</link>
+      <link>https://jr2sr.netlify.app/posts/whats-a-web-request/</link>
       <pubDate>Fri, 10 Apr 2020 12:53:57 +0200</pubDate>
       
-      <guid>https://jr2sr.netlify.com/posts/whats-a-web-request/</guid>
+      <guid>https://jr2sr.netlify.app/posts/whats-a-web-request/</guid>
       <description>&lt;div id=&#34;preamble&#34;&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;img src=&#34;https://jr2sr.netlify.com/whats-a-web-request.jpg&#34; alt=&#34;Networks Cables - Photo by Jordan Harrison on Unsplash&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.app/whats-a-web-request.jpg&#34; alt=&#34;Networks Cables - Photo by Jordan Harrison on Unsplash&#34;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
@@ -819,10 +819,10 @@ However, the same standard dictates that the &lt;code&gt;Host&lt;/code&gt; heade
     
     <item>
       <title>Junior 2 Senior</title>
-      <link>https://jr2sr.netlify.com/posts/start_here/</link>
+      <link>https://jr2sr.netlify.app/posts/start_here/</link>
       <pubDate>Sat, 04 Apr 2020 23:19:06 +0200</pubDate>
       
-      <guid>https://jr2sr.netlify.com/posts/start_here/</guid>
+      <guid>https://jr2sr.netlify.app/posts/start_here/</guid>
       <description>&lt;div id=&#34;preamble&#34;&gt;
 &lt;div class=&#34;sectionbody&#34;&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
@@ -917,10 +917,10 @@ The community is still not open.&lt;/p&gt;
 &lt;div class=&#34;olist loweralpha&#34;&gt;
 &lt;ol class=&#34;loweralpha&#34; type=&#34;a&#34;&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://jr2sr.netlify.com/posts/whats-a-web-request&#34;&gt;What is a web request&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://jr2sr.netlify.app/posts/whats-a-web-request&#34;&gt;What is a web request&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://jr2sr.netlify.com/posts/dns&#34;&gt;DNS&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://jr2sr.netlify.app/posts/dns&#34;&gt;DNS&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Sockets&lt;/p&gt;

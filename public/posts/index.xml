@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Junior 2 Senior</title>
-    <link>https://jr2sr.netlify.com/posts/</link>
+    <link>https://jr2sr.netlify.app/posts/</link>
     <description>Recent content in Posts on Junior 2 Senior</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 07 Jun 2020 18:25:44 +0200</lastBuildDate>
     
-	<atom:link href="https://jr2sr.netlify.com/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jr2sr.netlify.app/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>DNS</title>
-      <link>https://jr2sr.netlify.com/posts/dns/</link>
+      <link>https://jr2sr.netlify.app/posts/dns/</link>
       <pubDate>Sun, 07 Jun 2020 18:25:44 +0200</pubDate>
       
-      <guid>https://jr2sr.netlify.com/posts/dns/</guid>
+      <guid>https://jr2sr.netlify.app/posts/dns/</guid>
       <description>In the first article, we describe what is a web/HTTP request. Requests are directed toward a host and a port.
  The port is defined by the protocol, HTTP goes to port 80, HTTPS goes to 443. The host is defined by the request as a string.
  A possible host is &#34;google.com&#34; another is &#34;facebook.com&#34;.
@@ -25,10 +25,10 @@
     
     <item>
       <title>Always check your resources before to free them</title>
-      <link>https://jr2sr.netlify.com/posts/check_your_resources/</link>
+      <link>https://jr2sr.netlify.app/posts/check_your_resources/</link>
       <pubDate>Wed, 29 Apr 2020 22:05:02 +0200</pubDate>
       
-      <guid>https://jr2sr.netlify.com/posts/check_your_resources/</guid>
+      <guid>https://jr2sr.netlify.app/posts/check_your_resources/</guid>
       <description>Today I fixed a minor bug in our production code.
  The software is written in Go(lang) and makes extensive use of the defer statement.
  The defer statement, take a function invocation and run it after the current function returns.
@@ -38,10 +38,10 @@
     
     <item>
       <title>Database Fundamental</title>
-      <link>https://jr2sr.netlify.com/posts/database_fundamental/</link>
+      <link>https://jr2sr.netlify.app/posts/database_fundamental/</link>
       <pubDate>Mon, 27 Apr 2020 20:40:24 +0200</pubDate>
       
-      <guid>https://jr2sr.netlify.com/posts/database_fundamental/</guid>
+      <guid>https://jr2sr.netlify.app/posts/database_fundamental/</guid>
       <description>Databases are fundamental in all web application, website, API, CRUD.
  Lately, new software around databases starts to blossom.
  An example is GraphQL.
@@ -52,10 +52,10 @@
     
     <item>
       <title>What is a Web Request</title>
-      <link>https://jr2sr.netlify.com/posts/whats-a-web-request/</link>
+      <link>https://jr2sr.netlify.app/posts/whats-a-web-request/</link>
       <pubDate>Fri, 10 Apr 2020 12:53:57 +0200</pubDate>
       
-      <guid>https://jr2sr.netlify.com/posts/whats-a-web-request/</guid>
+      <guid>https://jr2sr.netlify.app/posts/whats-a-web-request/</guid>
       <description>The web and internet as a large are fundamental for today&amp;#8217;s world, but how does it work under the hood?
  In this article, we will talk about HTTP requests that are the fundamentals blocks that make the modern web possible.
  We will explore how tools like Python requests or Ruby Net::HTTP or again the Go package net/http or any other library that you may use in any other language works.</description>
@@ -63,10 +63,10 @@
     
     <item>
       <title>Junior 2 Senior</title>
-      <link>https://jr2sr.netlify.com/posts/start_here/</link>
+      <link>https://jr2sr.netlify.app/posts/start_here/</link>
       <pubDate>Sat, 04 Apr 2020 23:19:06 +0200</pubDate>
       
-      <guid>https://jr2sr.netlify.com/posts/start_here/</guid>
+      <guid>https://jr2sr.netlify.app/posts/start_here/</guid>
       <description>Junior 2 Senior is a technical course where I unload all my knowledge for younger computer engineers that want to speed up their career path.
  The goal is to provide all the necessary notions and mental models to work around problems for people to be hired in high-tech companies.
  The course is based only on fundamental concepts. We will focus only on those concepts that were important 20 years ago, are important now, and will be important for at least the next 20 years.</description>
