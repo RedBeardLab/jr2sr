@@ -82,7 +82,7 @@ But this is a rough idea.
 
 . Multiple cores: *CPU are not getting any faster, but we are getting more of them, how to use them*
 .. Threads
-.. Process
+.. link:/posts/process[Process]
 .. Communication
 .. Atomic variables
 
