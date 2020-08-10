@@ -6,10 +6,22 @@
     <description>Recent content in Posts on Junior 2 Senior</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 07 Jun 2020 18:25:44 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 26 Jul 2020 13:19:36 +0200</lastBuildDate>
     
 	<atom:link href="https://jr2sr.netlify.app/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Process</title>
+      <link>https://jr2sr.netlify.app/posts/process/</link>
+      <pubDate>Sun, 26 Jul 2020 13:19:36 +0200</pubDate>
+      
+      <guid>https://jr2sr.netlify.app/posts/process/</guid>
+      <description>Understanding the concept of processes is fundamental when working with computers.
+ Most articles tackle the issue from a quite shallow perspective or the wrong point of view. We will try to study them from what I believe is the most useful point of view for a senior computer engineer.
+   What processes are Processes are a computational unit.
+ This definition is neither precise nor completely correct, but it helps in understanding.</description>
+    </item>
     
     <item>
       <title>DNS</title>

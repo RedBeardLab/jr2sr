@@ -3,12 +3,17 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://jr2sr.netlify.app/posts/dns/</loc>
-    <lastmod>2020-06-07T18:25:44+02:00</lastmod>
+    <loc>https://jr2sr.netlify.app/posts/</loc>
+    <lastmod>2020-07-26T13:19:36+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jr2sr.netlify.app/posts/</loc>
+    <loc>https://jr2sr.netlify.app/posts/process/</loc>
+    <lastmod>2020-07-26T13:19:36+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jr2sr.netlify.app/posts/dns/</loc>
     <lastmod>2020-06-07T18:25:44+02:00</lastmod>
   </url>
   
