@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Process | Junior 2 Senior</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href=https://jr2sr.netlify.app/apple-touch-icon.png>
+    <link rel="icon" type="image/png" sizes="32x32" href=https://jr2sr.netlify.app/favicon-32x32.png>
+    <link rel="icon" type="image/png" sizes="16x16" href=https://jr2sr.netlify.app/favicon-16x16.png>
+    <link rel="manifest" href=https://jr2sr.netlify.app/site.webmanifest>
+    <link rel="mask-icon" href=https://jr2sr.netlify.app/safari-pinned-tab.svg color="#00416a">
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    
+    
+    
+    
+    <link rel="authorization_endpoint" href=https://indieauth.com/auth />
+    <link rel="token_endpoint" href=https://tokens.indieauth.com/token />
+    
+    
+    
+    
+    <link rel="stylesheet" href=https://jr2sr.netlify.app/css/fonts.css />
+    <link rel="stylesheet" href=https://jr2sr.netlify.app/css/style.css />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169090877-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-169090877-1');
+    </script>
+</head>
+
+<body>
+    <div id="sitelogo">
+        <a class="glyph" alt="Home" href="https://jr2sr.netlify.app/"><img src=https://jr2sr.netlify.app/images/site-logo.svg alt="Site Logo" height="64px" width="64px"></a>
+    </div>
+    <header>
+        <nav>
+    
+    <div id="page-nav">
+        <div class="page-nav-item">
+            <a href="https://jr2sr.netlify.app/">Home</a>
+        </div>
+        
+    </div>
+</nav>
+        
+    </header>
+
+
+
+
+<div id="content">
+    <article class="h-entry">
+        <header>
+            <h1 class="post-title p-name">Process</h1>
+            
+            <p class="post-date">Posted on
+                <time class="dt-published" datetime="2020-07-26T13:19:36&#43;02:00">
+                26 July, 2020 at 13:19 CEST
+                </time>  by <a href="https://jr2sr.netlify.app/" class="p-author h-card" rel="author">Paul DiGian</a>
+            </p>
+            
+            
+	    
+<br>
+
+<div style="background-color: #ffff645e; padding: 1.5em; margin-bottom: 1em;">
+  <p><b>Process</b> is part of <a href="https://gumroad.com/l/junior2senior">Junior2Senior</a> a course to help you grow as software engineers.</p>
+  <p>It is about unloading all the knowledge that I accumulate over my career to younger engineers to help speed up their own career.</p>
+  <p> You can follow me on twitter as well 
+    <a href="https://twitter.com/DigianPaul?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-dnt="true" data-show-count="false">Follow @DigianPaul</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </p>
+  <p>The book is actually on pre-sale 50% off for only 19$.</p>
+  <script async src="https://gumroad.com/js/gumroad.js"></script>
+  <div style="text-align: center;">
+    <a class="gumroad-button" href="https://gum.co/HjDwM" target="_blank">Buy Junior2Senior</a>
+  </div>
+</div>
+
+        </header>
+        <section class="content e-content">
+            <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Understanding the concept of processes is fundamental when working with computers.</p>
+</div>
+<div class="paragraph">
+<p>Most articles tackle the issue from a quite shallow perspective or the wrong point of view. We will try to study them from what I believe is the most useful point of view for a senior computer engineer.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_processes_are">What processes are</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Processes are a computational unit.</p>
+</div>
+<div class="paragraph">
+<p>This definition is neither precise nor completely correct, but it helps in understanding.</p>
+</div>
+<div class="paragraph">
+<p>Whenever you run a program a new process is created. Each software that you are running now in your machine is a process.</p>
+</div>
+<div class="paragraph">
+<p>Your browser? It is (at least one) process.
+Your mail client? Another one.
+Your bash terminal? Yet another process.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_isolation">Isolation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The most important concept to understand about a process is "isolation". Processes are isolated one from another.
+One process cannot read nor write memory that belongs to another process. Actually, it is even more strict.
+One process can write and read, only the memory that belongs to itself.</p>
+</div>
+<div class="paragraph">
+<p>The difference is that a process cannot access memory that belongs to no-one. It can access only its own memory.</p>
+</div>
+<div class="paragraph">
+<p>If the isolation is not respected and a process tries to read or write (access from now on) memory that does not belong to itself, the process is forcefully terminated by the operative system with a segmentation fault.</p>
+</div>
+<div class="paragraph">
+<p>All the time a segmentation fault is thrown, it means that the process did not behave correctly and it was trying to access memory that didn&#8217;t belong to it.</p>
+</div>
+<div class="paragraph">
+<p>Isolation is the greatest advantage of processes.
+It assures that the content of the memory never changes under your feet and that you are the only one to have access to the memory.</p>
+</div>
+<div class="paragraph">
+<p>While this advantage doesn&#8217;t seem particularly interesting, and maybe also bland, modern (complex) software takes full advantage of it.</p>
+</div>
+<div class="paragraph">
+<p>For instance, Redis (a NoSQL database) use a single execution unit to avoid coordination keeping the software extremely fast.
+The alternative would have been to use thread, hence more execution units, and to introduce locks and a great deal of complexity in managing multiple execution units changing a shared memory.</p>
+</div>
+<div class="paragraph">
+<p>Modern browsers, have one process for each tab.
+This avoids malicious code to gain access to data in other tabs.
+The use of multiple processes, one for each tab, makes it impossible that javascript code running in a tab from a pishing website, can access any data from a tab from your bank.</p>
+</div>
+<div class="paragraph">
+<p>Isolation is a wonderful capability, but it comes at a cost.
+Software, to be useful, need to read input and produce output.
+So a process needs some way to get input from the outside world and to push its output.</p>
+</div>
+<div class="paragraph">
+<p>Introducing IPC or Inter Process Communication</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_inter_process_communication">Inter Process Communication</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We discussed how processes are isolated, we agree that isolation is a great capability for processes, but that it comes at a cost.
+It makes difficult input/output.
+We are now introducing how processes can communicate with each other and with the outside world.</p>
+</div>
+<div class="paragraph">
+<p>We will have a different section for each of the IPC methods we are describing, so the discussion on this page will be rather short.</p>
+</div>
+<div class="paragraph">
+<p>For maintaining isolation is important that it is always the process to drive the I/O.
+It can not happen that some data change without the process having asked it explicitly.
+This is in stark contrast to what happens with threads.</p>
+</div>
+<div class="paragraph">
+<p>Using threads it is possible that some value changes without one thread explicit permission.
+So a thread could read a variable, do some other work without ever writing anything to that variable, and then find the initial variable changed.
+Another thread, in the same process, changed that variable.
+This is a source of many, very complex to reproduce and to address bugs.
+And this does not happen between processes.
+Of course, there is an exception to this general rule.</p>
+</div>
+<div class="paragraph">
+<p>We will now explore the most common IPC methods, starting from the most useful.</p>
+</div>
+<div class="sect2">
+<h3 id="_sockets">Sockets</h3>
+<div class="paragraph">
+<p>Sockets are extremely important IPC methods.
+They allow communication between processes that reside on different machines or on the same computer.
+For instance, you used a socket to download this article from the web and read it.</p>
+</div>
+<div class="paragraph">
+<p>The interface for sockets is relatively simple. You start by establishing a connection and then you can read data from the socket or write data into it.</p>
+</div>
+<div class="paragraph">
+<p>More practically, when you establish a connection with a socket, the operative systems give you back an handle for the connection the handle is called <code>file descriptor</code>. (We will study why it is called a file descriptor, so subscribe to the mail list or follow me on twitter.) After you get the handle, you create a buffer of memory.</p>
+</div>
+<div class="paragraph">
+<p>To read from a socket, you pass the socket handle and the buffer to the operative system using the <code>read</code> system call.
+The operative system will first interrupt your process, then it will fill the buffer with data, and then it will resume the execution of your code.
+Now the buffer contains the data read from the socket and you can act on it.</p>
+</div>
+<div class="paragraph">
+<p>To write to a socket, you do the inverse operation.
+You fill your buffer with data. You pass the socket handle and the buffer to the <code>write</code> system call.
+The operative system interrupts your process, reads the data from the buffer, moves the data to the other end of the socket, and finally resume the execution of your code.</p>
+</div>
+<div class="paragraph">
+<p>There is much more to study about sockets and I will write about them shortly.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_signal">Signal</h3>
+<div class="paragraph">
+<p>A less versatile way for processes to get information from the outside world is signal.</p>
+</div>
+<div class="paragraph">
+<p>Signals are short messages sent to a process, each signal has associated a default action.
+The default actions are to:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Terminate the process</p>
+</li>
+<li>
+<p>Ignore the signal</p>
+</li>
+<li>
+<p>Terminate the process and write possible debug information (dump the core).</p>
+</li>
+<li>
+<p>Stop (temporarily) the process</p>
+</li>
+<li>
+<p>Resume the execution of a process stopped earlier.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>A signal can be sent from one process to another and can be caught from the process and acted upon.</p>
+</div>
+<div class="paragraph">
+<p>For instance, several systems catch SIGHUP to reload their configurations.
+Other systems catch SIGTERM (Ctrl-C) to terminate cleanly the execution and not lose data or important information.</p>
+</div>
+<div class="paragraph">
+<p>Some signal (SIGKILL and SIGSTOP) cannot be caught, nor ignored, and they just kill the process without giving it the possibility to exit cleanly.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_files">Files</h3>
+<div class="paragraph">
+<p>Files are another great way to communicate between processes.
+One process can write in a file, and another could read from it.</p>
+</div>
+<div class="paragraph">
+<p>The interface to work with files is exactly the same to work with sockets.
+You acquire a file descriptor first, then you create a buffer, and finally, invoke the <code>read</code> or <code>write</code> system calls.
+This similarly would give a hit on why the socket handles are called <code>file descriptor</code>. Underneath they are the same.</p>
+</div>
+<div class="paragraph">
+<p>Using files for IPC allows processes to communicate between the same machine, they both need to have access to the same file.</p>
+</div>
+<div class="paragraph">
+<p>Files come also with another complication, there must be coordination between <code>write</code> and <code>read</code> operations.
+Locks and semaphores are used in these cases.</p>
+</div>
+<div class="paragraph">
+<p>A great way to use files are IPC is to use tools like SQLite.
+SQLite can write and read directly from a file and it takes care of all the coordination for you.
+An application can write data to an SQLite database, while a second one consumes data from it.
+This approach works great even if it is difficult to receive notifications of writes.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_shared_mapped_memory">Shared Mapped Memory</h3>
+<div class="paragraph">
+<p>The final and most complex way to IPC is mapped memory.
+This method is not that different from using files but does not rely on an explicit <code>read</code> and <code>write</code> calls.
+It is quite dangerous because allow data, in the share mapped memory, to be changed implicitly by another process.
+The data that you read from it, now and in the future, maybe different even if you never changed it.</p>
+</div>
+<div class="paragraph">
+<p>You can create a shared mapped memory invoking the <code>mmap</code> system call passing the appropriate flags.
+Other processes can do the same.
+At this point, processes have access to a memory buffer that is shared between them.
+What a process writes in the buffer can be read by the others.</p>
+</div>
+<div class="paragraph">
+<p>Notice how this is the only method that allows implicit changes to the memory owned by the process.
+With all the other methods you provide a buffer that it is changed when you ask so, using the <code>read</code> system call.
+With this method, the values stored in the shared memory can change under your feet.</p>
+</div>
+<div class="paragraph">
+<p>There are more IPC methods but the one provided is an interesting overview, much more than enough to get started.</p>
+</div>
+<div class="paragraph">
+<p>We continue this chapter on how to work effectively with processes in a Linux system.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_start_a_process">Start a process</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are few ways in Linux to create another process.
+The most used one is the <code>fork</code> system call.
+It creates a copy of the actual process and starts to run it while the original process keeps running.
+The <code>fork</code> system call returns a different result on the "parent"/"original" process (it returns 0 zero) from the "child" process (it returns an ID greater than zero).
+Detecting the return value of the <code>fork</code> call is possible to distinguish between the child and the parent process.</p>
+</div>
+<div class="paragraph">
+<p>The <code>clone</code> system call is similar but allows for more control.
+It is a more advanced function and it is used in the implementation of container technologies.
+It also returns the ID of the new process.</p>
+</div>
+<div class="paragraph">
+<p>Another related function is <code>execve</code> it does not create a new process, but it executes a new program in place of the original one.
+It is not strictly related to this topic, but, together with <code>fork</code> is enough to implement a simple shell (like <code>bash</code> or <code>sh</code> or <code>fish</code>).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_process_identification">Process identification</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We saw how to start a process with the <code>fork</code> system call, and we see that <code>fork</code> returns an ID.
+Since the ID identifies a <strong>P</strong>rocess, those IDs are called PID, for Process ID.</p>
+</div>
+<div class="paragraph">
+<p>The number of PID is limited, they are stored in an <code>int</code>, so in systems running for a long time with a lot of processes starting up, the PID will get recycled.
+However, at any given time, a PID identifies one and only one process.</p>
+</div>
+<div class="paragraph">
+<p>Knowing the PID of a process is possible to interact with it.
+Sending it signals or attach it to a debugger.</p>
+</div>
+<div class="paragraph">
+<p>The simplest way of knowing the PID of a process is to store it when you create it.
+Of course, it is not always possible since you may need to know the PID of a process not created by you.</p>
+</div>
+<div class="paragraph">
+<p>Fortunately, there are other ways to know the PID of the processes running in the system at any given moment.</p>
+</div>
+<div class="paragraph">
+<p>All those methods rely on reading data from <code>/proc</code>.
+Inside <code>/proc</code>  there are several directories, one for each <code>PID</code>, in the form <code>/proc/[PID]</code>, listing them is a simple way to know which processes are running in the system at any given moment.
+To list the process we can rely on bash globing with.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ ls -lna /proc</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will show a lot of directories.
+The numeric ones are the PID, while the others are for system information.</p>
+</div>
+<div class="paragraph">
+<p>Inside those directories, there are a lot of files with very interesting information.</p>
+</div>
+<div class="paragraph">
+<p>For instance <code>/proc/[pid]/cmdline</code> contains how the software was invoked.
+<code>/proc/[pid]/exe</code> is a symbolic link to the executable that is running and <code>/proc/[pid]/comm</code> contains the name of the software.</p>
+</div>
+<div class="paragraph">
+<p>Fortunately, we don&#8217;t have to rely on manually parsing the content of the <code>/proc</code> directories since different utilities are available for us.</p>
+</div>
+<div class="paragraph">
+<p>The <code>ps</code> utility allows to list all the processes running in the system, it is useful to identify the PID of a specific software running in the system.
+I am writing this article on <code>nvim</code> so if I want to know the PID of <code>nvim</code> I could run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ ps -e | grep nvim
+27188 pts/1    00:01:08 nvim</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And this will show me that the PID of this instance of <code>nvim</code> is <code>27188</code>.</p>
+</div>
+<div class="paragraph">
+<p>Another way to use <code>ps</code> is to pass the <code>aux</code> options, this will show more information. Information like the arguments that were passed to the program.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ ps aux | grep nvim
+pgian 27188  3.4  0.1 129616 13764 pts/1    Sl+  17:49   1:29 nvim content/posts/process.asciidoc
+pgian 27518  0.0  0.0  14752  1028 pts/2    S+   18:32   0:00 grep --color=auto nvim</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We can see the user, the PID, and the command-line invocation of the software.
+Notice how this shows also <code>grep</code> indeed, grep is matching its own invocations.</p>
+</div>
+<div class="paragraph">
+<p>While <code>ps</code> is great for quickly get to know the PID of a process, it is not very ergonomic when exploring a running system.
+A better alternative in such cases is <code>htop</code>.
+<code>htop</code> allow also to sort the processes in a system to visually show the processes tree.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/processes/original/htop.png" alt="htop view">
+</div>
+</div>
+<div class="paragraph">
+<p>Here we can my setup as I am writing the article.
+I am running the software inside <code>tmux</code> (PID 27177), which in turn, runs 3 bash command lines (27731, 27217 and 27178). In turn, one bash shell runs <code>nvim</code> again with PID 27188 and another is running <code>htop</code> (27681).</p>
+</div>
+<div class="paragraph">
+<p>We started talking about processes, we talk about isolation and why isolation is fundamental, we discover that isolation is great, but we need to do input and output. Then we study some Inter Process Communication (IPC) mechanism. In this last part, we studied how it is possible to see all the processes running in the system with tools like <code>ps</code> and <code>htop</code>.</p>
+</div>
+<div class="paragraph">
+<p>In this last part, we will understand the state of a process.
+At the very beginning, we describe processes as a computational unit.
+Modern computers can run a lot of processes at the same time, while I am writing this, I have 285 processes running.
+However the number of virtual cores in a computer is limited, my machine has only 4.
+So how 4 cores can run 285 processes?</p>
+</div>
+<div class="paragraph">
+<p>Of course, not all processes run at the same time. Some of them sleep.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_process_state">Process State</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is not necessary for software to keep running continuously.
+If you are reading or writing from a file descriptor your CPU does not need to work.
+The CPU is waiting for the IO layer to finish, either against the disk or against the network.
+In this case, the process is sleeping.</p>
+</div>
+<div class="paragraph">
+<p>On the contrary, when the CPU is working, for instance, it is summing numbers, creating strings, doing some math operations, moving memory, the process is running.</p>
+</div>
+<div class="paragraph">
+<p>Besides the <code>sleeping</code> and the <code>running</code> state of a process, there is a third state, the <code>ready</code> state.
+A process is in the <code>ready</code> state when it has done waiting, for instance, the disk finally finished returned some data, but it is not yet running, because the operative system has not allocated yet resources to it.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_recap">Recap</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this chapter, we study processes.
+We understand what they are and one of their most important features, isolation.</p>
+</div>
+<div class="paragraph">
+<p>Isolation is great, but software needs to communicate with the outside world, hence several Inter Process Communication (IPC) mechanisms are available.
+We study briefly, sockets, signals, files, and shared mapped memory.</p>
+</div>
+<div class="paragraph">
+<p>Then we study how to start a process and how to identify processes in a running machine.
+We interact with the raw tools that the operative system gives us to query processes and then we upgraded to work with more refined tools like <code>ps</code> and <code>htop</code>.</p>
+</div>
+<div class="paragraph">
+<p>Finally, we understood what is the state of a process and what are the main states a process can be in, <code>sleeping</code>, <code>running</code>  or <code>ready</code>.</p>
+</div>
+</div>
+</div>
+
+        </section>
+        <footer>
+            <a class="permalink u-url" href="https://jr2sr.netlify.app/posts/process/"></a>
+            
+        </footer>
+    </article>
+
+  
+<br>
+
+<div style="background-color: #ffff645e; padding: 1.5em; margin-bottom: 1em;">
+  <p><b>Process</b> is part of <a href="https://gumroad.com/l/junior2senior">Junior2Senior</a> a course to help you grow as software engineers.</p>
+  <p>It is about unloading all the knowledge that I accumulate over my career to younger engineers to help speed up their own career.</p>
+  <p> You can follow me on twitter as well 
+    <a href="https://twitter.com/DigianPaul?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-dnt="true" data-show-count="false">Follow @DigianPaul</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </p>
+  <p>The book is actually on pre-sale 50% off for only 19$.</p>
+  <script async src="https://gumroad.com/js/gumroad.js"></script>
+  <div style="text-align: center;">
+    <a class="gumroad-button" href="https://gum.co/HjDwM" target="_blank">Buy Junior2Senior</a>
+  </div>
+</div>
+
+
+  <br>
+<p>Signup to receive notification about new articles</p>
+
+
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+ 
+</style>
+<div id="mc_embed_signup">
+  <form action="https://rhcloud.us5.list-manage.com/subscribe/post?u=2c818251de1f8592ef01e8ad0&amp;id=fc2722647b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+      <label for="mce-EMAIL">Subscribe to Junior 2 Senior</label>
+      <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+      
+      <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2c818251de1f8592ef01e8ad0_fc2722647b" tabindex="-1" value=""></div>
+      <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+
+
+
+</div>
+
+    
+    <div id="footer">
+      
+      <nav id="article-skip">
+        <div class="next">
+          
+          <p>&nbsp;</p>
+          
+        </div>
+        <div class="top">
+          <a alt="Top of page" href="#">Top</a>
+        </div>
+        <div class="prev">
+          
+          <a alt="Older article" href="https://jr2sr.netlify.app/posts/dns/">Older &rarr;</a>
+          
+        </div>
+      </nav>
+      
+      <aside id="social">
+  <div id="social-icons">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="icon-24x24">
+      <a class="glyph" alt="Twitter profile" href="https://twitter.com/@pauldigian"><img src=https://jr2sr.netlify.app/icons/twitter.svg height="24px" width="24px"></a>
+     </div>
+     
+  </div>
+</aside>
+
+      
+    </div>
+
+
+</body>
+</html>
