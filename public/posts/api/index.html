@@ -90,144 +90,306 @@
 
         </header>
         <section class="content e-content">
-            <p>In this post we are going to study the widely use term API. You will see how this connect quite nicely with the previous article about <a href="">web requests</a> and tangentially to the one about <a href="">DNS</a> and <a href="">processed</a>.</p>
-<p>Let&rsquo;s get started.</p>
-<h2 id="the-term-api">The term <code>API</code></h2>
+            <div class="paragraph">
+<p>In this post we are going to study the widely use term API. You will see how this connect quite nicely with the previous article about [web requests]() and tangentially to the one about [DNS]() and [processed]().</p>
+</div>
+<div class="paragraph">
+<p>Let’s get started.</p>
+</div>
+<div class="sect1">
+<h2 id="_the_term_api">The term <code>API</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p>API stand for <code>Application Programmatic Interface</code>, the term is very wide and includes all the way a program/application can interact with something else.
 Indeed the term is so wide that does not really help.
 An API can be used to make some actions happens, retrieve data, change some internal state, whatever.
 Strictly speaking whatever expose an interface callable by a software, it is exposing an API.</p>
+</div>
+<div class="paragraph">
 <p>They way you call a library in python or javascript or any other programming languange is an API.
 Indeed every library defines an API.
 All the classes, methods, functions, constants and underlining absubtion that a library define and relies on, are part of the library API.</p>
-<p>Similarly, as we will see when we will study, sockets, files and I/O, the operative system (either Linux, Windows, Mac, etc&hellip;) defines an API.
+</div>
+<div class="paragraph">
+<p>Similarly, as we will see when we will study, sockets, files and I/O, the operative system (either Linux, Windows, Mac, etc…​) defines an API.
 Indeed there is an interface to display stuff on screen, read files, make web requests, and all the other things that the operative system does for us.</p>
+</div>
+<div class="paragraph">
 <p>Softwares might defines other API, for instance the browsers, like Chrome or Firefox, defines an API.
 The javascript that is executed by the browser must indeed follow the API of the browser.
 Actions like changing a <code>div</code> class, or add a CSS property must be done following the API of the browsers.</p>
+</div>
+<div class="paragraph">
 <p>Now that we have understood how wide the term API is, we should leave aside these technicalities and focus on what is colloquialy called an API.
 The Web APIs.</p>
-<h2 id="web-apis">Web APIs</h2>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_web_apis">Web APIs</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p>Up untill now we discussed API that were used inside a programming language.
 When we discuss the API of a python library, that API is consumed using Python.
 When we talk about the APIs of a browser, those API are consumed using Javascript.
 (With the operative system APIs, those API are consumed using <code>C</code> arguably the language of the OS. Of course this is a semplification.)</p>
+</div>
+<div class="paragraph">
 <p>The idea behind web API is simple, and it starts with a question.
 What if the way to consume the API is not language specific, but it is transmitted in a widely used protocol, like HTTP?
 In this way all programming languages that can talk HTTP (basically all) would be able to consume the API.</p>
-<p>As we studied in <a href=""><code>What is a web request</code></a>, HTTP is very convenient, not only because virtually everywhere, but also because it a text based protocol.
+</div>
+<div class="paragraph">
+<p>As we studied in [<code>What is a web request</code>](), HTTP is very convenient, not only because virtually everywhere, but also because it a text based protocol.
 Which means that it is simple to inspect it and see what is going on underneath.</p>
+</div>
+<div class="paragraph">
 <p>We understand that the most common way to expose Web API is an HTTP server, but it is far from the only way.
 There are other possibilities, each for different tasks.
 For instance, we could expose a RabbitMQ, or MQTT endpoint, to allow our user to receive notification.
 We could expose a (g)RPC server, that uses the protoc protocol, to allow fast transmission of binary data.
 Another common possibility is to expose databases over the internet (usually over a private fraction of the internet) in this way applications can store and retrieve data.</p>
+</div>
+<div class="paragraph">
 <p>We now have an understaing of API.
 From consuming an API inside our favourite programming language we move into consuming it over an agnostic protocol.
 We saw that the most common protocol to use is HTTP, but there are dozens upon dozens of other way to expose an API.</p>
+</div>
+<div class="paragraph">
 <p>The next step will be to explore more throughly how the use of HTTP for exposing API.</p>
-<h2 id="advanced-http">Advanced HTTP</h2>
-<p>We studied in <a href=""><code>What is a web request</code></a> the foundantation block of an HTTP request.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_advanced_http">Advanced HTTP</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We studied in [<code>What is a web request</code>]() the foundantation block of an HTTP request.</p>
+</div>
+<div class="paragraph">
 <p>As you might recall an HTTP request is composed of:</p>
-<ol>
-<li>Verb</li>
-<li>Path</li>
-<li>Headers (Host is mandatory)</li>
-<li>Optional Body</li>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Verb</p>
+</li>
+<li>
+<p>Path</p>
+</li>
+<li>
+<p>Headers (Host is mandatory)</p>
+</li>
+<li>
+<p>Optional Body</p>
+</li>
 </ol>
+</div>
+<div class="paragraph">
 <p>The response is composed of:</p>
-<ol>
-<li>Status Code</li>
-<li>Headers</li>
-<li>Optional Body</li>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Status Code</p>
+</li>
+<li>
+<p>Headers</p>
+</li>
+<li>
+<p>Optional Body</p>
+</li>
 </ol>
+</div>
+<div class="paragraph">
 <p>Now we will focus on the less obvious part of both the requets and the response in order to understand the details.</p>
+</div>
+<div class="paragraph">
 <p>As always, we will study general, usually applied principle, however each application is different and for different reason, the API of some application might deviante from the best practise we are studying now.
 Howeve, as a developer, we should try to follow the best practises as much as possible.</p>
-<h3 id="http-verb">HTTP Verb</h3>
+</div>
+<div class="sect2">
+<h3 id="_http_verb">HTTP Verb</h3>
+<div class="paragraph">
 <p>The verb specify what is the intention of the request.</p>
+</div>
+<div class="paragraph">
 <p>There is a verb to getting / downloading a resource, the <code>GET</code> verb.
 There is one for uploading a request <code>POST</code>.
 More advanced verbs are the one used to delete some resource <code>DELETE</code>, updated a resource <code>PATCH</code>, upload a resource of know identifier <code>PUT</code> or to check if a resources exists without downloading it <code>HEAD</code>.</p>
+</div>
+<div class="paragraph">
 <p>Using the correct verb helps a lot while designing a web API.</p>
+</div>
+<div class="paragraph">
 <p>For instance, suppose we are designing a simple API to manage a website that shows images.
 A ammateur interface would be something like:</p>
-<pre><code>POST /new-image
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>POST /new-image
 GET /image/&lt;id&gt;
 POST /delete-image/&lt;id&gt;
 POST /update-image/&lt;id&gt;
-GET /image-exists/&lt;id&gt;
-</code></pre><p>You can see that we embed the action in the path of the request, <code>/new-image</code>, or <code>/delete-image</code> or <code>/image-exists</code> while we don&rsquo;t make use of the HTTP verbs.</p>
+GET /image-exists/&lt;id&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can see that we embed the action in the path of the request, <code>/new-image</code>, or <code>/delete-image</code> or <code>/image-exists</code> while we don’t make use of the HTTP verbs.</p>
+</div>
+<div class="paragraph">
 <p>A more professional interface will look like:</p>
-<pre><code>POST /image
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>POST /image
 GET /image/&lt;id&gt;
 DELETE /image/&lt;id&gt;
 PUT /image/&lt;id&gt;
-HEAD /image/&lt;id&gt;
-</code></pre><p>In this other interface we are making the correct use of the HTTP verbs.
+HEAD /image/&lt;id&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this other interface we are making the correct use of the HTTP verbs.
 Once the meaning of each verb is being codified and respected, the advatanges are clear.
 The URL are much simpler to follow, there is just one <code>/image</code> with or without the identifier.
 It is impossible to make mistake.
 You will never need to ask if the url to upload a new image is <code>/new-image</code> or <code>/upload-image</code>.
 Or if the one to delete the image is <code>/remove-image</code> or <code>/delete-image</code>.</p>
+</div>
+<div class="paragraph">
 <p>Overall, the use of the correct HTTP verbs make the interface much nicer to use and simpler.</p>
-<h3 id="http-headers">HTTP Headers</h3>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_http_headers">HTTP Headers</h3>
+<div class="paragraph">
 <p>The headers is an HTTP call are the place that provide the <code>metadata</code> for the call.
 They usually stores information like the authentication credentials, or information about the paging if you are returning an huge number of elements.</p>
+</div>
+<div class="paragraph">
 <p>Important information that are stored in the headers are the caching policy.
 Can the HTTP request be cached by any proxy or middleware? For how long? All this information should be stored in the headers.
 The cache information are provided by the <code>Cache-Control</code> header.</p>
+</div>
+<div class="paragraph">
 <p>Other important information in the header are the type of content that the caller expects.
 For instance, does the caller expect to receive data as JSON or as XML?
 This can be specified by the <code>Accept</code> header.</p>
-<p>Parsing and understading the content of ann HTTP response is complex, the body can be big, the content encoded in some weird format, etc&hellip; hence all the information that are somehow interesting to manage the request itself, should be provided as headers.
+</div>
+<div class="paragraph">
+<p>Parsing and understading the content of ann HTTP response is complex, the body can be big, the content encoded in some weird format, etc…​ hence all the information that are somehow interesting to manage the request itself, should be provided as headers.
 This allow smarted proxy and middleware to optimize the messages.</p>
-<h3 id="status-code">Status code</h3>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_status_code">Status code</h3>
+<div class="paragraph">
 <p>Another fundamental piece of professional developed API is the correct use of status codes.</p>
+</div>
+<div class="paragraph">
 <p>As HTTP verbs helps in simplify the requests, status codes help in simplify the responses.
 An user of the API can immediately understand what happend to a request just from the status code without actually reading the body.
-This allow the provider of the application to don&rsquo;t provide a body for all possible errors or mistake (even though one is always a good idea).</p>
+This allow the provider of the application to don’t provide a body for all possible errors or mistake (even though one is always a good idea).</p>
+</div>
+<div class="paragraph">
 <p>The status codes are integer numbers between 100 and 599, not all of them are used.</p>
+</div>
+<div class="paragraph">
 <p>They are divided into 5 big categories on the most signficant digit.</p>
-<h4 id="100-to-103">100 to 103</h4>
+</div>
+<div class="sect3">
+<h4 id="_100_to_103">100 to 103</h4>
+<div class="paragraph">
 <p>Protocol related, hardly used in every day code.</p>
-<h4 id="200-to-206">200 to 206</h4>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_200_to_206">200 to 206</h4>
+<div class="paragraph">
 <p>Succesfull request, if you get one of these status code, it means that you created the requests correctly and the server was able to reply.
 Everythng worked as expected and you can consume the result.</p>
+</div>
+<div class="paragraph">
 <p>When creating a web API, it is very useful to distinguish between <code>200 OK</code>, <code>201 Created</code>, <code>202 Accepted</code>, <code>204 No Content</code>.</p>
+</div>
+<div class="paragraph">
 <p>The first, <code>200 OK</code> is a generic positive response, it does not provide much information and it should be avoided when possible.</p>
+</div>
+<div class="paragraph">
 <p><code>201 Created</code> is a more specific response, it let the client know that the request was successfully and that a new resource was created.
 This is usually the correct status code for a <code>POST</code> request, or even to a <code>PUT</code>.</p>
+</div>
+<div class="paragraph">
 <p><code>202 Accepted</code> is more complex, it means that the request was succeffully, the server got the data and understood what the client asked.
 However the server has not yet finish to act upon the request, it may not even have started.
 It is useful if acting on the request is extremelly slow or costly, this let the client know that eventually the request will be worked on, but not now.
 This means that the client does not need to keep the connection with the server alive.
 When you return a <code>202</code> status code, you should also return some way to check the status of the request.
 In this way the client can come back to your service, at a later time, and check the progresses.</p>
+</div>
+<div class="paragraph">
 <p><code>204 No Content</code>, it means that no content is included in the body. It make sense when you are deleting something or when you are updating an old resources.</p>
+</div>
+<div class="paragraph">
 <p>There are more <code>2XX</code> status codes, but the one mentioned are the most used.</p>
-<h4 id="300-to-308">300 to 308</h4>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_300_to_308">300 to 308</h4>
+<div class="paragraph">
 <p>These status codes are not widely used when developing a Web API. They might in very complex scenarios but it is safe to omit them in our studies and just kwnoing that they exists.</p>
+</div>
+<div class="paragraph">
 <p>The most used one is the <code>301 Moved Permanently</code>, a redirect, to inform the clients  that the location (URL) of a resources having changed and point the client to the new location.</p>
-<h4 id="400-to-451">400 to 451</h4>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_400_to_451">400 to 451</h4>
+<div class="paragraph">
 <p>These status codes are errors or problems on the client side.</p>
+</div>
+<div class="paragraph">
 <p>Whil writing an API, if you catch an error on the client side and you are forced to return a 4XX status code, you should try very hard to include some information on how to fix the error.</p>
+</div>
+<div class="paragraph">
 <p>Maybe the authentication is missing? Let the user know.
 Maybe the user provided XML while you were expecting JSON? Let the user know.
 Maybe the user is not authorized? Let the user know.</p>
+</div>
+<div class="paragraph">
 <p>The more information you provide the easier will be to develop an application against your API, and developers will thank you for it.</p>
+</div>
+<div class="paragraph">
 <p><code>400 Bad Request</code> is a quite general status code, the server is not able to process the request and the client should send a different request.</p>
+</div>
+<div class="paragraph">
 <p><code>401 Unauthorized</code> the client did not provide correct authentication, so for the server was impossible to know if the request should be satisfied.</p>
+</div>
+<div class="paragraph">
 <p><code>403 Forbidden</code> the client did provide correct authentication, but its is not allowed to actually make the request.
 For instance, some user may comment to a blog post, but they cannot modify it, at least they are the authors.
 Hence a request to modify the blog post will return <code>403</code> to all users but the post author.</p>
+</div>
+<div class="paragraph">
 <p><code>404 Not Found</code> the most notorious status code. The resorce is not available.</p>
+</div>
+<div class="paragraph">
 <p>There are more 4XX status codes, but I would like to focus, on the last one, <code>451 Unavailable For Legal Reason</code>.
 This status code is to be used when some piece of data cannot be served for some legal reason, copyright infringement, embargo or something similar.
 The specific number was choosen as reference to Fahreneith 451 a novel about an dystopian universe in which books were burned.
 451 Fehreneith is the temperature at which paper burns.</p>
-<h4 id="500-to-511">500 to 511</h4>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_500_to_511">500 to 511</h4>
+<div class="paragraph">
 <p>These status codes are errors or problem on the server side.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 
         </section>
         <footer>

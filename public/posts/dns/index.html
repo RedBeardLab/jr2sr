@@ -90,139 +90,400 @@
 
         </header>
         <section class="content e-content">
-            <p>= DNS</p>
-<p>link:../whats-a-web-request[In the first article, we describe what is a web/HTTP request.]
+            <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="../whats-a-web-request">In the first article, we describe what is a web/HTTP request.</a>
 Requests are directed toward a host and a port.</p>
+</div>
+<div class="paragraph">
 <p>The port is defined by the protocol, HTTP goes to port 80, HTTPS goes to 443. The host is defined by the request as a string.</p>
-<p>A possible host is &ldquo;google.com&rdquo; another is &ldquo;facebook.com&rdquo;.</p>
+</div>
+<div class="paragraph">
+<p>A possible host is &#34;google.com&#34; another is &#34;facebook.com&#34;.</p>
+</div>
+<div class="paragraph">
 <p>However, packets are routed over the internet using IP addresses, numbers, while hosts are strings.</p>
+</div>
+<div class="paragraph">
 <p>Each IP packet must contain its source and its destination to be delivered. And the host of the source address and of the destination address must be encoded as IP addresses.</p>
-<p>image::/DNS/IPpacket.png[IP packet]</p>
-<p>In order to create the IP packet and to deliver it to the internet, we need to convert the host name &ldquo;kitty.com&rdquo; in its IP address <code>53.125.12.9</code>.</p>
-<p>DNS serves have the basic goal of translating the string that represents the host (&ldquo;google.com&rdquo;) in a number, the IP address (<code>116.98.109.34</code>) so that a valid IP packet can be generated.</p>
-<p>== Scratching the surface</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/DNS/IPpacket.png" alt="IP packet"/>
+</div>
+</div>
+<div class="paragraph">
+<p>In order to create the IP packet and to deliver it to the internet, we need to convert the host name &#34;kitty.com&#34; in its IP address <code>53.125.12.9</code>.</p>
+</div>
+<div class="paragraph">
+<p>DNS serves have the basic goal of translating the string that represents the host (&#34;google.com&#34;) in a number, the IP address (<code>116.98.109.34</code>) so that a valid IP packet can be generated.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_scratching_the_surface">Scratching the surface</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p>At its most basic level, DNS are services that take as input a host string and return the IP address of the host.</p>
+</div>
+<div class="paragraph">
 <p>A simple utility to test DNS is <code>dig</code>. In its most basic invocation, <code>dig</code> takes an input an host and returns its IPv4.</p>
+</div>
+<div class="paragraph">
 <p>The following examples have different options to provide a more concise output.</p>
-<pre><code>$ dig +noall +answer -t A google.com
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>$ dig +noall +answer -t A google.com
 google.com.		275	IN	A	216.58.205.46
 $ dig +noall +answer -t AAAA google.com
-google.com.		257	IN	AAAA	2a00:1450:4009:81b::200e
-</code></pre><p>In the first line we translate the host &ldquo;google.com&rdquo; into an IPv4 address (<code>216.58.205.46</code>).</p>
+google.com.		257	IN	AAAA	2a00:1450:4009:81b::200e</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the first line we translate the host &#34;google.com&#34; into an IPv4 address (<code>216.58.205.46</code>).</p>
+</div>
+<div class="paragraph">
 <p>In the second line, for the same host, we retrieve its IPv6 (<code>2a00:1450:4009:81b::200e</code>).</p>
-<p>== DNS record type</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dns_record_type">DNS record type</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p>DNS can store different kinds of records beside IP addresses. The most common record type is <code>A</code> that stores IPv4 addresses. The <code>AAAA</code> record stores IPv6 addresses.</p>
+</div>
+<div class="paragraph">
 <p>Another important record type is the <code>CNAME</code> (or ALIAS) record type. It is useful if a single machine, with only one IP address, runs multiple services on different ports.</p>
+</div>
+<div class="paragraph">
 <p>The <code>TXT</code> record type can contain arbitrary information, it is usually used to verify the ownership of a domain name.</p>
+</div>
+<div class="paragraph">
 <p>Other record types are available and widely used, but the working principle is the same for all.</p>
-<p>== Resolve DNS query</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_resolve_dns_query">Resolve DNS query</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p>DNS works like any other internet service, but with some peculiarity.</p>
+</div>
+<div class="paragraph">
 <p>First of all, the IP address of the DNSs are widely know, for instance, the one provided by google is <code>8.8.8.8</code> and the one by Cloudflare is <code>1.1.1.1</code>.</p>
+</div>
+<div class="paragraph">
 <p>Then DNS works mostly over UDP and not over TCP. The use of UDP is mostly for performance.</p>
+</div>
+<div class="paragraph">
 <p>Performance is the most strict requirement for DNS.</p>
+</div>
+<div class="paragraph">
 <p>DNS must be fast.</p>
+</div>
+<div class="paragraph">
 <p>In order to keep communication as concise and fast as possible, almost all packets DNS queries and responses fit into a single UDP packet and are limited to 512 bytes. If the DNS answer is bigger other communications protocols are used.</p>
-<p>== Need for speed</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_need_for_speed">Need for speed</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p>The use of UDP over TCP is mostly due to performance requirements. Any application needs to make multiple DNS queries, it must be fast.</p>
+</div>
+<div class="paragraph">
 <p>Even if fast, it is still impractical to make a DNS query for each network request. Moreover, when visiting a website, most requests are against the same host in a short amount of time.</p>
+</div>
+<div class="paragraph">
 <p>To address the problem DNS is aggressively cached on different layers.</p>
+</div>
+<div class="paragraph">
 <p>Cached values eventually goes stale and they must be updated. For this reason, DNS records provide also a TTL value, Time To Live.</p>
+</div>
+<div class="paragraph">
 <p>After the TTL expires, the DNS value is considered outdated and it must be requested again from the authoritative domain.</p>
-<p>=== Server cache</p>
+</div>
+<div class="sect2">
+<h3 id="_server_cache">Server cache</h3>
+<div class="paragraph">
 <p>The first level of DNS cache is the server level.
-DNS servers don&rsquo;t store all the values of all the domains, but only a small subset.</p>
-<p>If a request for an unknown domain comes, they recursively redirect the request to other DNS until they don&rsquo;t get the answer from the authoritative (main) DNS.
+DNS servers don’t store all the values of all the domains, but only a small subset.</p>
+</div>
+<div class="paragraph">
+<p>If a request for an unknown domain comes, they recursively redirect the request to other DNS until they don’t get the answer from the authoritative (main) DNS.
 The answer is then cached until the TTL expires.</p>
-<p>=== Client cache</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_client_cache">Client cache</h3>
+<div class="paragraph">
 <p>While server cached helps a lot in reducing the latency of DNS queries, it cannot be as fast as a local copy.</p>
+</div>
+<div class="paragraph">
 <p>Hence the first level of cache regarding the name server happens in the local machine.</p>
+</div>
+<div class="paragraph">
 <p>The OS intercepts DNS requests and returns a cached answer, as long as the TTL is not expired.
 As soon as the TTL expires a new request to the server is made and the answer cached again.</p>
-<p>=== TTL and propagation time</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ttl_and_propagation_time">TTL and propagation time</h3>
+<div class="paragraph">
 <p>Caching the result of DNS queries has the huge benefits of making it fast. The downside is that updates to DNS take time.</p>
+</div>
+<div class="paragraph">
 <p>All the TTL needs to expire before all the users can see the updated values.</p>
+</div>
+<div class="paragraph">
 <p>It can take up to 2 days for the information to propagate in the DNS servers. For most applications, the delay is much smaller, a few hours at the very maximum in my experience using AWS Route53 or Cloudfront.</p>
-<p>==== Trivial</p>
+</div>
+<div class="sect3">
+<h4 id="_trivial">Trivial</h4>
+<div class="paragraph">
 <p>DNS can store arbitrary information, and eventually all the DNS servers will agree on a specific values. For these reasons DNS are considered the biggest and more widely deployed eventual consistet databases.</p>
-<p>== DNS console</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dns_console">DNS console</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p>After you buy a domain name you can set all the DNS values relative to that domain and all its subdomains.</p>
+</div>
+<div class="paragraph">
 <p>All the DNS interfaces are similar, offering pretty much the same functionality.</p>
+</div>
+<div class="paragraph">
 <p>Your DNS provider is mostly a matter of taste and convenience.</p>
-<p>=== AWS Route53
-I like to use Amazon Route53 service, that allows buying the domain and set the records in the same interface.</p>
+</div>
+<div class="sect2">
+<h3 id="_aws_route53">AWS Route53</h3>
+<div class="paragraph">
+<p>I like to use Amazon Route53 service, that allows buying the domain and set the records in the same interface.</p>
+</div>
+<div class="paragraph">
 <p>I like Amazon Route53 because:</p>
-<ol>
-<li>DNS is a fundamental service for AWS, it will always work</li>
-<li>They provide very clear, simple, and cheap pricing</li>
-<li>I trust Amazon don&rsquo;t screw people over a few dollars in the domain registration fee, unlike other vendors.</li>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>DNS is a fundamental service for AWS, it will always work</p>
+</li>
+<li>
+<p>They provide very clear, simple, and cheap pricing</p>
+</li>
+<li>
+<p>I trust Amazon don’t screw people over a few dollars in the domain registration fee, unlike other vendors.</p>
+</li>
 </ol>
+</div>
+<div class="paragraph">
 <p>A domain on AWS cost ~12$ / year plus few cents if your domain is extremely popular or if you need special features.</p>
+</div>
+<div class="paragraph">
 <p>Beware that other vendors sell your domain at a much higher price BUT they provide a hefty discount for the first year. So it seems like you are buying it for 4$ and the second year they start charging you 50$ / year.</p>
+</div>
+<div class="paragraph">
 <p>In my opinion, it is just not worth doing business with them.</p>
-<p>==== Trivial</p>
+</div>
+<div class="sect3">
+<h4 id="_trivial_2">Trivial</h4>
+<div class="paragraph">
 <p>The DNS service of Amazon is called Route53, while Route is quite clear, why not Route 66, much more iconic. Or Route 101? Because 53 is the port used by the DNS protocol.</p>
-<p>==== The console</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_the_console">The console</h4>
+<div class="paragraph">
 <p>The console of AWS Route53 looks like this, for each of your domains.</p>
-<p>image::/DNS/aws_console_base.png[AWS Route53 Base console]</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/DNS/aws_console_base.png" alt="AWS Route53 Base console"/>
+</div>
+</div>
+<div class="paragraph">
 <p>We will focus on the big table. The navigation on the right is for more (advanced) features of AWS Route53.</p>
-<p>From the table, we can immediately see the name of the record (first column), the record type (<code>A</code>, <code>NS</code>, <code>AAAA</code>, <code>CNAME</code>, etc&hellip;) and the value of the record.</p>
-<p>image::/DNS/aws_console_zoom.png[AWS Route53 Base console zoomed in]</p>
+</div>
+<div class="paragraph">
+<p>From the table, we can immediately see the name of the record (first column), the record type (<code>A</code>, <code>NS</code>, <code>AAAA</code>, <code>CNAME</code>, etc…​) and the value of the record.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/DNS/aws_console_zoom.png" alt="AWS Route53 Base console zoomed in"/>
+</div>
+</div>
+<div class="paragraph">
 <p>The highlighted rows are all <code>A</code> records. It is interesting to note how the root domain manage:</p>
-<ol>
-<li>The root domain itself, making <code>redbeardlab.com</code> point to the IP address <code>212.47.232.249</code></li>
-<li>The sub-domain, making <code>simplesql.redbeardlab.com</code> point to <code>212.47.253.152</code></li>
-<li>All other sub-domain levels, in this case making <code>telemetrics.redisql.redbeardlab.com</code> point to <code>51.15.142.13</code></li>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The root domain itself, making <code>redbeardlab.com</code> point to the IP address <code>212.47.232.249</code></p>
+</li>
+<li>
+<p>The sub-domain, making <code>simplesql.redbeardlab.com</code> point to <code>212.47.253.152</code></p>
+</li>
+<li>
+<p>All other sub-domain levels, in this case making <code>telemetrics.redisql.redbeardlab.com</code> point to <code>51.15.142.13</code></p>
+</li>
 </ol>
-<p>image::/DNS/aws_console_A_records.png[AWS Route53 Base console A records]</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/DNS/aws_console_A_records.png" alt="AWS Route53 Base console A records"/>
+</div>
+</div>
+<div class="paragraph">
 <p>The <code>AAAA</code> records are very similar to the <code>A</code> record.</p>
-<p>image::/DNS/aws_console_AAAA_record.png[AWS Route53 Base console AAAA records]</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/DNS/aws_console_AAAA_record.png" alt="AWS Route53 Base console AAAA records"/>
+</div>
+</div>
+<div class="paragraph">
 <p>In this example we make <code>telemetrics.redisql.redbeardlab.com</code> point to <code>2001:bc8:4400:2c00::2b:c17</code>.</p>
+</div>
+<div class="paragraph">
 <p>This does not generate an ambiguity with the <code>A</code> record above.
 If the client asks for the IPv4 address the server returns <code>51.15.142.13</code>.
 While, if the client ask for the IPv6 address the server returns <code>2001:bc8:4400:2c00::2b:c17</code>.
 In this particular case, both addresses point to the same machine.
 But they could point to different servers offering completely different services.</p>
+</div>
+<div class="paragraph">
 <p>The <code>CNAME</code> record creates an alias.</p>
-<p>image::/DNS/aws_console_CNAME_record.png[AWS Route53 Base console CNAME records]</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/DNS/aws_console_CNAME_record.png" alt="AWS Route53 Base console CNAME records"/>
+</div>
+</div>
+<div class="paragraph">
 <p>In the first example, we set the host <code>redisql.redbeardlab.com</code> to point to <code>redbeardlab.github.io</code>.
 In this way we can serve, under the domain we control, content from Github pages, for free. Quite convenient.</p>
+</div>
+<div class="paragraph">
 <p>In the second case we redirect all the calls to AWS Cloudfront, a CDN managed by AWS.</p>
+</div>
+<div class="paragraph">
 <p>When a client finds a <code>CNAME</code> it stops asking for the original host IP address and starts asking for the IP address of the ALIAS.
 If a client goes to <code>redisql.redbeardlab.com</code>, at first it will try to find the IP address of <code>redisql.redbeardlab.com</code>, however, the DNS server will say that the IP address does not exist, but it exists an alias, <code>redbeardlab.github.io</code>. At this point, the client will start looking for the IP address of <code>redbeardlab.github.io</code>.</p>
+</div>
+<div class="paragraph">
 <p>The <code>TXT</code> fields were used for verifying the ownership of the domain against Google.</p>
-<p>image::/DNS/aws_console_TXT_record.png[AWS Route53 Base console TXT records]</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/DNS/aws_console_TXT_record.png" alt="AWS Route53 Base console TXT records"/>
+</div>
+</div>
+<div class="paragraph">
 <p>This is the most common use I encounter, but other uses for the <code>TXT</code> field are possible.</p>
+</div>
+<div class="paragraph">
 <p>Finally, the <code>NS</code> record, declare who manage the DNS entry.</p>
-<p>image::/DNS/aws_console_NS_record.png[AWS Route53 Base console NS records]</p>
-<p>In this case, the DNS is managed by&hellip; Cloudflare.
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/DNS/aws_console_NS_record.png" alt="AWS Route53 Base console NS records"/>
+</div>
+</div>
+<div class="paragraph">
+<p>In this case, the DNS is managed by…​ Cloudflare.
 So all we said above is ignored by a real DNS client that will make its queries not against AWS Route53 but against Cloudflare.</p>
+</div>
+<div class="paragraph">
 <p>While the TTL (Time To Live) for most records is set to 300 or 600 seconds (5 to 10 minutes) the TTL for the <code>NS</code> is set to a much larger value, 7200 seconds (2 hours).</p>
-<p>This is to be expected, you don&rsquo;t change often the <code>NS</code> value, once you set your DNS provider you tend to stick to it. Moreover, change the <code>NS</code> value is expensive, all the queries need to be directed to a completely different service that needs time to accommodate it.</p>
-<p>==== Note on Name Server configuration in AWS Route53</p>
+</div>
+<div class="paragraph">
+<p>This is to be expected, you don’t change often the <code>NS</code> value, once you set your DNS provider you tend to stick to it. Moreover, change the <code>NS</code> value is expensive, all the queries need to be directed to a completely different service that needs time to accommodate it.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_note_on_name_server_configuration_in_aws_route53">Note on Name Server configuration in AWS Route53</h4>
+<div class="paragraph">
 <p>Unfortunately, in Route53, it is not sufficient to set the <code>Name Server</code> record set, but it is also necessary to set the name servers in another setting.</p>
-<p>Under <code>'Register Domains' &gt; $your_domain</code> and then &ldquo;Add or edit name servers&rdquo;.</p>
+</div>
+<div class="paragraph">
+<p>Under <code>&#39;Register Domains&#39; &gt; $your_domain</code> and then &#34;Add or edit name servers&#34;.</p>
+</div>
+<div class="paragraph">
 <p>I find a good practice to keep the two values in sync.</p>
-<p>=== Cloudflare</p>
-<p>Another very reputable DNS provider is Cloudflare. They don&rsquo;t sell you domain names directly, but they can manage them for you.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cloudflare">Cloudflare</h3>
+<div class="paragraph">
+<p>Another very reputable DNS provider is Cloudflare. They don’t sell you domain names directly, but they can manage them for you.</p>
+</div>
+<div class="paragraph">
 <p>So you will need to buy your domain somewhere else, also an AWS Route53, and then let Cloudflare manage it. This is what I did above.</p>
+</div>
+<div class="paragraph">
 <p>This is done setting up the authoritative name server to point to Cloudflare.
 It is as simple as adding a new record (of type <code>NS</code>) to your existing DNS records (modulo the extra setting in AWS Route53).
 From that moment on, beside propagation delay, all the DNS queries will be redirected toward the new authoritative name server.</p>
-<p>==== The console</p>
+</div>
+<div class="sect3">
+<h4 id="_the_console_2">The console</h4>
+<div class="paragraph">
 <p>The console of Cloudflare is different from the one of Route53, but overall they contain the same information and it is equally simple to use.</p>
-<p>image::/DNS/cloudflare_console.png[Cloudflare DNS console]</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/DNS/cloudflare_console.png" alt="Cloudflare DNS console"/>
+</div>
+</div>
+<div class="paragraph">
 <p>We can recognize the same kind of information:</p>
-<ol>
-<li>the <code>A</code> fields that point to IPv4 addresses</li>
-<li>the <code>AAAA</code> fields that point to IPv6 addresses</li>
-<li>the <code>CNAME</code> used for alias</li>
-<li>the <code>TXT</code> again used for domain ownership verification</li>
-<li>the <code>MX</code> used for email routing, with a priority</li>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>the <code>A</code> fields that point to IPv4 addresses</p>
+</li>
+<li>
+<p>the <code>AAAA</code> fields that point to IPv6 addresses</p>
+</li>
+<li>
+<p>the <code>CNAME</code> used for alias</p>
+</li>
+<li>
+<p>the <code>TXT</code> again used for domain ownership verification</p>
+</li>
+<li>
+<p>the <code>MX</code> used for email routing, with a priority</p>
+</li>
 </ol>
-<p>The &ldquo;Proxy Status&rdquo; column in the Cloudflare console indicates whenever Cloudflare takes care only of the DNS (<code>DNS only</code>) or also to cache and manage with their services the request to the domain.</p>
-<p>== Recap</p>
+</div>
+<div class="paragraph">
+<p>The &#34;Proxy Status&#34; column in the Cloudflare console indicates whenever Cloudflare takes care only of the DNS (<code>DNS only</code>) or also to cache and manage with their services the request to the domain.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_recap">Recap</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p>Hopefully, this article is helpful if you are setting up your DNS or if you are getting started with web services.</p>
-<p>If you have any question I would love to expand the article and help you out, feel free to reach over on link:https://twitter.com/pauldigian[twitter @pauldigian].</p>
+</div>
+<div class="paragraph">
+<p>If you have any question I would love to expand the article and help you out, feel free to reach over on <a href="https://twitter.com/pauldigian">twitter @pauldigian</a>.</p>
+</div>
+</div>
+</div>
 
         </section>
         <footer>

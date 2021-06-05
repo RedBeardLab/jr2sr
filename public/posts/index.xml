@@ -13,9 +13,9 @@
       <pubDate>Sun, 16 Aug 2020 15:19:28 +0200</pubDate>
       
       <guid>https://jr2sr.netlify.app/posts/api/</guid>
-      <description>In this post we are going to study the widely use term API. You will see how this connect quite nicely with the previous article about web requests and tangentially to the one about DNS and processed.
-Let&amp;rsquo;s get started.
-The term API API stand for Application Programmatic Interface, the term is very wide and includes all the way a program/application can interact with something else. Indeed the term is so wide that does not really help.</description>
+      <description>In this post we are going to study the widely use term API. You will see how this connect quite nicely with the previous article about [web requests]() and tangentially to the one about [DNS]() and [processed]().
+ Let’s get started.
+ The term API API stand for Application Programmatic Interface, the term is very wide and includes all the way a program/application can interact with something else. Indeed the term is so wide that does not really help.</description>
     </item>
     
     <item>
@@ -24,10 +24,10 @@ The term API API stand for Application Programmatic Interface, the term is very 
       <pubDate>Sun, 26 Jul 2020 13:19:36 +0200</pubDate>
       
       <guid>https://jr2sr.netlify.app/posts/process/</guid>
-      <description>Processes Understanding the concept of processes is fundamental when working with computers.
-Most articles tackle the issue from a quite shallow perspective or the wrong point of view. We will try to study them from what I believe is the most useful point of view for a senior computer engineer.
-What processes are Processes are a computational unit.
-This definition is neither precise nor completely correct, but it helps in understanding.</description>
+      <description>Understanding the concept of processes is fundamental when working with computers.
+ Most articles tackle the issue from a quite shallow perspective or the wrong point of view. We will try to study them from what I believe is the most useful point of view for a senior computer engineer.
+   What processes are Processes are a computational unit.
+ This definition is neither precise nor completely correct, but it helps in understanding.</description>
     </item>
     
     <item>
@@ -36,11 +36,10 @@ This definition is neither precise nor completely correct, but it helps in under
       <pubDate>Sun, 07 Jun 2020 18:25:44 +0200</pubDate>
       
       <guid>https://jr2sr.netlify.app/posts/dns/</guid>
-      <description>= DNS
-link:../whats-a-web-request[In the first article, we describe what is a web/HTTP request.] Requests are directed toward a host and a port.
-The port is defined by the protocol, HTTP goes to port 80, HTTPS goes to 443. The host is defined by the request as a string.
-A possible host is &amp;ldquo;google.com&amp;rdquo; another is &amp;ldquo;facebook.com&amp;rdquo;.
-However, packets are routed over the internet using IP addresses, numbers, while hosts are strings.</description>
+      <description>In the first article, we describe what is a web/HTTP request. Requests are directed toward a host and a port.
+ The port is defined by the protocol, HTTP goes to port 80, HTTPS goes to 443. The host is defined by the request as a string.
+ A possible host is &amp;#34;google.com&amp;#34; another is &amp;#34;facebook.com&amp;#34;.
+ However, packets are routed over the internet using IP addresses, numbers, while hosts are strings.</description>
     </item>
     
     <item>
@@ -49,12 +48,11 @@ However, packets are routed over the internet using IP addresses, numbers, while
       <pubDate>Wed, 29 Apr 2020 22:05:02 +0200</pubDate>
       
       <guid>https://jr2sr.netlify.app/posts/check_your_resources/</guid>
-      <description>= Always check your resources before to free them
-Today I fixed a minor bug in our production code.
-The software is written in Go(lang) and makes extensive use of the defer statement.
-The defer statement, take a function invocation and run it after the current function returns.
-They are very handy for clean-up tasks. A classical example is the acquisition of a lock. Or closing a file.
-Without defer you would get your resource at the beginning of the function, use it, and then clean-up.</description>
+      <description>Today I fixed a minor bug in our production code.
+ The software is written in Go(lang) and makes extensive use of the defer statement.
+ The defer statement, take a function invocation and run it after the current function returns.
+ They are very handy for clean-up tasks. A classical example is the acquisition of a lock. Or closing a file.
+ Without defer you would get your resource at the beginning of the function, use it, and then clean-up.</description>
     </item>
     
     <item>
@@ -63,13 +61,12 @@ Without defer you would get your resource at the beginning of the function, use 
       <pubDate>Mon, 27 Apr 2020 20:40:24 +0200</pubDate>
       
       <guid>https://jr2sr.netlify.app/posts/database_fundamental/</guid>
-      <description>= Databases
-Databases are fundamental in all web application, website, API, CRUD.
-Lately, new software around databases starts to blossom.
-An example is GraphQL.
-It provides a more handy, mobile-friendly, interface to access data. Often on top of classical databases.
-New tools don&amp;rsquo;t allow us to skip the underneath fundamental knowledge. But they force us to understand how things work under the hood much deeper.
-Now, it is even more important to understand why some queries are slow and why some are fast.</description>
+      <description>Databases are fundamental in all web application, website, API, CRUD.
+ Lately, new software around databases starts to blossom.
+ An example is GraphQL.
+ It provides a more handy, mobile-friendly, interface to access data. Often on top of classical databases.
+ New tools don’t allow us to skip the underneath fundamental knowledge. But they force us to understand how things work under the hood much deeper.
+ Now, it is even more important to understand why some queries are slow and why some are fast.</description>
     </item>
     
     <item>
@@ -78,11 +75,9 @@ Now, it is even more important to understand why some queries are slow and why s
       <pubDate>Fri, 10 Apr 2020 12:53:57 +0200</pubDate>
       
       <guid>https://jr2sr.netlify.app/posts/whats-a-web-request/</guid>
-      <description>= The web
-image::/whats-a-web-request.jpg[Networks Cables - Photo by Jordan Harrison on Unsplash ]
-The web and internet as a large are fundamental for today&amp;rsquo;s world, but how does it work under the hood?
-In this article, we will talk about HTTP requests that are the fundamentals blocks that make the modern web possible.
-We will explore how tools like link:https://requests.readthedocs.io/en/master/[Python requests] or link:https://ruby-doc.org/stdlib-2.7.0/libdoc/net/http/rdoc/Net/HTTP.html[Ruby Net::HTTP] or again the link:https://golang.org/pkg/net/http/[Go package net/http] or any other library that you may use in any other language works.</description>
+      <description>The web and internet as a large are fundamental for today’s world, but how does it work under the hood?
+ In this article, we will talk about HTTP requests that are the fundamentals blocks that make the modern web possible.
+ We will explore how tools like Python requests or Ruby Net::HTTP or again the Go package net/http or any other library that you may use in any other language works.</description>
     </item>
     
     <item>
@@ -91,10 +86,9 @@ We will explore how tools like link:https://requests.readthedocs.io/en/master/[P
       <pubDate>Sat, 04 Apr 2020 23:19:06 +0200</pubDate>
       
       <guid>https://jr2sr.netlify.app/posts/start_here/</guid>
-      <description>= Start Here
-Junior 2 Senior is a technical course where I unload all my knowledge for younger computer engineers that want to speed up their career path.
-The goal is to provide all the necessary notions and mental models to work around problems for people to be hired in high-tech companies.
-The course is based only on fundamental concepts. We will focus only on those concepts that were important 20 years ago, are important now, and will be important for at least the next 20 years.</description>
+      <description>Junior 2 Senior is a technical course where I unload all my knowledge for younger computer engineers that want to speed up their career path.
+ The goal is to provide all the necessary notions and mental models to work around problems for people to be hired in high-tech companies.
+ The course is based only on fundamental concepts. We will focus only on those concepts that were important 20 years ago, are important now, and will be important for at least the next 20 years.</description>
     </item>
     
   </channel>

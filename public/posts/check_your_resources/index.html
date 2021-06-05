@@ -90,43 +90,90 @@
 
         </header>
         <section class="content e-content">
-            <p>= Always check your resources before to free them</p>
+            <div class="paragraph">
 <p>Today I fixed a minor bug in our production code.</p>
+</div>
+<div class="paragraph">
 <p>The software is written in Go(lang) and makes extensive use of the <code>defer</code> statement.</p>
+</div>
+<div class="paragraph">
 <p>The <code>defer</code> statement, take a function invocation and run it after the current function returns.</p>
+</div>
+<div class="paragraph">
 <p>They are very handy for clean-up tasks. A classical example is the acquisition of a lock. Or closing a file.</p>
+</div>
+<div class="paragraph">
 <p>Without <code>defer</code> you would get your resource at the beginning of the function, use it, and then clean-up.</p>
+</div>
+<div class="paragraph">
 <p>In the case of locks, you would acquire the lock, do the work in the critical section, release the lock, and the return.</p>
+</div>
+<div class="paragraph">
 <p>In case of files, you would open the file, write and read to the file, and then close the file.</p>
+</div>
+<div class="paragraph">
 <p>With this approach, every return path must be checked. As soon as you add a new return path, you must make sure that it closes all the resources it may have acquired. This is simpler to say than to do.</p>
+</div>
+<div class="paragraph">
 <p>Code bases grow larger and larger and it gets messy to check all the possible returns path. And it also looks ugly and not DRY.</p>
+</div>
+<div class="paragraph">
 <p><code>defer</code> solve this problem. As soon as you get the resource you defer its cleanup. As soon as you acquire the lock, you defer the release of it. As soon as you open a file, you defer closing it.</p>
+</div>
+<div class="paragraph">
 <p>You want to put the <code>defer</code> as close as possible to the resource initialization for two reasons.
 First of all, it is clearer when reading the code.
 Second, the closer the two calls are, the less it is likely that some hidden return path sneaks into the acquisition and the cleanup.</p>
-<p>But you don&rsquo;t want to put it too close. Before invoking the <code>defer</code> you must make sure that the resource is valid.</p>
+</div>
+<div class="paragraph">
+<p>But you don’t want to put it too close. Before invoking the <code>defer</code> you must make sure that the resource is valid.</p>
+</div>
+<div class="paragraph">
 <p>Today bug was about an HTTP call. I was making the HTTP call and immediately after I was closing its body to avoid leaking resources.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#a6e22e">client</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Client</span>{}    
-<span style="color:#a6e22e">resp</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">Do</span>(<span style="color:#a6e22e">req</span>)
-<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Body</span>.<span style="color:#a6e22e">Close</span>()      
-<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">StatusCode</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">400</span> {                             
-	<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;Some error happened %s&#34;</span>, <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Status</span>)
-	<span style="color:#66d9ef">return</span>
-}  
-</code></pre></div><p>Unfortunately, sometimes, the network fails. And today it failed.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-golang" data-lang="golang">client := &amp;http.Client{}
+resp, err := client.Do(req)
+defer resp.Body.Close()
+if resp.StatusCode &gt;= 400 {
+	err = fmt.Errorf(&#34;Some error happened %s&#34;, resp.Status)
+	return
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Unfortunately, sometimes, the network fails. And today it failed.</p>
+</div>
+<div class="paragraph">
 <p>The network failed, the <code>StatusCode</code> was greater than 400 and the functions returned early. As soon as the function returned, it invoked the <code>defer</code> statement: <code>resp.Body.Close()</code>.</p>
+</div>
+<div class="paragraph">
 <p>Since the requested had failed, the <code>Body</code> was not there and there was a <code>nil</code> pointer.</p>
+</div>
+<div class="paragraph">
 <p>The <code>defer</code> ended up calling the <code>Close()</code> method of <code>nil</code> and this caused a runtime panic, blowing it up in production.</p>
+</div>
+<div class="paragraph">
 <p>I corrected the code with:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#a6e22e">client</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Client</span>{}                                                                                                                                                          
-<span style="color:#a6e22e">resp</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">Do</span>(<span style="color:#a6e22e">req</span>)                                                                                                                              
-<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> { 
-        <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;The HTTP request failed %s&#34;</span>, <span style="color:#a6e22e">err</span>)                                                         
-        <span style="color:#66d9ef">return</span> 
-} 
-<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Body</span>.<span style="color:#a6e22e">Close</span>()
-</code></pre></div><p>First, I check that the request succeed. If the request succeed, the <code>Body</code> is something we can <code>Close()</code>, and so we can <code>defer</code> its closing.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-golang" data-lang="golang">client := &amp;http.Client{}
+resp, err := client.Do(req)
+if err != nil {
+        err = fmt.Errorf(&#34;The HTTP request failed %s&#34;, err)
+        return
+}
+defer resp.Body.Close()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>First, I check that the request succeed. If the request succeed, the <code>Body</code> is something we can <code>Close()</code>, and so we can <code>defer</code> its closing.</p>
+</div>
+<div class="paragraph">
 <p>If the request failed, for whatever reason, we return early, without deferring the close of the Body, that does not exist.</p>
+</div>
 
         </section>
         <footer>

@@ -90,40 +90,111 @@
 
         </header>
         <section class="content e-content">
-            <p>= Databases</p>
+            <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
 <p>Databases are fundamental in all web application, website, API, CRUD.</p>
+</div>
+<div class="paragraph">
 <p>Lately, new software around databases starts to blossom.</p>
+</div>
+<div class="paragraph">
 <p>An example is GraphQL.</p>
+</div>
+<div class="paragraph">
 <p>It provides a more handy, mobile-friendly, interface to access data. Often on top of classical databases.</p>
-<p>New tools don&rsquo;t allow us to skip the underneath fundamental knowledge. But they force us to understand how things work under the hood much deeper.</p>
+</div>
+<div class="paragraph">
+<p>New tools don’t allow us to skip the underneath fundamental knowledge. But they force us to understand how things work under the hood much deeper.</p>
+</div>
+<div class="paragraph">
 <p>Now, it is even more important to understand why some queries are slow and why some are fast.</p>
+</div>
+<div class="paragraph">
 <p>A new tool on top of established technology it means that we need to master the underline technology much better. Abstractions are leaky. And to use efficiently the new tools we need to know how they work.</p>
+</div>
+<div class="paragraph">
 <p>Fortunately, the basic concepts of database systems are simple. But powerful.</p>
-<p>== Why databases</p>
-<p>First, we need to understand why we need databases. Why we don&rsquo;t store all the data in memory?</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_why_databases">Why databases</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>First, we need to understand why we need databases. Why we don’t store all the data in memory?</p>
+</div>
+<div class="paragraph">
 <p>Unfortunately, software is unreliable. Computers can lose power. Software can crash because of bugs or because of bad input from the user.</p>
+</div>
+<div class="paragraph">
 <p>How often did you lose all your progress in an import World document?</p>
+</div>
+<div class="paragraph">
 <p>Moreover, memory is expensive. Disks are much cheaper than RAM.</p>
-<p>And disks don&rsquo;t need electric power to keep the data stored safely.</p>
+</div>
+<div class="paragraph">
+<p>And disks don’t need electric power to keep the data stored safely.</p>
+</div>
+<div class="paragraph">
 <p>Databases help us in keeping data store safely and they are fast to search for information and records of interest. Even with a huge amount of data.</p>
+</div>
+<div class="paragraph">
 <p>Databases make it feels like we have an infinite amount of fast memory that does not care if our software crash or if the computer lose power.</p>
+</div>
+<div class="paragraph">
 <p>Of course, it is more complex than this.</p>
-<p>== Files and Data structures</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_files_and_data_structures">Files and Data structures</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p>Databases store information on disks. But disks are different from RAM.</p>
+</div>
+<div class="paragraph">
 <p>In RAM it is fast to read a new piece of data from a random location or address.</p>
+</div>
+<div class="paragraph">
 <p>In disk, this is not true. It is very slow to read data from the beginning of a file and immediately after from the end of the same file.</p>
+</div>
+<div class="paragraph">
 <p>Databases optimize for this constraint. They place data in such a way that it is fast to check if a record is the one we care about.</p>
+</div>
+<div class="paragraph">
 <p>Databases store data in a tree data structure, usually a B+-tree. Which make fast to access data by a key, the primary key.</p>
+</div>
+<div class="paragraph">
 <p>Sometimes we need to manipulate data not based on the primary key, but based on some other property. In such cases, there are two main solutions.
-Or we access the whole dataset and filter out all the data we don&rsquo;t need or we use indexes.</p>
+Or we access the whole dataset and filter out all the data we don’t need or we use indexes.</p>
+</div>
+<div class="paragraph">
 <p>Indexes are data-structure stored on disk. They help us to retrieve information quickly without scanning the whole dataset.</p>
+</div>
+<div class="paragraph">
 <p>There are different kinds of indexes. The most common are based on B+-trees, others are based on hash tables. Each type of index helps in different types of queries.</p>
-<p>== Recap</p>
-<ol>
-<li>Databases give us the illusion to have a huge amount to fast, reliable storage.</li>
-<li>They store information on disk, so they must adopt smart data-structures to make access to data fast</li>
-<li>Indexes help us retrieve information fast.</li>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_recap">Recap</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Databases give us the illusion to have a huge amount to fast, reliable storage.</p>
+</li>
+<li>
+<p>They store information on disk, so they must adopt smart data-structures to make access to data fast</p>
+</li>
+<li>
+<p>Indexes help us retrieve information fast.</p>
+</li>
 </ol>
+</div>
+</div>
+</div>
 
         </section>
         <footer>

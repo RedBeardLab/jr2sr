@@ -16,144 +16,306 @@
       <pubDate>Sun, 16 Aug 2020 15:19:28 +0200</pubDate>
       
       <guid>https://jr2sr.netlify.app/posts/api/</guid>
-      <description>&lt;p&gt;In this post we are going to study the widely use term API. You will see how this connect quite nicely with the previous article about &lt;a href=&#34;&#34;&gt;web requests&lt;/a&gt; and tangentially to the one about &lt;a href=&#34;&#34;&gt;DNS&lt;/a&gt; and &lt;a href=&#34;&#34;&gt;processed&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Let&amp;rsquo;s get started.&lt;/p&gt;
-&lt;h2 id=&#34;the-term-api&#34;&gt;The term &lt;code&gt;API&lt;/code&gt;&lt;/h2&gt;
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;In this post we are going to study the widely use term API. You will see how this connect quite nicely with the previous article about [web requests]() and tangentially to the one about [DNS]() and [processed]().&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Let’s get started.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_the_term_api&#34;&gt;The term &lt;code&gt;API&lt;/code&gt;&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;API stand for &lt;code&gt;Application Programmatic Interface&lt;/code&gt;, the term is very wide and includes all the way a program/application can interact with something else.
 Indeed the term is so wide that does not really help.
 An API can be used to make some actions happens, retrieve data, change some internal state, whatever.
 Strictly speaking whatever expose an interface callable by a software, it is exposing an API.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;They way you call a library in python or javascript or any other programming languange is an API.
 Indeed every library defines an API.
 All the classes, methods, functions, constants and underlining absubtion that a library define and relies on, are part of the library API.&lt;/p&gt;
-&lt;p&gt;Similarly, as we will see when we will study, sockets, files and I/O, the operative system (either Linux, Windows, Mac, etc&amp;hellip;) defines an API.
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Similarly, as we will see when we will study, sockets, files and I/O, the operative system (either Linux, Windows, Mac, etc…​) defines an API.
 Indeed there is an interface to display stuff on screen, read files, make web requests, and all the other things that the operative system does for us.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Softwares might defines other API, for instance the browsers, like Chrome or Firefox, defines an API.
 The javascript that is executed by the browser must indeed follow the API of the browser.
 Actions like changing a &lt;code&gt;div&lt;/code&gt; class, or add a CSS property must be done following the API of the browsers.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Now that we have understood how wide the term API is, we should leave aside these technicalities and focus on what is colloquialy called an API.
 The Web APIs.&lt;/p&gt;
-&lt;h2 id=&#34;web-apis&#34;&gt;Web APIs&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_web_apis&#34;&gt;Web APIs&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Up untill now we discussed API that were used inside a programming language.
 When we discuss the API of a python library, that API is consumed using Python.
 When we talk about the APIs of a browser, those API are consumed using Javascript.
 (With the operative system APIs, those API are consumed using &lt;code&gt;C&lt;/code&gt; arguably the language of the OS. Of course this is a semplification.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The idea behind web API is simple, and it starts with a question.
 What if the way to consume the API is not language specific, but it is transmitted in a widely used protocol, like HTTP?
 In this way all programming languages that can talk HTTP (basically all) would be able to consume the API.&lt;/p&gt;
-&lt;p&gt;As we studied in &lt;a href=&#34;&#34;&gt;&lt;code&gt;What is a web request&lt;/code&gt;&lt;/a&gt;, HTTP is very convenient, not only because virtually everywhere, but also because it a text based protocol.
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;As we studied in [&lt;code&gt;What is a web request&lt;/code&gt;](), HTTP is very convenient, not only because virtually everywhere, but also because it a text based protocol.
 Which means that it is simple to inspect it and see what is going on underneath.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;We understand that the most common way to expose Web API is an HTTP server, but it is far from the only way.
 There are other possibilities, each for different tasks.
 For instance, we could expose a RabbitMQ, or MQTT endpoint, to allow our user to receive notification.
 We could expose a (g)RPC server, that uses the protoc protocol, to allow fast transmission of binary data.
 Another common possibility is to expose databases over the internet (usually over a private fraction of the internet) in this way applications can store and retrieve data.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;We now have an understaing of API.
 From consuming an API inside our favourite programming language we move into consuming it over an agnostic protocol.
 We saw that the most common protocol to use is HTTP, but there are dozens upon dozens of other way to expose an API.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The next step will be to explore more throughly how the use of HTTP for exposing API.&lt;/p&gt;
-&lt;h2 id=&#34;advanced-http&#34;&gt;Advanced HTTP&lt;/h2&gt;
-&lt;p&gt;We studied in &lt;a href=&#34;&#34;&gt;&lt;code&gt;What is a web request&lt;/code&gt;&lt;/a&gt; the foundantation block of an HTTP request.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_advanced_http&#34;&gt;Advanced HTTP&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;We studied in [&lt;code&gt;What is a web request&lt;/code&gt;]() the foundantation block of an HTTP request.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;As you might recall an HTTP request is composed of:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Verb&lt;/li&gt;
-&lt;li&gt;Path&lt;/li&gt;
-&lt;li&gt;Headers (Host is mandatory)&lt;/li&gt;
-&lt;li&gt;Optional Body&lt;/li&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Verb&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Path&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Headers (Host is mandatory)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Optional Body&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The response is composed of:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Status Code&lt;/li&gt;
-&lt;li&gt;Headers&lt;/li&gt;
-&lt;li&gt;Optional Body&lt;/li&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Status Code&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Headers&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Optional Body&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Now we will focus on the less obvious part of both the requets and the response in order to understand the details.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;As always, we will study general, usually applied principle, however each application is different and for different reason, the API of some application might deviante from the best practise we are studying now.
 Howeve, as a developer, we should try to follow the best practises as much as possible.&lt;/p&gt;
-&lt;h3 id=&#34;http-verb&#34;&gt;HTTP Verb&lt;/h3&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_http_verb&#34;&gt;HTTP Verb&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The verb specify what is the intention of the request.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;There is a verb to getting / downloading a resource, the &lt;code&gt;GET&lt;/code&gt; verb.
 There is one for uploading a request &lt;code&gt;POST&lt;/code&gt;.
 More advanced verbs are the one used to delete some resource &lt;code&gt;DELETE&lt;/code&gt;, updated a resource &lt;code&gt;PATCH&lt;/code&gt;, upload a resource of know identifier &lt;code&gt;PUT&lt;/code&gt; or to check if a resources exists without downloading it &lt;code&gt;HEAD&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Using the correct verb helps a lot while designing a web API.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;For instance, suppose we are designing a simple API to manage a website that shows images.
 A ammateur interface would be something like:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;POST /new-image
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code&gt;POST /new-image
 GET /image/&amp;lt;id&amp;gt;
 POST /delete-image/&amp;lt;id&amp;gt;
 POST /update-image/&amp;lt;id&amp;gt;
-GET /image-exists/&amp;lt;id&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;You can see that we embed the action in the path of the request, &lt;code&gt;/new-image&lt;/code&gt;, or &lt;code&gt;/delete-image&lt;/code&gt; or &lt;code&gt;/image-exists&lt;/code&gt; while we don&amp;rsquo;t make use of the HTTP verbs.&lt;/p&gt;
+GET /image-exists/&amp;lt;id&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;You can see that we embed the action in the path of the request, &lt;code&gt;/new-image&lt;/code&gt;, or &lt;code&gt;/delete-image&lt;/code&gt; or &lt;code&gt;/image-exists&lt;/code&gt; while we don’t make use of the HTTP verbs.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;A more professional interface will look like:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;POST /image
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code&gt;POST /image
 GET /image/&amp;lt;id&amp;gt;
 DELETE /image/&amp;lt;id&amp;gt;
 PUT /image/&amp;lt;id&amp;gt;
-HEAD /image/&amp;lt;id&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In this other interface we are making the correct use of the HTTP verbs.
+HEAD /image/&amp;lt;id&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;In this other interface we are making the correct use of the HTTP verbs.
 Once the meaning of each verb is being codified and respected, the advatanges are clear.
 The URL are much simpler to follow, there is just one &lt;code&gt;/image&lt;/code&gt; with or without the identifier.
 It is impossible to make mistake.
 You will never need to ask if the url to upload a new image is &lt;code&gt;/new-image&lt;/code&gt; or &lt;code&gt;/upload-image&lt;/code&gt;.
 Or if the one to delete the image is &lt;code&gt;/remove-image&lt;/code&gt; or &lt;code&gt;/delete-image&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Overall, the use of the correct HTTP verbs make the interface much nicer to use and simpler.&lt;/p&gt;
-&lt;h3 id=&#34;http-headers&#34;&gt;HTTP Headers&lt;/h3&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_http_headers&#34;&gt;HTTP Headers&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The headers is an HTTP call are the place that provide the &lt;code&gt;metadata&lt;/code&gt; for the call.
 They usually stores information like the authentication credentials, or information about the paging if you are returning an huge number of elements.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Important information that are stored in the headers are the caching policy.
 Can the HTTP request be cached by any proxy or middleware? For how long? All this information should be stored in the headers.
 The cache information are provided by the &lt;code&gt;Cache-Control&lt;/code&gt; header.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Other important information in the header are the type of content that the caller expects.
 For instance, does the caller expect to receive data as JSON or as XML?
 This can be specified by the &lt;code&gt;Accept&lt;/code&gt; header.&lt;/p&gt;
-&lt;p&gt;Parsing and understading the content of ann HTTP response is complex, the body can be big, the content encoded in some weird format, etc&amp;hellip; hence all the information that are somehow interesting to manage the request itself, should be provided as headers.
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Parsing and understading the content of ann HTTP response is complex, the body can be big, the content encoded in some weird format, etc…​ hence all the information that are somehow interesting to manage the request itself, should be provided as headers.
 This allow smarted proxy and middleware to optimize the messages.&lt;/p&gt;
-&lt;h3 id=&#34;status-code&#34;&gt;Status code&lt;/h3&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_status_code&#34;&gt;Status code&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Another fundamental piece of professional developed API is the correct use of status codes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;As HTTP verbs helps in simplify the requests, status codes help in simplify the responses.
 An user of the API can immediately understand what happend to a request just from the status code without actually reading the body.
-This allow the provider of the application to don&amp;rsquo;t provide a body for all possible errors or mistake (even though one is always a good idea).&lt;/p&gt;
+This allow the provider of the application to don’t provide a body for all possible errors or mistake (even though one is always a good idea).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The status codes are integer numbers between 100 and 599, not all of them are used.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;They are divided into 5 big categories on the most signficant digit.&lt;/p&gt;
-&lt;h4 id=&#34;100-to-103&#34;&gt;100 to 103&lt;/h4&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_100_to_103&#34;&gt;100 to 103&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Protocol related, hardly used in every day code.&lt;/p&gt;
-&lt;h4 id=&#34;200-to-206&#34;&gt;200 to 206&lt;/h4&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_200_to_206&#34;&gt;200 to 206&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Succesfull request, if you get one of these status code, it means that you created the requests correctly and the server was able to reply.
 Everythng worked as expected and you can consume the result.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;When creating a web API, it is very useful to distinguish between &lt;code&gt;200 OK&lt;/code&gt;, &lt;code&gt;201 Created&lt;/code&gt;, &lt;code&gt;202 Accepted&lt;/code&gt;, &lt;code&gt;204 No Content&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The first, &lt;code&gt;200 OK&lt;/code&gt; is a generic positive response, it does not provide much information and it should be avoided when possible.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;&lt;code&gt;201 Created&lt;/code&gt; is a more specific response, it let the client know that the request was successfully and that a new resource was created.
 This is usually the correct status code for a &lt;code&gt;POST&lt;/code&gt; request, or even to a &lt;code&gt;PUT&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;&lt;code&gt;202 Accepted&lt;/code&gt; is more complex, it means that the request was succeffully, the server got the data and understood what the client asked.
 However the server has not yet finish to act upon the request, it may not even have started.
 It is useful if acting on the request is extremelly slow or costly, this let the client know that eventually the request will be worked on, but not now.
 This means that the client does not need to keep the connection with the server alive.
 When you return a &lt;code&gt;202&lt;/code&gt; status code, you should also return some way to check the status of the request.
 In this way the client can come back to your service, at a later time, and check the progresses.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;&lt;code&gt;204 No Content&lt;/code&gt;, it means that no content is included in the body. It make sense when you are deleting something or when you are updating an old resources.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;There are more &lt;code&gt;2XX&lt;/code&gt; status codes, but the one mentioned are the most used.&lt;/p&gt;
-&lt;h4 id=&#34;300-to-308&#34;&gt;300 to 308&lt;/h4&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_300_to_308&#34;&gt;300 to 308&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;These status codes are not widely used when developing a Web API. They might in very complex scenarios but it is safe to omit them in our studies and just kwnoing that they exists.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The most used one is the &lt;code&gt;301 Moved Permanently&lt;/code&gt;, a redirect, to inform the clients  that the location (URL) of a resources having changed and point the client to the new location.&lt;/p&gt;
-&lt;h4 id=&#34;400-to-451&#34;&gt;400 to 451&lt;/h4&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_400_to_451&#34;&gt;400 to 451&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;These status codes are errors or problems on the client side.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Whil writing an API, if you catch an error on the client side and you are forced to return a 4XX status code, you should try very hard to include some information on how to fix the error.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Maybe the authentication is missing? Let the user know.
 Maybe the user provided XML while you were expecting JSON? Let the user know.
 Maybe the user is not authorized? Let the user know.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The more information you provide the easier will be to develop an application against your API, and developers will thank you for it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;&lt;code&gt;400 Bad Request&lt;/code&gt; is a quite general status code, the server is not able to process the request and the client should send a different request.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;&lt;code&gt;401 Unauthorized&lt;/code&gt; the client did not provide correct authentication, so for the server was impossible to know if the request should be satisfied.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;&lt;code&gt;403 Forbidden&lt;/code&gt; the client did provide correct authentication, but its is not allowed to actually make the request.
 For instance, some user may comment to a blog post, but they cannot modify it, at least they are the authors.
 Hence a request to modify the blog post will return &lt;code&gt;403&lt;/code&gt; to all users but the post author.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;&lt;code&gt;404 Not Found&lt;/code&gt; the most notorious status code. The resorce is not available.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;There are more 4XX status codes, but I would like to focus, on the last one, &lt;code&gt;451 Unavailable For Legal Reason&lt;/code&gt;.
 This status code is to be used when some piece of data cannot be served for some legal reason, copyright infringement, embargo or something similar.
 The specific number was choosen as reference to Fahreneith 451 a novel about an dystopian universe in which books were burned.
 451 Fehreneith is the temperature at which paper burns.&lt;/p&gt;
-&lt;h4 id=&#34;500-to-511&#34;&gt;500 to 511&lt;/h4&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_500_to_511&#34;&gt;500 to 511&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;These status codes are errors or problem on the server side.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 </description>
     </item>
     
@@ -163,176 +325,385 @@ The specific number was choosen as reference to Fahreneith 451 a novel about an 
       <pubDate>Sun, 26 Jul 2020 13:19:36 +0200</pubDate>
       
       <guid>https://jr2sr.netlify.app/posts/process/</guid>
-      <description>&lt;h1 id=&#34;processes&#34;&gt;Processes&lt;/h1&gt;
+      <description>&lt;div id=&#34;preamble&#34;&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Understanding the concept of processes is fundamental when working with computers.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Most articles tackle the issue from a quite shallow perspective or the wrong point of view. We will try to study them from what I believe is the most useful point of view for a senior computer engineer.&lt;/p&gt;
-&lt;h2 id=&#34;what-processes-are&#34;&gt;What processes are&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_what_processes_are&#34;&gt;What processes are&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Processes are a computational unit.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;This definition is neither precise nor completely correct, but it helps in understanding.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Whenever you run a program a new process is created. Each software that you are running now in your machine is a process.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Your browser? It is (at least one) process.
 Your mail client? Another one.
 Your bash terminal? Yet another process.&lt;/p&gt;
-&lt;h2 id=&#34;isolation&#34;&gt;Isolation&lt;/h2&gt;
-&lt;p&gt;The most important concept to understand about a process is &amp;ldquo;isolation&amp;rdquo;. Processes are isolated one from another.
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_isolation&#34;&gt;Isolation&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;The most important concept to understand about a process is &amp;#34;isolation&amp;#34;. Processes are isolated one from another.
 One process cannot read nor write memory that belongs to another process. Actually, it is even more strict.
 One process can write and read, only the memory that belongs to itself.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The difference is that a process cannot access memory that belongs to no-one. It can access only its own memory.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;If the isolation is not respected and a process tries to read or write (access from now on) memory that does not belong to itself, the process is forcefully terminated by the operative system with a segmentation fault.&lt;/p&gt;
-&lt;p&gt;All the time a segmentation fault is thrown, it means that the process did not behave correctly and it was trying to access memory that didn&amp;rsquo;t belong to it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;All the time a segmentation fault is thrown, it means that the process did not behave correctly and it was trying to access memory that didn’t belong to it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Isolation is the greatest advantage of processes.
 It assures that the content of the memory never changes under your feet and that you are the only one to have access to the memory.&lt;/p&gt;
-&lt;p&gt;While this advantage doesn&amp;rsquo;t seem particularly interesting, and maybe also bland, modern (complex) software takes full advantage of it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;While this advantage doesn’t seem particularly interesting, and maybe also bland, modern (complex) software takes full advantage of it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;For instance, Redis (a NoSQL database) use a single execution unit to avoid coordination keeping the software extremely fast.
 The alternative would have been to use thread, hence more execution units, and to introduce locks and a great deal of complexity in managing multiple execution units changing a shared memory.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Modern browsers, have one process for each tab.
 This avoids malicious code to gain access to data in other tabs.
 The use of multiple processes, one for each tab, makes it impossible that javascript code running in a tab from a pishing website, can access any data from a tab from your bank.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Isolation is a wonderful capability, but it comes at a cost.
 Software, to be useful, need to read input and produce output.
 So a process needs some way to get input from the outside world and to push its output.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Introducing IPC or Inter Process Communication&lt;/p&gt;
-&lt;h2 id=&#34;inter-process-communication&#34;&gt;Inter Process Communication&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_inter_process_communication&#34;&gt;Inter Process Communication&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;We discussed how processes are isolated, we agree that isolation is a great capability for processes, but that it comes at a cost.
 It makes difficult input/output.
 We are now introducing how processes can communicate with each other and with the outside world.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;We will have a different section for each of the IPC methods we are describing, so the discussion on this page will be rather short.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;For maintaining isolation is important that it is always the process to drive the I/O.
 It can not happen that some data change without the process having asked it explicitly.
 This is in stark contrast to what happens with threads.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Using threads it is possible that some value changes without one thread explicit permission.
 So a thread could read a variable, do some other work without ever writing anything to that variable, and then find the initial variable changed.
 Another thread, in the same process, changed that variable.
 This is a source of many, very complex to reproduce and to address bugs.
 And this does not happen between processes.
 Of course, there is an exception to this general rule.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;We will now explore the most common IPC methods, starting from the most useful.&lt;/p&gt;
-&lt;h3 id=&#34;sockets&#34;&gt;Sockets&lt;/h3&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_sockets&#34;&gt;Sockets&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Sockets are extremely important IPC methods.
 They allow communication between processes that reside on different machines or on the same computer.
 For instance, you used a socket to download this article from the web and read it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The interface for sockets is relatively simple. You start by establishing a connection and then you can read data from the socket or write data into it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;More practically, when you establish a connection with a socket, the operative systems give you back an handle for the connection the handle is called &lt;code&gt;file descriptor&lt;/code&gt;. (We will study why it is called a file descriptor, so subscribe to the mail list or follow me on twitter.) After you get the handle, you create a buffer of memory.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;To read from a socket, you pass the socket handle and the buffer to the operative system using the &lt;code&gt;read&lt;/code&gt; system call.
 The operative system will first interrupt your process, then it will fill the buffer with data, and then it will resume the execution of your code.
 Now the buffer contains the data read from the socket and you can act on it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;To write to a socket, you do the inverse operation.
 You fill your buffer with data. You pass the socket handle and the buffer to the &lt;code&gt;write&lt;/code&gt; system call.
 The operative system interrupts your process, reads the data from the buffer, moves the data to the other end of the socket, and finally resume the execution of your code.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;There is much more to study about sockets and I will write about them shortly.&lt;/p&gt;
-&lt;h3 id=&#34;signal&#34;&gt;Signal&lt;/h3&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_signal&#34;&gt;Signal&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;A less versatile way for processes to get information from the outside world is signal.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Signals are short messages sent to a process, each signal has associated a default action.
 The default actions are to:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Terminate the process&lt;/li&gt;
-&lt;li&gt;Ignore the signal&lt;/li&gt;
-&lt;li&gt;Terminate the process and write possible debug information (dump the core).&lt;/li&gt;
-&lt;li&gt;Stop (temporarily) the process&lt;/li&gt;
-&lt;li&gt;Resume the execution of a process stopped earlier.&lt;/li&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Terminate the process&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Ignore the signal&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Terminate the process and write possible debug information (dump the core).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Stop (temporarily) the process&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Resume the execution of a process stopped earlier.&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;A signal can be sent from one process to another and can be caught from the process and acted upon.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;For instance, several systems catch SIGHUP to reload their configurations.
 Other systems catch SIGTERM (Ctrl-C) to terminate cleanly the execution and not lose data or important information.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Some signal (SIGKILL and SIGSTOP) cannot be caught, nor ignored, and they just kill the process without giving it the possibility to exit cleanly.&lt;/p&gt;
-&lt;h3 id=&#34;files&#34;&gt;Files&lt;/h3&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_files&#34;&gt;Files&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Files are another great way to communicate between processes.
 One process can write in a file, and another could read from it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The interface to work with files is exactly the same to work with sockets.
 You acquire a file descriptor first, then you create a buffer, and finally, invoke the &lt;code&gt;read&lt;/code&gt; or &lt;code&gt;write&lt;/code&gt; system calls.
 This similarly would give a hit on why the socket handles are called &lt;code&gt;file descriptor&lt;/code&gt;. Underneath they are the same.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Using files for IPC allows processes to communicate between the same machine, they both need to have access to the same file.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Files come also with another complication, there must be coordination between &lt;code&gt;write&lt;/code&gt; and &lt;code&gt;read&lt;/code&gt; operations.
 Locks and semaphores are used in these cases.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;A great way to use files are IPC is to use tools like SQLite.
 SQLite can write and read directly from a file and it takes care of all the coordination for you.
 An application can write data to an SQLite database, while a second one consumes data from it.
 This approach works great even if it is difficult to receive notifications of writes.&lt;/p&gt;
-&lt;h3 id=&#34;shared-mapped-memory&#34;&gt;Shared Mapped Memory&lt;/h3&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_shared_mapped_memory&#34;&gt;Shared Mapped Memory&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The final and most complex way to IPC is mapped memory.
 This method is not that different from using files but does not rely on an explicit &lt;code&gt;read&lt;/code&gt; and &lt;code&gt;write&lt;/code&gt; calls.
 It is quite dangerous because allow data, in the share mapped memory, to be changed implicitly by another process.
 The data that you read from it, now and in the future, maybe different even if you never changed it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;You can create a shared mapped memory invoking the &lt;code&gt;mmap&lt;/code&gt; system call passing the appropriate flags.
 Other processes can do the same.
 At this point, processes have access to a memory buffer that is shared between them.
 What a process writes in the buffer can be read by the others.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Notice how this is the only method that allows implicit changes to the memory owned by the process.
 With all the other methods you provide a buffer that it is changed when you ask so, using the &lt;code&gt;read&lt;/code&gt; system call.
 With this method, the values stored in the shared memory can change under your feet.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;There are more IPC methods but the one provided is an interesting overview, much more than enough to get started.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;We continue this chapter on how to work effectively with processes in a Linux system.&lt;/p&gt;
-&lt;h2 id=&#34;start-a-process&#34;&gt;Start a process&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_start_a_process&#34;&gt;Start a process&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;There are few ways in Linux to create another process.
 The most used one is the &lt;code&gt;fork&lt;/code&gt; system call.
 It creates a copy of the actual process and starts to run it while the original process keeps running.
-The &lt;code&gt;fork&lt;/code&gt; system call returns a different result on the &amp;ldquo;parent&amp;rdquo;/&amp;ldquo;original&amp;rdquo; process (it returns 0 zero) from the &amp;ldquo;child&amp;rdquo; process (it returns an ID greater than zero).
+The &lt;code&gt;fork&lt;/code&gt; system call returns a different result on the &amp;#34;parent&amp;#34;/&amp;#34;original&amp;#34; process (it returns 0 zero) from the &amp;#34;child&amp;#34; process (it returns an ID greater than zero).
 Detecting the return value of the &lt;code&gt;fork&lt;/code&gt; call is possible to distinguish between the child and the parent process.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The &lt;code&gt;clone&lt;/code&gt; system call is similar but allows for more control.
 It is a more advanced function and it is used in the implementation of container technologies.
 It also returns the ID of the new process.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Another related function is &lt;code&gt;execve&lt;/code&gt; it does not create a new process, but it executes a new program in place of the original one.
 It is not strictly related to this topic, but, together with &lt;code&gt;fork&lt;/code&gt; is enough to implement a simple shell (like &lt;code&gt;bash&lt;/code&gt; or &lt;code&gt;sh&lt;/code&gt; or &lt;code&gt;fish&lt;/code&gt;).&lt;/p&gt;
-&lt;h2 id=&#34;process-identification&#34;&gt;Process identification&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_process_identification&#34;&gt;Process identification&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;We saw how to start a process with the &lt;code&gt;fork&lt;/code&gt; system call, and we see that &lt;code&gt;fork&lt;/code&gt; returns an ID.
 Since the ID identifies a &lt;strong&gt;P&lt;/strong&gt;rocess, those IDs are called PID, for Process ID.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The number of PID is limited, they are stored in an &lt;code&gt;int&lt;/code&gt;, so in systems running for a long time with a lot of processes starting up, the PID will get recycled.
 However, at any given time, a PID identifies one and only one process.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Knowing the PID of a process is possible to interact with it.
 Sending it signals or attach it to a debugger.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The simplest way of knowing the PID of a process is to store it when you create it.
 Of course, it is not always possible since you may need to know the PID of a process not created by you.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Fortunately, there are other ways to know the PID of the processes running in the system at any given moment.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;All those methods rely on reading data from &lt;code&gt;/proc&lt;/code&gt;.
 Inside &lt;code&gt;/proc&lt;/code&gt;  there are several directories, one for each &lt;code&gt;PID&lt;/code&gt;, in the form &lt;code&gt;/proc/[PID]&lt;/code&gt;, listing them is a simple way to know which processes are running in the system at any given moment.
 To list the process we can rely on bash globing with.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ ls -lna /proc
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This will show a lot of directories.
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ ls -lna /proc&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;This will show a lot of directories.
 The numeric ones are the PID, while the others are for system information.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Inside those directories, there are a lot of files with very interesting information.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;For instance &lt;code&gt;/proc/[pid]/cmdline&lt;/code&gt; contains how the software was invoked.
 &lt;code&gt;/proc/[pid]/exe&lt;/code&gt; is a symbolic link to the executable that is running and &lt;code&gt;/proc/[pid]/comm&lt;/code&gt; contains the name of the software.&lt;/p&gt;
-&lt;p&gt;Fortunately, we don&amp;rsquo;t have to rely on manually parsing the content of the &lt;code&gt;/proc&lt;/code&gt; directories since different utilities are available for us.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Fortunately, we don’t have to rely on manually parsing the content of the &lt;code&gt;/proc&lt;/code&gt; directories since different utilities are available for us.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The &lt;code&gt;ps&lt;/code&gt; utility allows to list all the processes running in the system, it is useful to identify the PID of a specific software running in the system.
 I am writing this article on &lt;code&gt;nvim&lt;/code&gt; so if I want to know the PID of &lt;code&gt;nvim&lt;/code&gt; I could run:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ ps -e | grep nvim
-&lt;span style=&#34;color:#ae81ff&#34;&gt;27188&lt;/span&gt; pts/1    00:01:08 nvim
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And this will show me that the PID of this instance of &lt;code&gt;nvim&lt;/code&gt; is &lt;code&gt;27188&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ ps -e | grep nvim
+27188 pts/1    00:01:08 nvim&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;And this will show me that the PID of this instance of &lt;code&gt;nvim&lt;/code&gt; is &lt;code&gt;27188&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Another way to use &lt;code&gt;ps&lt;/code&gt; is to pass the &lt;code&gt;aux&lt;/code&gt; options, this will show more information. Information like the arguments that were passed to the program.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ ps aux | grep nvim
-pgian &lt;span style=&#34;color:#ae81ff&#34;&gt;27188&lt;/span&gt;  3.4  0.1 &lt;span style=&#34;color:#ae81ff&#34;&gt;129616&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;13764&lt;/span&gt; pts/1    Sl+  17:49   1:29 nvim content/posts/process.asciidoc
-pgian &lt;span style=&#34;color:#ae81ff&#34;&gt;27518&lt;/span&gt;  0.0  0.0  &lt;span style=&#34;color:#ae81ff&#34;&gt;14752&lt;/span&gt;  &lt;span style=&#34;color:#ae81ff&#34;&gt;1028&lt;/span&gt; pts/2    S+   18:32   0:00 grep --color&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;auto nvim
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can see the user, the PID, and the command-line invocation of the software.
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ ps aux | grep nvim
+pgian 27188  3.4  0.1 129616 13764 pts/1    Sl+  17:49   1:29 nvim content/posts/process.asciidoc
+pgian 27518  0.0  0.0  14752  1028 pts/2    S+   18:32   0:00 grep --color=auto nvim&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;We can see the user, the PID, and the command-line invocation of the software.
 Notice how this shows also &lt;code&gt;grep&lt;/code&gt; indeed, grep is matching its own invocations.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;While &lt;code&gt;ps&lt;/code&gt; is great for quickly get to know the PID of a process, it is not very ergonomic when exploring a running system.
 A better alternative in such cases is &lt;code&gt;htop&lt;/code&gt;.
 &lt;code&gt;htop&lt;/code&gt; allow also to sort the processes in a system to visually show the processes tree.&lt;/p&gt;
-&lt;p&gt;image::/processes/original/htop.png[htop view]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.app/processes/original/htop.png&#34; alt=&#34;htop view&#34;/&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Here we can my setup as I am writing the article.
 I am running the software inside &lt;code&gt;tmux&lt;/code&gt; (PID 27177), which in turn, runs 3 bash command lines (27731, 27217 and 27178). In turn, one bash shell runs &lt;code&gt;nvim&lt;/code&gt; again with PID 27188 and another is running &lt;code&gt;htop&lt;/code&gt; (27681).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;We started talking about processes, we talk about isolation and why isolation is fundamental, we discover that isolation is great, but we need to do input and output. Then we study some Inter Process Communication (IPC) mechanism. In this last part, we studied how it is possible to see all the processes running in the system with tools like &lt;code&gt;ps&lt;/code&gt; and &lt;code&gt;htop&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;In this last part, we will understand the state of a process.
 At the very beginning, we describe processes as a computational unit.
 Modern computers can run a lot of processes at the same time, while I am writing this, I have 285 processes running.
 However the number of virtual cores in a computer is limited, my machine has only 4.
 So how 4 cores can run 285 processes?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Of course, not all processes run at the same time. Some of them sleep.&lt;/p&gt;
-&lt;h2 id=&#34;process-state&#34;&gt;Process State&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_process_state&#34;&gt;Process State&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;It is not necessary for software to keep running continuously.
 If you are reading or writing from a file descriptor your CPU does not need to work.
 The CPU is waiting for the IO layer to finish, either against the disk or against the network.
 In this case, the process is sleeping.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;On the contrary, when the CPU is working, for instance, it is summing numbers, creating strings, doing some math operations, moving memory, the process is running.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Besides the &lt;code&gt;sleeping&lt;/code&gt; and the &lt;code&gt;running&lt;/code&gt; state of a process, there is a third state, the &lt;code&gt;ready&lt;/code&gt; state.
 A process is in the &lt;code&gt;ready&lt;/code&gt; state when it has done waiting, for instance, the disk finally finished returned some data, but it is not yet running, because the operative system has not allocated yet resources to it.&lt;/p&gt;
-&lt;h2 id=&#34;recap&#34;&gt;Recap&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_recap&#34;&gt;Recap&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;In this chapter, we study processes.
 We understand what they are and one of their most important features, isolation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Isolation is great, but software needs to communicate with the outside world, hence several Inter Process Communication (IPC) mechanisms are available.
 We study briefly, sockets, signals, files, and shared mapped memory.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Then we study how to start a process and how to identify processes in a running machine.
 We interact with the raw tools that the operative system gives us to query processes and then we upgraded to work with more refined tools like &lt;code&gt;ps&lt;/code&gt; and &lt;code&gt;htop&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Finally, we understood what is the state of a process and what are the main states a process can be in, &lt;code&gt;sleeping&lt;/code&gt;, &lt;code&gt;running&lt;/code&gt;  or &lt;code&gt;ready&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 </description>
     </item>
     
@@ -342,139 +713,400 @@ We interact with the raw tools that the operative system gives us to query proce
       <pubDate>Sun, 07 Jun 2020 18:25:44 +0200</pubDate>
       
       <guid>https://jr2sr.netlify.app/posts/dns/</guid>
-      <description>&lt;p&gt;= DNS&lt;/p&gt;
-&lt;p&gt;link:../whats-a-web-request[In the first article, we describe what is a web/HTTP request.]
+      <description>&lt;div id=&#34;preamble&#34;&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;../whats-a-web-request&#34;&gt;In the first article, we describe what is a web/HTTP request.&lt;/a&gt;
 Requests are directed toward a host and a port.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The port is defined by the protocol, HTTP goes to port 80, HTTPS goes to 443. The host is defined by the request as a string.&lt;/p&gt;
-&lt;p&gt;A possible host is &amp;ldquo;google.com&amp;rdquo; another is &amp;ldquo;facebook.com&amp;rdquo;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;A possible host is &amp;#34;google.com&amp;#34; another is &amp;#34;facebook.com&amp;#34;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;However, packets are routed over the internet using IP addresses, numbers, while hosts are strings.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Each IP packet must contain its source and its destination to be delivered. And the host of the source address and of the destination address must be encoded as IP addresses.&lt;/p&gt;
-&lt;p&gt;image::/DNS/IPpacket.png[IP packet]&lt;/p&gt;
-&lt;p&gt;In order to create the IP packet and to deliver it to the internet, we need to convert the host name &amp;ldquo;kitty.com&amp;rdquo; in its IP address &lt;code&gt;53.125.12.9&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;DNS serves have the basic goal of translating the string that represents the host (&amp;ldquo;google.com&amp;rdquo;) in a number, the IP address (&lt;code&gt;116.98.109.34&lt;/code&gt;) so that a valid IP packet can be generated.&lt;/p&gt;
-&lt;p&gt;== Scratching the surface&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.app/DNS/IPpacket.png&#34; alt=&#34;IP packet&#34;/&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;In order to create the IP packet and to deliver it to the internet, we need to convert the host name &amp;#34;kitty.com&amp;#34; in its IP address &lt;code&gt;53.125.12.9&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;DNS serves have the basic goal of translating the string that represents the host (&amp;#34;google.com&amp;#34;) in a number, the IP address (&lt;code&gt;116.98.109.34&lt;/code&gt;) so that a valid IP packet can be generated.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_scratching_the_surface&#34;&gt;Scratching the surface&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;At its most basic level, DNS are services that take as input a host string and return the IP address of the host.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;A simple utility to test DNS is &lt;code&gt;dig&lt;/code&gt;. In its most basic invocation, &lt;code&gt;dig&lt;/code&gt; takes an input an host and returns its IPv4.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The following examples have different options to provide a more concise output.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ dig +noall +answer -t A google.com
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code&gt;$ dig +noall +answer -t A google.com
 google.com.		275	IN	A	216.58.205.46
 $ dig +noall +answer -t AAAA google.com
-google.com.		257	IN	AAAA	2a00:1450:4009:81b::200e
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In the first line we translate the host &amp;ldquo;google.com&amp;rdquo; into an IPv4 address (&lt;code&gt;216.58.205.46&lt;/code&gt;).&lt;/p&gt;
+google.com.		257	IN	AAAA	2a00:1450:4009:81b::200e&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;In the first line we translate the host &amp;#34;google.com&amp;#34; into an IPv4 address (&lt;code&gt;216.58.205.46&lt;/code&gt;).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;In the second line, for the same host, we retrieve its IPv6 (&lt;code&gt;2a00:1450:4009:81b::200e&lt;/code&gt;).&lt;/p&gt;
-&lt;p&gt;== DNS record type&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_dns_record_type&#34;&gt;DNS record type&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;DNS can store different kinds of records beside IP addresses. The most common record type is &lt;code&gt;A&lt;/code&gt; that stores IPv4 addresses. The &lt;code&gt;AAAA&lt;/code&gt; record stores IPv6 addresses.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Another important record type is the &lt;code&gt;CNAME&lt;/code&gt; (or ALIAS) record type. It is useful if a single machine, with only one IP address, runs multiple services on different ports.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The &lt;code&gt;TXT&lt;/code&gt; record type can contain arbitrary information, it is usually used to verify the ownership of a domain name.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Other record types are available and widely used, but the working principle is the same for all.&lt;/p&gt;
-&lt;p&gt;== Resolve DNS query&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_resolve_dns_query&#34;&gt;Resolve DNS query&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;DNS works like any other internet service, but with some peculiarity.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;First of all, the IP address of the DNSs are widely know, for instance, the one provided by google is &lt;code&gt;8.8.8.8&lt;/code&gt; and the one by Cloudflare is &lt;code&gt;1.1.1.1&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Then DNS works mostly over UDP and not over TCP. The use of UDP is mostly for performance.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Performance is the most strict requirement for DNS.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;DNS must be fast.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;In order to keep communication as concise and fast as possible, almost all packets DNS queries and responses fit into a single UDP packet and are limited to 512 bytes. If the DNS answer is bigger other communications protocols are used.&lt;/p&gt;
-&lt;p&gt;== Need for speed&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_need_for_speed&#34;&gt;Need for speed&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The use of UDP over TCP is mostly due to performance requirements. Any application needs to make multiple DNS queries, it must be fast.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Even if fast, it is still impractical to make a DNS query for each network request. Moreover, when visiting a website, most requests are against the same host in a short amount of time.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;To address the problem DNS is aggressively cached on different layers.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Cached values eventually goes stale and they must be updated. For this reason, DNS records provide also a TTL value, Time To Live.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;After the TTL expires, the DNS value is considered outdated and it must be requested again from the authoritative domain.&lt;/p&gt;
-&lt;p&gt;=== Server cache&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_server_cache&#34;&gt;Server cache&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The first level of DNS cache is the server level.
-DNS servers don&amp;rsquo;t store all the values of all the domains, but only a small subset.&lt;/p&gt;
-&lt;p&gt;If a request for an unknown domain comes, they recursively redirect the request to other DNS until they don&amp;rsquo;t get the answer from the authoritative (main) DNS.
+DNS servers don’t store all the values of all the domains, but only a small subset.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;If a request for an unknown domain comes, they recursively redirect the request to other DNS until they don’t get the answer from the authoritative (main) DNS.
 The answer is then cached until the TTL expires.&lt;/p&gt;
-&lt;p&gt;=== Client cache&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_client_cache&#34;&gt;Client cache&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;While server cached helps a lot in reducing the latency of DNS queries, it cannot be as fast as a local copy.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Hence the first level of cache regarding the name server happens in the local machine.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The OS intercepts DNS requests and returns a cached answer, as long as the TTL is not expired.
 As soon as the TTL expires a new request to the server is made and the answer cached again.&lt;/p&gt;
-&lt;p&gt;=== TTL and propagation time&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_ttl_and_propagation_time&#34;&gt;TTL and propagation time&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Caching the result of DNS queries has the huge benefits of making it fast. The downside is that updates to DNS take time.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;All the TTL needs to expire before all the users can see the updated values.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;It can take up to 2 days for the information to propagate in the DNS servers. For most applications, the delay is much smaller, a few hours at the very maximum in my experience using AWS Route53 or Cloudfront.&lt;/p&gt;
-&lt;p&gt;==== Trivial&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_trivial&#34;&gt;Trivial&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;DNS can store arbitrary information, and eventually all the DNS servers will agree on a specific values. For these reasons DNS are considered the biggest and more widely deployed eventual consistet databases.&lt;/p&gt;
-&lt;p&gt;== DNS console&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_dns_console&#34;&gt;DNS console&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;After you buy a domain name you can set all the DNS values relative to that domain and all its subdomains.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;All the DNS interfaces are similar, offering pretty much the same functionality.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Your DNS provider is mostly a matter of taste and convenience.&lt;/p&gt;
-&lt;p&gt;=== AWS Route53
-I like to use Amazon Route53 service, that allows buying the domain and set the records in the same interface.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_aws_route53&#34;&gt;AWS Route53&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;I like to use Amazon Route53 service, that allows buying the domain and set the records in the same interface.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;I like Amazon Route53 because:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;DNS is a fundamental service for AWS, it will always work&lt;/li&gt;
-&lt;li&gt;They provide very clear, simple, and cheap pricing&lt;/li&gt;
-&lt;li&gt;I trust Amazon don&amp;rsquo;t screw people over a few dollars in the domain registration fee, unlike other vendors.&lt;/li&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;DNS is a fundamental service for AWS, it will always work&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;They provide very clear, simple, and cheap pricing&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;I trust Amazon don’t screw people over a few dollars in the domain registration fee, unlike other vendors.&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;A domain on AWS cost ~12$ / year plus few cents if your domain is extremely popular or if you need special features.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Beware that other vendors sell your domain at a much higher price BUT they provide a hefty discount for the first year. So it seems like you are buying it for 4$ and the second year they start charging you 50$ / year.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;In my opinion, it is just not worth doing business with them.&lt;/p&gt;
-&lt;p&gt;==== Trivial&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_trivial_2&#34;&gt;Trivial&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The DNS service of Amazon is called Route53, while Route is quite clear, why not Route 66, much more iconic. Or Route 101? Because 53 is the port used by the DNS protocol.&lt;/p&gt;
-&lt;p&gt;==== The console&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_the_console&#34;&gt;The console&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The console of AWS Route53 looks like this, for each of your domains.&lt;/p&gt;
-&lt;p&gt;image::/DNS/aws_console_base.png[AWS Route53 Base console]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.app/DNS/aws_console_base.png&#34; alt=&#34;AWS Route53 Base console&#34;/&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;We will focus on the big table. The navigation on the right is for more (advanced) features of AWS Route53.&lt;/p&gt;
-&lt;p&gt;From the table, we can immediately see the name of the record (first column), the record type (&lt;code&gt;A&lt;/code&gt;, &lt;code&gt;NS&lt;/code&gt;, &lt;code&gt;AAAA&lt;/code&gt;, &lt;code&gt;CNAME&lt;/code&gt;, etc&amp;hellip;) and the value of the record.&lt;/p&gt;
-&lt;p&gt;image::/DNS/aws_console_zoom.png[AWS Route53 Base console zoomed in]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;From the table, we can immediately see the name of the record (first column), the record type (&lt;code&gt;A&lt;/code&gt;, &lt;code&gt;NS&lt;/code&gt;, &lt;code&gt;AAAA&lt;/code&gt;, &lt;code&gt;CNAME&lt;/code&gt;, etc…​) and the value of the record.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.app/DNS/aws_console_zoom.png&#34; alt=&#34;AWS Route53 Base console zoomed in&#34;/&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The highlighted rows are all &lt;code&gt;A&lt;/code&gt; records. It is interesting to note how the root domain manage:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;The root domain itself, making &lt;code&gt;redbeardlab.com&lt;/code&gt; point to the IP address &lt;code&gt;212.47.232.249&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;The sub-domain, making &lt;code&gt;simplesql.redbeardlab.com&lt;/code&gt; point to &lt;code&gt;212.47.253.152&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;All other sub-domain levels, in this case making &lt;code&gt;telemetrics.redisql.redbeardlab.com&lt;/code&gt; point to &lt;code&gt;51.15.142.13&lt;/code&gt;&lt;/li&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;The root domain itself, making &lt;code&gt;redbeardlab.com&lt;/code&gt; point to the IP address &lt;code&gt;212.47.232.249&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The sub-domain, making &lt;code&gt;simplesql.redbeardlab.com&lt;/code&gt; point to &lt;code&gt;212.47.253.152&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;All other sub-domain levels, in this case making &lt;code&gt;telemetrics.redisql.redbeardlab.com&lt;/code&gt; point to &lt;code&gt;51.15.142.13&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;image::/DNS/aws_console_A_records.png[AWS Route53 Base console A records]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.app/DNS/aws_console_A_records.png&#34; alt=&#34;AWS Route53 Base console A records&#34;/&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The &lt;code&gt;AAAA&lt;/code&gt; records are very similar to the &lt;code&gt;A&lt;/code&gt; record.&lt;/p&gt;
-&lt;p&gt;image::/DNS/aws_console_AAAA_record.png[AWS Route53 Base console AAAA records]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.app/DNS/aws_console_AAAA_record.png&#34; alt=&#34;AWS Route53 Base console AAAA records&#34;/&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;In this example we make &lt;code&gt;telemetrics.redisql.redbeardlab.com&lt;/code&gt; point to &lt;code&gt;2001:bc8:4400:2c00::2b:c17&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;This does not generate an ambiguity with the &lt;code&gt;A&lt;/code&gt; record above.
 If the client asks for the IPv4 address the server returns &lt;code&gt;51.15.142.13&lt;/code&gt;.
 While, if the client ask for the IPv6 address the server returns &lt;code&gt;2001:bc8:4400:2c00::2b:c17&lt;/code&gt;.
 In this particular case, both addresses point to the same machine.
 But they could point to different servers offering completely different services.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The &lt;code&gt;CNAME&lt;/code&gt; record creates an alias.&lt;/p&gt;
-&lt;p&gt;image::/DNS/aws_console_CNAME_record.png[AWS Route53 Base console CNAME records]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.app/DNS/aws_console_CNAME_record.png&#34; alt=&#34;AWS Route53 Base console CNAME records&#34;/&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;In the first example, we set the host &lt;code&gt;redisql.redbeardlab.com&lt;/code&gt; to point to &lt;code&gt;redbeardlab.github.io&lt;/code&gt;.
 In this way we can serve, under the domain we control, content from Github pages, for free. Quite convenient.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;In the second case we redirect all the calls to AWS Cloudfront, a CDN managed by AWS.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;When a client finds a &lt;code&gt;CNAME&lt;/code&gt; it stops asking for the original host IP address and starts asking for the IP address of the ALIAS.
 If a client goes to &lt;code&gt;redisql.redbeardlab.com&lt;/code&gt;, at first it will try to find the IP address of &lt;code&gt;redisql.redbeardlab.com&lt;/code&gt;, however, the DNS server will say that the IP address does not exist, but it exists an alias, &lt;code&gt;redbeardlab.github.io&lt;/code&gt;. At this point, the client will start looking for the IP address of &lt;code&gt;redbeardlab.github.io&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The &lt;code&gt;TXT&lt;/code&gt; fields were used for verifying the ownership of the domain against Google.&lt;/p&gt;
-&lt;p&gt;image::/DNS/aws_console_TXT_record.png[AWS Route53 Base console TXT records]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.app/DNS/aws_console_TXT_record.png&#34; alt=&#34;AWS Route53 Base console TXT records&#34;/&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;This is the most common use I encounter, but other uses for the &lt;code&gt;TXT&lt;/code&gt; field are possible.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Finally, the &lt;code&gt;NS&lt;/code&gt; record, declare who manage the DNS entry.&lt;/p&gt;
-&lt;p&gt;image::/DNS/aws_console_NS_record.png[AWS Route53 Base console NS records]&lt;/p&gt;
-&lt;p&gt;In this case, the DNS is managed by&amp;hellip; Cloudflare.
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.app/DNS/aws_console_NS_record.png&#34; alt=&#34;AWS Route53 Base console NS records&#34;/&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;In this case, the DNS is managed by…​ Cloudflare.
 So all we said above is ignored by a real DNS client that will make its queries not against AWS Route53 but against Cloudflare.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;While the TTL (Time To Live) for most records is set to 300 or 600 seconds (5 to 10 minutes) the TTL for the &lt;code&gt;NS&lt;/code&gt; is set to a much larger value, 7200 seconds (2 hours).&lt;/p&gt;
-&lt;p&gt;This is to be expected, you don&amp;rsquo;t change often the &lt;code&gt;NS&lt;/code&gt; value, once you set your DNS provider you tend to stick to it. Moreover, change the &lt;code&gt;NS&lt;/code&gt; value is expensive, all the queries need to be directed to a completely different service that needs time to accommodate it.&lt;/p&gt;
-&lt;p&gt;==== Note on Name Server configuration in AWS Route53&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;This is to be expected, you don’t change often the &lt;code&gt;NS&lt;/code&gt; value, once you set your DNS provider you tend to stick to it. Moreover, change the &lt;code&gt;NS&lt;/code&gt; value is expensive, all the queries need to be directed to a completely different service that needs time to accommodate it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_note_on_name_server_configuration_in_aws_route53&#34;&gt;Note on Name Server configuration in AWS Route53&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Unfortunately, in Route53, it is not sufficient to set the &lt;code&gt;Name Server&lt;/code&gt; record set, but it is also necessary to set the name servers in another setting.&lt;/p&gt;
-&lt;p&gt;Under &lt;code&gt;&#39;Register Domains&#39; &amp;gt; $your_domain&lt;/code&gt; and then &amp;ldquo;Add or edit name servers&amp;rdquo;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Under &lt;code&gt;&amp;#39;Register Domains&amp;#39; &amp;gt; $your_domain&lt;/code&gt; and then &amp;#34;Add or edit name servers&amp;#34;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;I find a good practice to keep the two values in sync.&lt;/p&gt;
-&lt;p&gt;=== Cloudflare&lt;/p&gt;
-&lt;p&gt;Another very reputable DNS provider is Cloudflare. They don&amp;rsquo;t sell you domain names directly, but they can manage them for you.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_cloudflare&#34;&gt;Cloudflare&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Another very reputable DNS provider is Cloudflare. They don’t sell you domain names directly, but they can manage them for you.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;So you will need to buy your domain somewhere else, also an AWS Route53, and then let Cloudflare manage it. This is what I did above.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;This is done setting up the authoritative name server to point to Cloudflare.
 It is as simple as adding a new record (of type &lt;code&gt;NS&lt;/code&gt;) to your existing DNS records (modulo the extra setting in AWS Route53).
 From that moment on, beside propagation delay, all the DNS queries will be redirected toward the new authoritative name server.&lt;/p&gt;
-&lt;p&gt;==== The console&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect3&#34;&gt;
+&lt;h4 id=&#34;_the_console_2&#34;&gt;The console&lt;/h4&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The console of Cloudflare is different from the one of Route53, but overall they contain the same information and it is equally simple to use.&lt;/p&gt;
-&lt;p&gt;image::/DNS/cloudflare_console.png[Cloudflare DNS console]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.app/DNS/cloudflare_console.png&#34; alt=&#34;Cloudflare DNS console&#34;/&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;We can recognize the same kind of information:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;the &lt;code&gt;A&lt;/code&gt; fields that point to IPv4 addresses&lt;/li&gt;
-&lt;li&gt;the &lt;code&gt;AAAA&lt;/code&gt; fields that point to IPv6 addresses&lt;/li&gt;
-&lt;li&gt;the &lt;code&gt;CNAME&lt;/code&gt; used for alias&lt;/li&gt;
-&lt;li&gt;the &lt;code&gt;TXT&lt;/code&gt; again used for domain ownership verification&lt;/li&gt;
-&lt;li&gt;the &lt;code&gt;MX&lt;/code&gt; used for email routing, with a priority&lt;/li&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;the &lt;code&gt;A&lt;/code&gt; fields that point to IPv4 addresses&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;the &lt;code&gt;AAAA&lt;/code&gt; fields that point to IPv6 addresses&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;the &lt;code&gt;CNAME&lt;/code&gt; used for alias&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;the &lt;code&gt;TXT&lt;/code&gt; again used for domain ownership verification&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;the &lt;code&gt;MX&lt;/code&gt; used for email routing, with a priority&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;The &amp;ldquo;Proxy Status&amp;rdquo; column in the Cloudflare console indicates whenever Cloudflare takes care only of the DNS (&lt;code&gt;DNS only&lt;/code&gt;) or also to cache and manage with their services the request to the domain.&lt;/p&gt;
-&lt;p&gt;== Recap&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;The &amp;#34;Proxy Status&amp;#34; column in the Cloudflare console indicates whenever Cloudflare takes care only of the DNS (&lt;code&gt;DNS only&lt;/code&gt;) or also to cache and manage with their services the request to the domain.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_recap&#34;&gt;Recap&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Hopefully, this article is helpful if you are setting up your DNS or if you are getting started with web services.&lt;/p&gt;
-&lt;p&gt;If you have any question I would love to expand the article and help you out, feel free to reach over on link:https://twitter.com/pauldigian[twitter @pauldigian].&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;If you have any question I would love to expand the article and help you out, feel free to reach over on &lt;a href=&#34;https://twitter.com/pauldigian&#34;&gt;twitter @pauldigian&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 </description>
     </item>
     
@@ -484,43 +1116,90 @@ From that moment on, beside propagation delay, all the DNS queries will be redir
       <pubDate>Wed, 29 Apr 2020 22:05:02 +0200</pubDate>
       
       <guid>https://jr2sr.netlify.app/posts/check_your_resources/</guid>
-      <description>&lt;p&gt;= Always check your resources before to free them&lt;/p&gt;
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Today I fixed a minor bug in our production code.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The software is written in Go(lang) and makes extensive use of the &lt;code&gt;defer&lt;/code&gt; statement.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The &lt;code&gt;defer&lt;/code&gt; statement, take a function invocation and run it after the current function returns.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;They are very handy for clean-up tasks. A classical example is the acquisition of a lock. Or closing a file.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Without &lt;code&gt;defer&lt;/code&gt; you would get your resource at the beginning of the function, use it, and then clean-up.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;In the case of locks, you would acquire the lock, do the work in the critical section, release the lock, and the return.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;In case of files, you would open the file, write and read to the file, and then close the file.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;With this approach, every return path must be checked. As soon as you add a new return path, you must make sure that it closes all the resources it may have acquired. This is simpler to say than to do.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Code bases grow larger and larger and it gets messy to check all the possible returns path. And it also looks ugly and not DRY.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;&lt;code&gt;defer&lt;/code&gt; solve this problem. As soon as you get the resource you defer its cleanup. As soon as you acquire the lock, you defer the release of it. As soon as you open a file, you defer closing it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;You want to put the &lt;code&gt;defer&lt;/code&gt; as close as possible to the resource initialization for two reasons.
 First of all, it is clearer when reading the code.
 Second, the closer the two calls are, the less it is likely that some hidden return path sneaks into the acquisition and the cleanup.&lt;/p&gt;
-&lt;p&gt;But you don&amp;rsquo;t want to put it too close. Before invoking the &lt;code&gt;defer&lt;/code&gt; you must make sure that the resource is valid.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;But you don’t want to put it too close. Before invoking the &lt;code&gt;defer&lt;/code&gt; you must make sure that the resource is valid.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Today bug was about an HTTP call. I was making the HTTP call and immediately after I was closing its body to avoid leaking resources.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-golang&#34; data-lang=&#34;golang&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;client&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;http&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Client&lt;/span&gt;{}    
-&lt;span style=&#34;color:#a6e22e&#34;&gt;resp&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;client&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Do&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;req&lt;/span&gt;)
-&lt;span style=&#34;color:#66d9ef&#34;&gt;defer&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;resp&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Body&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Close&lt;/span&gt;()      
-&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;resp&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;StatusCode&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;400&lt;/span&gt; {                             
-	&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; = &lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Errorf&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Some error happened %s&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;resp&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Status&lt;/span&gt;)
-	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt;
-}  
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Unfortunately, sometimes, the network fails. And today it failed.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-golang&#34; data-lang=&#34;golang&#34;&gt;client := &amp;amp;http.Client{}
+resp, err := client.Do(req)
+defer resp.Body.Close()
+if resp.StatusCode &amp;gt;= 400 {
+	err = fmt.Errorf(&amp;#34;Some error happened %s&amp;#34;, resp.Status)
+	return
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Unfortunately, sometimes, the network fails. And today it failed.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The network failed, the &lt;code&gt;StatusCode&lt;/code&gt; was greater than 400 and the functions returned early. As soon as the function returned, it invoked the &lt;code&gt;defer&lt;/code&gt; statement: &lt;code&gt;resp.Body.Close()&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Since the requested had failed, the &lt;code&gt;Body&lt;/code&gt; was not there and there was a &lt;code&gt;nil&lt;/code&gt; pointer.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The &lt;code&gt;defer&lt;/code&gt; ended up calling the &lt;code&gt;Close()&lt;/code&gt; method of &lt;code&gt;nil&lt;/code&gt; and this caused a runtime panic, blowing it up in production.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;I corrected the code with:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-golang&#34; data-lang=&#34;golang&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;client&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;http&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Client&lt;/span&gt;{}                                                                                                                                                          
-&lt;span style=&#34;color:#a6e22e&#34;&gt;resp&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;client&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Do&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;req&lt;/span&gt;)                                                                                                                              
-&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt; { 
-        &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; = &lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Errorf&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;The HTTP request failed %s&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;)                                                         
-        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; 
-} 
-&lt;span style=&#34;color:#66d9ef&#34;&gt;defer&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;resp&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Body&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Close&lt;/span&gt;()
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;First, I check that the request succeed. If the request succeed, the &lt;code&gt;Body&lt;/code&gt; is something we can &lt;code&gt;Close()&lt;/code&gt;, and so we can &lt;code&gt;defer&lt;/code&gt; its closing.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-golang&#34; data-lang=&#34;golang&#34;&gt;client := &amp;amp;http.Client{}
+resp, err := client.Do(req)
+if err != nil {
+        err = fmt.Errorf(&amp;#34;The HTTP request failed %s&amp;#34;, err)
+        return
+}
+defer resp.Body.Close()&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;First, I check that the request succeed. If the request succeed, the &lt;code&gt;Body&lt;/code&gt; is something we can &lt;code&gt;Close()&lt;/code&gt;, and so we can &lt;code&gt;defer&lt;/code&gt; its closing.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;If the request failed, for whatever reason, we return early, without deferring the close of the Body, that does not exist.&lt;/p&gt;
+&lt;/div&gt;
 </description>
     </item>
     
@@ -530,40 +1209,111 @@ Second, the closer the two calls are, the less it is likely that some hidden ret
       <pubDate>Mon, 27 Apr 2020 20:40:24 +0200</pubDate>
       
       <guid>https://jr2sr.netlify.app/posts/database_fundamental/</guid>
-      <description>&lt;p&gt;= Databases&lt;/p&gt;
+      <description>&lt;div id=&#34;preamble&#34;&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Databases are fundamental in all web application, website, API, CRUD.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Lately, new software around databases starts to blossom.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;An example is GraphQL.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;It provides a more handy, mobile-friendly, interface to access data. Often on top of classical databases.&lt;/p&gt;
-&lt;p&gt;New tools don&amp;rsquo;t allow us to skip the underneath fundamental knowledge. But they force us to understand how things work under the hood much deeper.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;New tools don’t allow us to skip the underneath fundamental knowledge. But they force us to understand how things work under the hood much deeper.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Now, it is even more important to understand why some queries are slow and why some are fast.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;A new tool on top of established technology it means that we need to master the underline technology much better. Abstractions are leaky. And to use efficiently the new tools we need to know how they work.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Fortunately, the basic concepts of database systems are simple. But powerful.&lt;/p&gt;
-&lt;p&gt;== Why databases&lt;/p&gt;
-&lt;p&gt;First, we need to understand why we need databases. Why we don&amp;rsquo;t store all the data in memory?&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_why_databases&#34;&gt;Why databases&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;First, we need to understand why we need databases. Why we don’t store all the data in memory?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Unfortunately, software is unreliable. Computers can lose power. Software can crash because of bugs or because of bad input from the user.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;How often did you lose all your progress in an import World document?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Moreover, memory is expensive. Disks are much cheaper than RAM.&lt;/p&gt;
-&lt;p&gt;And disks don&amp;rsquo;t need electric power to keep the data stored safely.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;And disks don’t need electric power to keep the data stored safely.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Databases help us in keeping data store safely and they are fast to search for information and records of interest. Even with a huge amount of data.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Databases make it feels like we have an infinite amount of fast memory that does not care if our software crash or if the computer lose power.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Of course, it is more complex than this.&lt;/p&gt;
-&lt;p&gt;== Files and Data structures&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_files_and_data_structures&#34;&gt;Files and Data structures&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Databases store information on disks. But disks are different from RAM.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;In RAM it is fast to read a new piece of data from a random location or address.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;In disk, this is not true. It is very slow to read data from the beginning of a file and immediately after from the end of the same file.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Databases optimize for this constraint. They place data in such a way that it is fast to check if a record is the one we care about.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Databases store data in a tree data structure, usually a B+-tree. Which make fast to access data by a key, the primary key.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Sometimes we need to manipulate data not based on the primary key, but based on some other property. In such cases, there are two main solutions.
-Or we access the whole dataset and filter out all the data we don&amp;rsquo;t need or we use indexes.&lt;/p&gt;
+Or we access the whole dataset and filter out all the data we don’t need or we use indexes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Indexes are data-structure stored on disk. They help us to retrieve information quickly without scanning the whole dataset.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;There are different kinds of indexes. The most common are based on B+-trees, others are based on hash tables. Each type of index helps in different types of queries.&lt;/p&gt;
-&lt;p&gt;== Recap&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Databases give us the illusion to have a huge amount to fast, reliable storage.&lt;/li&gt;
-&lt;li&gt;They store information on disk, so they must adopt smart data-structures to make access to data fast&lt;/li&gt;
-&lt;li&gt;Indexes help us retrieve information fast.&lt;/li&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_recap&#34;&gt;Recap&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Databases give us the illusion to have a huge amount to fast, reliable storage.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;They store information on disk, so they must adopt smart data-structures to make access to data fast&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Indexes help us retrieve information fast.&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 </description>
     </item>
     
@@ -573,81 +1323,194 @@ Or we access the whole dataset and filter out all the data we don&amp;rsquo;t ne
       <pubDate>Fri, 10 Apr 2020 12:53:57 +0200</pubDate>
       
       <guid>https://jr2sr.netlify.app/posts/whats-a-web-request/</guid>
-      <description>&lt;p&gt;= The web&lt;/p&gt;
-&lt;p&gt;image::/whats-a-web-request.jpg[Networks Cables - Photo by Jordan Harrison on Unsplash ]&lt;/p&gt;
-&lt;p&gt;The web and internet as a large are fundamental for today&amp;rsquo;s world, but how does it work under the hood?&lt;/p&gt;
+      <description>&lt;div id=&#34;preamble&#34;&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;https://jr2sr.netlify.app/whats-a-web-request.jpg&#34; alt=&#34;Networks Cables - Photo by Jordan Harrison on Unsplash&#34;/&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;The web and internet as a large are fundamental for today’s world, but how does it work under the hood?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;In this article, we will talk about HTTP requests that are the fundamentals blocks that make the modern web possible.&lt;/p&gt;
-&lt;p&gt;We will explore how tools like link:https://requests.readthedocs.io/en/master/[Python &lt;code&gt;requests&lt;/code&gt;] or link:https://ruby-doc.org/stdlib-2.7.0/libdoc/net/http/rdoc/Net/HTTP.html[Ruby &lt;code&gt;Net::HTTP&lt;/code&gt;] or again the link:https://golang.org/pkg/net/http/[Go package &lt;code&gt;net/http&lt;/code&gt;] or any other library that you may use in any other language works.&lt;/p&gt;
-&lt;p&gt;== The Aha moment&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;We will explore how tools like &lt;a href=&#34;https://requests.readthedocs.io/en/master/&#34;&gt;Python &lt;code&gt;requests&lt;/code&gt;&lt;/a&gt; or &lt;a href=&#34;https://ruby-doc.org/stdlib-2.7.0/libdoc/net/http/rdoc/Net/HTTP.html&#34;&gt;Ruby &lt;code&gt;Net::HTTP&lt;/code&gt;&lt;/a&gt; or again the &lt;a href=&#34;https://golang.org/pkg/net/http/&#34;&gt;Go package &lt;code&gt;net/http&lt;/code&gt;&lt;/a&gt; or any other library that you may use in any other language works.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_the_aha_moment&#34;&gt;The Aha moment&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Reasoning about the topic becomes extremely simple as soon as we figure out what is an HTTP request, and the reality is extremely simple.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;An HTTP request is nothing more than a stream of bytes, almost always ASCII bytes that it is possible to read and interpret. To put it even more simply, it is just a string formatted following some rule.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The one below is already a complete HTTP request and this is the most important concept. An HTTP request is nothing more than strings of text similar to this one.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;GET / HTTP/2
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code&gt;GET / HTTP/2
 Host: www.google.com
 User-Agent: curl/7.58.0
-Accept: */*
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;An HTTP response is not that different:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;HTTP/2 200
+Accept: */*&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;An HTTP response is not that different:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code&gt;HTTP/2 200
 date: Fri, 10 Apr 2020 11:25:36 GMT
 expires: -1
 cache-control: private, max-age=0
 content-type: text/html; charset=ISO-8859-1
-p3p: CP=&amp;quot;This is not a P3P policy! See g.co/p3phelp for more info.&amp;quot;
+p3p: CP=&amp;#34;This is not a P3P policy! See g.co/p3phelp for more info.&amp;#34;
 server: gws
 x-xss-protection: 0
 x-frame-options: SAMEORIGIN
 set-cookie: 1P_JAR=2020-04-10-11; expires=Sun, 10-May-2020 11:25:36 GMT; path=/; domain=.google.com; Secure
 set-cookie: NID=202=lXbpl7jzwsRDvcSyw84CtGB7NO3J2HziT0SjF24N4joVsoUzXNRdc03yTeckZu2zQXc8TJty73IYg9ktX3yrtSb59lC1-jxyTprH_wGly4D2RiFC4Ww1T2Om69YYjxDtkgEDmQbqoYYyzahBQowvSM-q5JpF6hoC-gzLRTnnn38; expires=Sat, 10-Oct-2020 11:25:36 GMT; path=/; domain=.google.com; HttpOnly
-alt-svc: quic=&amp;quot;:443&amp;quot;; ma=2592000; v=&amp;quot;46,43&amp;quot;,h3-Q050=&amp;quot;:443&amp;quot;; ma=2592000,h3-Q049=&amp;quot;:443&amp;quot;; ma=2592000,h3-Q048=&amp;quot;:443&amp;quot;; ma=2592000,h3-Q046=&amp;quot;:443&amp;quot;; ma=2592000,h3-Q043=&amp;quot;:443&amp;quot;; ma=2592000,h3-T050=&amp;quot;:443&amp;quot;; ma=2592000
+alt-svc: quic=&amp;#34;:443&amp;#34;; ma=2592000; v=&amp;#34;46,43&amp;#34;,h3-Q050=&amp;#34;:443&amp;#34;; ma=2592000,h3-Q049=&amp;#34;:443&amp;#34;; ma=2592000,h3-Q048=&amp;#34;:443&amp;#34;; ma=2592000,h3-Q046=&amp;#34;:443&amp;#34;; ma=2592000,h3-Q043=&amp;#34;:443&amp;#34;; ma=2592000,h3-T050=&amp;#34;:443&amp;#34;; ma=2592000
 accept-ranges: none
 vary: Accept-Encoding
 
-&amp;lt;!doctype html&amp;gt;&amp;lt;html&amp;gt; ...THE_HTML_OF_THE_GOOGLE_HOMEPAGE... &amp;lt;/html&amp;gt; 
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;All those libraries and frameworks are just a way to create, interpret and send over the network strings that look like this.&lt;/p&gt;
-&lt;p&gt;== The HTTP rules and protocol&lt;/p&gt;
-&lt;p&gt;The rules to create a correct HTTP request are encoded in an link:https://tools.ietf.org/html/rfc7230[RFC 7230] it can be interesting to explore the document and understand at least some of the details, but for most developer will be an overkill.
+&amp;lt;!doctype html&amp;gt;&amp;lt;html&amp;gt; ...THE_HTML_OF_THE_GOOGLE_HOMEPAGE... &amp;lt;/html&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;All those libraries and frameworks are just a way to create, interpret and send over the network strings that look like this.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_the_http_rules_and_protocol&#34;&gt;The HTTP rules and protocol&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;The rules to create a correct HTTP request are encoded in an &lt;a href=&#34;https://tools.ietf.org/html/rfc7230&#34;&gt;RFC 7230&lt;/a&gt; it can be interesting to explore the document and understand at least some of the details, but for most developer will be an overkill.
 However, if your work orbit a lot around the web infrastructure it can be necessary.&lt;/p&gt;
-&lt;p&gt;For instance, link:https://tools.ietf.org/html/rfc7230#section-3[Section 3 of RFC 7230] describe formally what is an &lt;code&gt;HTTP message&lt;/code&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;HTTP-message = start-line
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;For instance, &lt;a href=&#34;https://tools.ietf.org/html/rfc7230#section-3&#34;&gt;Section 3 of RFC 7230&lt;/a&gt; describe formally what is an &lt;code&gt;HTTP message&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code&gt;HTTP-message = start-line
                *( header-field CRLF )
                CRLF
-               [ message-body ]
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This definition means that an &lt;code&gt;HTTP-message&lt;/code&gt; is nothing else than a &lt;code&gt;start-line&lt;/code&gt;, followed by 0 or more &lt;code&gt;header-field&lt;/code&gt; each followed by a CRLF (a new line &lt;code&gt;\r\n&lt;/code&gt;), another new line and an optional &lt;code&gt;message-body&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Keep reading the RFC we will discover what is link:https://tools.ietf.org/html/rfc7230#section-3.1.1[&lt;code&gt;start-line&lt;/code&gt; on section 3.1] and so on.&lt;/p&gt;
-&lt;p&gt;It turns out that the &lt;code&gt;start-line&lt;/code&gt; of a request specify the method of the request, either &lt;code&gt;GET&lt;/code&gt;, &lt;code&gt;HEAD&lt;/code&gt;, &lt;code&gt;POST&lt;/code&gt;, &lt;code&gt;PUT&lt;/code&gt;, &lt;code&gt;DELETE&lt;/code&gt;, &lt;code&gt;CONNECT&lt;/code&gt;, &lt;code&gt;OPTIONS&lt;/code&gt; or &lt;code&gt;TRACE&lt;/code&gt; all documented in link:https://tools.ietf.org/html/rfc7231#section-4[RFC 7231 Section 4].
-Most developers just need to be aware of all the possible methods, but they won&amp;rsquo;t use all of them.&lt;/p&gt;
+               [ message-body ]&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;This definition means that an &lt;code&gt;HTTP-message&lt;/code&gt; is nothing else than a &lt;code&gt;start-line&lt;/code&gt;, followed by 0 or more &lt;code&gt;header-field&lt;/code&gt; each followed by a CRLF (a new line &lt;code&gt;\r\n&lt;/code&gt;), another new line and an optional &lt;code&gt;message-body&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Keep reading the RFC we will discover what is &lt;a href=&#34;https://tools.ietf.org/html/rfc7230#section-3.1.1&#34;&gt;&lt;code&gt;start-line&lt;/code&gt; on section 3.1&lt;/a&gt; and so on.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;It turns out that the &lt;code&gt;start-line&lt;/code&gt; of a request specify the method of the request, either &lt;code&gt;GET&lt;/code&gt;, &lt;code&gt;HEAD&lt;/code&gt;, &lt;code&gt;POST&lt;/code&gt;, &lt;code&gt;PUT&lt;/code&gt;, &lt;code&gt;DELETE&lt;/code&gt;, &lt;code&gt;CONNECT&lt;/code&gt;, &lt;code&gt;OPTIONS&lt;/code&gt; or &lt;code&gt;TRACE&lt;/code&gt; all documented in &lt;a href=&#34;https://tools.ietf.org/html/rfc7231#section-4&#34;&gt;RFC 7231 Section 4&lt;/a&gt;.
+Most developers just need to be aware of all the possible methods, but they won’t use all of them.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Then it specifies what is the target of the request, in our case the root directory &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;And finally, it specifies what protocol to use in the communication, in this case, we use &lt;code&gt;HTTP/2&lt;/code&gt;, another common one is &lt;code&gt;HTTP/1.1&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;== Keeping state, authentication, and cookie&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_keeping_state_authentication_and_cookie&#34;&gt;Keeping state, authentication, and cookie&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The HTTP protocol is mostly stateless, there is nothing that forbids a client to request somebody private records on a social network protocol after all an HTTP request is just a string formatted following some rules.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;However, the server needs to forbid those requests.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;To overcome the limitation imposed by being a stateless protocol, HTTP relies on the concept of Cookies.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;An HTTP response, generated by an HTTP server, can include the &lt;code&gt;Set-Cookie&lt;/code&gt; header (the name is case insensitive, the request above to google.com returned &lt;code&gt;set-cookie&lt;/code&gt;).
 The &lt;code&gt;Set-Cookie&lt;/code&gt; header instructs the &lt;code&gt;user-agent&lt;/code&gt; (the client, with some level of approximation) to store the value of the cookie and to send it to the server to any subsequent request using the &lt;code&gt;Cookie&lt;/code&gt; header.&lt;/p&gt;
-&lt;p&gt;Another link:https://tools.ietf.org/html/rfc6265[RFC (6265)] covers this topic extensively.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Another &lt;a href=&#34;https://tools.ietf.org/html/rfc6265&#34;&gt;RFC (6265)&lt;/a&gt; covers this topic extensively.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;For most developer is sufficient to know that the &lt;code&gt;Set-Cookie&lt;/code&gt; header provides some options to tweak how the client manages the cookie.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;For instance, the &lt;code&gt;Path&lt;/code&gt; attribute indicates that the cookie should be sent only for requests against a specific URL path.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The &lt;code&gt;Secure&lt;/code&gt; indicates that the cookie should not be sent on insecure connections.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Finally the &lt;code&gt;HttpOnly&lt;/code&gt; indicate that the cookie should not be accessible outside the HTTP protocol, for instance, it should not be read using the JS API on the browser.&lt;/p&gt;
-&lt;p&gt;== Closing thoughts&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_closing_thoughts&#34;&gt;Closing thoughts&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;While the protocol itself is rather simple, after all, it is just about concatenating strings and keep tracks of cookies, the necessities of modern software forced us to build complex systems to extract as much performance as possible while keeping an ergonomic interface.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Most likely developers would like to make more requests in parallel while maybe sharing some cookies but not all.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;All these real-world necessities and use case makes the software explode in complexity, but also in usefulness.&lt;/p&gt;
-&lt;p&gt;However &lt;code&gt;HTTP&lt;/code&gt; remains a simple protocol and the CPython codebase link:https://github.com/python/cpython/blob/3.8/Lib/http/client.py#L1096-L1098[offers a glimpse of this simplicity.]&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;request &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;%s&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;%s&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;%s&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; (method, url, self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;_http_vsn_str)
-self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;_output(self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;_encode_request(request))
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;It is creating the &lt;code&gt;start-line&lt;/code&gt; of an HTTP message, just like we did at the very beginning of this post with &lt;code&gt;GET / HTTP/2&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;== Exercises&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;However &lt;code&gt;HTTP&lt;/code&gt; remains a simple protocol and the CPython codebase &lt;a href=&#34;https://github.com/python/cpython/blob/3.8/Lib/http/client.py#L1096-L1098&#34;&gt;offers a glimpse of this simplicity.&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;request = &amp;#39;%s %s %s&amp;#39; % (method, url, self._http_vsn_str)
+self._output(self._encode_request(request))&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;It is creating the &lt;code&gt;start-line&lt;/code&gt; of an HTTP message, just like we did at the very beginning of this post with &lt;code&gt;GET / HTTP/2&lt;/code&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_exercises&#34;&gt;Exercises&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Create a function to create HTTP requests.
-As input, you can expect the methods (&lt;code&gt;GET&lt;/code&gt;, &lt;code&gt;POST&lt;/code&gt;, etc&amp;hellip;), the host and the URL of the resource.
+As input, you can expect the methods (&lt;code&gt;GET&lt;/code&gt;, &lt;code&gt;POST&lt;/code&gt;, etc…​), the host and the URL of the resource.
 You can expand the little function to support also headers?
 And how would you manage cookies?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;In the next section, we will discover DNS, sockets, and TCP. So it will be possible to actually send a request and read back the response.&lt;/p&gt;
-&lt;p&gt;=== Bonus Trivial&lt;/p&gt;
-&lt;p&gt;From the standard of &lt;code&gt;HTTP1.1&lt;/code&gt;, the headers are strictly optional, indeed they are defined like this &lt;code&gt;\*( header-field CRLF)&lt;/code&gt; where the star (&lt;code&gt;*&lt;/code&gt;) means &lt;em&gt;zero&lt;/em&gt; or more repetition.
-However, the same standard dictates that the &lt;code&gt;Host&lt;/code&gt; header link:https://tools.ietf.org/html/rfc7230#section-5.4[&lt;em&gt;must&lt;/em&gt; be present].&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect2&#34;&gt;
+&lt;h3 id=&#34;_bonus_trivial&#34;&gt;Bonus Trivial&lt;/h3&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;From the standard of &lt;code&gt;HTTP1.1&lt;/code&gt;, the headers are strictly optional, indeed they are defined like this &lt;code&gt;*( header-field CRLF)&lt;/code&gt; where the star (&lt;code&gt;*&lt;/code&gt;) means &lt;strong&gt;zero&lt;/strong&gt; or more repetition.
+However, the same standard dictates that the &lt;code&gt;Host&lt;/code&gt; header &lt;a href=&#34;https://tools.ietf.org/html/rfc7230#section-5.4&#34;&gt;&lt;strong&gt;must&lt;/strong&gt; be present&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;This clear inconsistency was introduced to keep backward compatibility so that every &lt;code&gt;HTTP1.1&lt;/code&gt; request is also an &lt;code&gt;HTTP1.0&lt;/code&gt; request.&lt;/p&gt;
-&lt;p&gt;This is a clear example of how the world evolves from mistakes and error and also something as widespread and used as &amp;ldquo;the internet&amp;rdquo; was designed with some initial mistakes. After all, we are human and the success of the &lt;code&gt;HTTP&lt;/code&gt; was not sure.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;This is a clear example of how the world evolves from mistakes and error and also something as widespread and used as &amp;#34;the internet&amp;#34; was designed with some initial mistakes. After all, we are human and the success of the &lt;code&gt;HTTP&lt;/code&gt; was not sure.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 </description>
     </item>
     
@@ -657,66 +1520,215 @@ However, the same standard dictates that the &lt;code&gt;Host&lt;/code&gt; heade
       <pubDate>Sat, 04 Apr 2020 23:19:06 +0200</pubDate>
       
       <guid>https://jr2sr.netlify.app/posts/start_here/</guid>
-      <description>&lt;p&gt;= Start Here&lt;/p&gt;
+      <description>&lt;div id=&#34;preamble&#34;&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Junior 2 Senior is a technical course where I unload all my knowledge for younger computer engineers that want to speed up their career path.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The goal is to provide all the necessary notions and mental models to work around problems for people to be hired in high-tech companies.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The course is based only on fundamental concepts. We will focus only on those concepts that were important 20 years ago, are important now, and will be important for at least the next 20 years.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;We will cover very broad topics without going too deep into any, there are already a lot of resources, references and articles to dive deep into all the topics we will cover. The purpose of this publication is to uncover organically all the small things that senior computer engineers should know. It is left to the reader to decide which topic explores further and when.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;Some people will need to understand better the internals of compilers, while for others it would be more beneficial to study how the sorting inside a database works. In this course, we will explore both.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;We will suggest some exercises to help you learn by doing. Making sure that you understand the main ideas down to the important details.&lt;/p&gt;
-&lt;p&gt;== What it is about&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_what_it_is_about&#34;&gt;What it is about&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The course is about getting you up to speed with all those topics that are fundamental for computer engineers but to which younger engineers might have not been exposed yet.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;It is about making sure you have all the notion to go above expectations.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;It is about overcoming imposter syndrome having studied and understood those fundamental topics on which everything else is based.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;All the topics covered are much deeper than what could be cover, but it will be up to the reader to keep digging for what it is more interesting.&lt;/p&gt;
-&lt;p&gt;== A different course&lt;/p&gt;
-&lt;p&gt;Technical books are usually about a specific topic, say &amp;ldquo;Graphical programming with GPU&amp;rdquo;.
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_a_different_course&#34;&gt;A different course&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Technical books are usually about a specific topic, say &amp;#34;Graphical programming with GPU&amp;#34;.
 Those kinds of books and courses go extremely deeply about the specific topic, teaching all the important and not so important bits.
 Those resources are fundamental if you are specializing in a particular field.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;This course is different, it is about exposing you to the fundamental concepts that any senior engineer should know.&lt;/p&gt;
-&lt;p&gt;== Structure&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_structure&#34;&gt;Structure&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The course is composed of two-part.&lt;/p&gt;
-&lt;p&gt;. A book
-. A community&lt;/p&gt;
-&lt;p&gt;The book is digital and you will have access to all the versions and the errata. link:https://gumroad.com/l/junior2senior[It is in presale here.]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;A book&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A community&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;The book is digital and you will have access to all the versions and the errata. &lt;a href=&#34;https://gumroad.com/l/junior2senior&#34;&gt;It is in presale here.&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The community is about sharing solution with the exercises, clarify part of the books that are not clear, ask further questions, suggest new topics, and helping each other.
 It will also be possible to ask support during technical interview preparation.
 The community is still not open.&lt;/p&gt;
-&lt;p&gt;== Outline&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_outline&#34;&gt;Outline&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;The outline of the book is in progress, new topics will be added and stuff will be moved.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;But this is a rough idea.&lt;/p&gt;
-&lt;p&gt;. The web basics: &lt;em&gt;Learn the fundamental blocks of the modern web&lt;/em&gt;
-.. link:/posts/whats-a-web-request[What is a web request]
-.. link:/posts/dns[DNS]
-.. Sockets
-.. UDP
-.. TCP
-.. Media Streaming&lt;/p&gt;
-&lt;p&gt;. Understanding low-level memory: &lt;em&gt;How memory works and what are the implication&lt;/em&gt;
-.. Memory
-.. Strings
-.. Pointers
-.. Data Structures
-.. On-disk data structure
-.. Disk Storage vs Memory
-.. Caches&lt;/p&gt;
-&lt;p&gt;. How code runs: &lt;em&gt;How do we go from source code to make computers do stuff&lt;/em&gt;
-.. Compilation
-.. Interpretation
-.. Stack vs Heap
-.. Memory layout
-.. Shared libraries
-.. Building Software&lt;/p&gt;
-&lt;p&gt;. Multiple cores: &lt;em&gt;CPU are not getting any faster, but we are getting more of them, how to use them&lt;/em&gt;
-.. Threads
-.. link:/posts/process[Process]
-.. Communication
-.. Atomic variables&lt;/p&gt;
-&lt;p&gt;. Linux: &lt;em&gt;Working with the basic Linux API&lt;/em&gt;
-.. glibc
-.. IO
-.. Filesystems
-.. Software Installation&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;olist arabic&#34;&gt;
+&lt;ol class=&#34;arabic&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;The web basics: &lt;strong&gt;Learn the fundamental blocks of the modern web&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;olist loweralpha&#34;&gt;
+&lt;ol class=&#34;loweralpha&#34; type=&#34;a&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://jr2sr.netlify.app/posts/whats-a-web-request&#34;&gt;What is a web request&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://jr2sr.netlify.app/posts/dns&#34;&gt;DNS&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Sockets&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;UDP&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;TCP&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Media Streaming&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Understanding low-level memory: &lt;strong&gt;How memory works and what are the implication&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;olist loweralpha&#34;&gt;
+&lt;ol class=&#34;loweralpha&#34; type=&#34;a&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Memory&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Strings&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pointers&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Data Structures&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;On-disk data structure&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Disk Storage vs Memory&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Caches&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;How code runs: &lt;strong&gt;How do we go from source code to make computers do stuff&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;olist loweralpha&#34;&gt;
+&lt;ol class=&#34;loweralpha&#34; type=&#34;a&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Compilation&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Interpretation&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Stack vs Heap&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Memory layout&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Shared libraries&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Building Software&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Multiple cores: &lt;strong&gt;CPU are not getting any faster, but we are getting more of them, how to use them&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;olist loweralpha&#34;&gt;
+&lt;ol class=&#34;loweralpha&#34; type=&#34;a&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Threads&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://jr2sr.netlify.app/posts/process&#34;&gt;Process&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Communication&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Atomic variables&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Linux: &lt;strong&gt;Working with the basic Linux API&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;olist loweralpha&#34;&gt;
+&lt;ol class=&#34;loweralpha&#34; type=&#34;a&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;glibc&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;IO&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Filesystems&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Software Installation&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 </description>
     </item>
     
