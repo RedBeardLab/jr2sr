@@ -4,7 +4,7 @@ date: 2020-04-04T23:19:06+02:00
 draft: false
 ---
 
-= Start Here
+== Start Here
 
 Junior 2 Senior is a technical course where I unload all my knowledge for younger computer engineers that want to speed up their career path.
 

@@ -2,8 +2,8 @@
 title: "DNS"
 date: 2020-06-07T18:25:44+02:00
 draft: false
+doctype: book
 ---
-
 
 = DNS
 

@@ -4,13 +4,13 @@ date: 2020-07-26T13:19:36+02:00
 draft: false
 ---
 
-# Processes
+= Processes
 
 Understanding the concept of processes is fundamental when working with computers.
 
 Most articles tackle the issue from a quite shallow perspective or the wrong point of view. We will try to study them from what I believe is the most useful point of view for a senior computer engineer.
 
-## What processes are
+== What processes are
 
 Processes are a computational unit.
 
@@ -22,7 +22,7 @@ Your browser? It is (at least one) process.
 Your mail client? Another one.
 Your bash terminal? Yet another process.
 
-## Isolation
+== Isolation
 
 The most important concept to understand about a process is "isolation". Processes are isolated one from another.
 One process cannot read nor write memory that belongs to another process. Actually, it is even more strict.
@@ -52,7 +52,7 @@ So a process needs some way to get input from the outside world and to push its 
 
 Introducing IPC or Inter Process Communication
 
-## Inter Process Communication
+== Inter Process Communication
 
 We discussed how processes are isolated, we agree that isolation is a great capability for processes, but that it comes at a cost. 
 It makes difficult input/output. 
@@ -73,7 +73,7 @@ Of course, there is an exception to this general rule.
 
 We will now explore the most common IPC methods, starting from the most useful.
 
-### Sockets
+=== Sockets
 
 Sockets are extremely important IPC methods. 
 They allow communication between processes that reside on different machines or on the same computer. 
@@ -93,7 +93,7 @@ The operative system interrupts your process, reads the data from the buffer, mo
 
 There is much more to study about sockets and I will write about them shortly.
 
-### Signal
+=== Signal
 
 A less versatile way for processes to get information from the outside world is signal.
 
@@ -113,7 +113,7 @@ Other systems catch SIGTERM (Ctrl-C) to terminate cleanly the execution and not 
 
 Some signal (SIGKILL and SIGSTOP) cannot be caught, nor ignored, and they just kill the process without giving it the possibility to exit cleanly.
 
-### Files
+=== Files
 
 Files are another great way to communicate between processes.
 One process can write in a file, and another could read from it.
@@ -132,7 +132,7 @@ SQLite can write and read directly from a file and it takes care of all the coor
 An application can write data to an SQLite database, while a second one consumes data from it.
 This approach works great even if it is difficult to receive notifications of writes.
 
-### Shared Mapped Memory
+=== Shared Mapped Memory
 
 The final and most complex way to IPC is mapped memory.
 This method is not that different from using files but does not rely on an explicit `read` and `write` calls.
@@ -152,7 +152,7 @@ There are more IPC methods but the one provided is an interesting overview, much
 
 We continue this chapter on how to work effectively with processes in a Linux system.
 
-## Start a process
+== Start a process
 
 There are few ways in Linux to create another process.
 The most used one is the `fork` system call. 
@@ -167,7 +167,7 @@ It also returns the ID of the new process.
 Another related function is `execve` it does not create a new process, but it executes a new program in place of the original one.
 It is not strictly related to this topic, but, together with `fork` is enough to implement a simple shell (like `bash` or `sh` or `fish`).
 
-## Process identification
+== Process identification
 
 We saw how to start a process with the `fork` system call, and we see that `fork` returns an ID.
 Since the ID identifies a **P**rocess, those IDs are called PID, for Process ID.
@@ -241,7 +241,7 @@ So how 4 cores can run 285 processes?
 
 Of course, not all processes run at the same time. Some of them sleep.
 
-## Process State
+== Process State
 
 It is not necessary for software to keep running continuously.
 If you are reading or writing from a file descriptor your CPU does not need to work.
@@ -253,7 +253,7 @@ On the contrary, when the CPU is working, for instance, it is summing numbers, c
 Besides the `sleeping` and the `running` state of a process, there is a third state, the `ready` state.
 A process is in the `ready` state when it has done waiting, for instance, the disk finally finished returned some data, but it is not yet running, because the operative system has not allocated yet resources to it.
 
-## Recap
+== Recap
 
 In this chapter, we study processes. 
 We understand what they are and one of their most important features, isolation.

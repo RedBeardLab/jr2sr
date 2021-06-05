@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    
+    <title>API | Junior 2 Senior</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href=https://jr2sr.netlify.app/apple-touch-icon.png>
+    <link rel="icon" type="image/png" sizes="32x32" href=https://jr2sr.netlify.app/favicon-32x32.png>
+    <link rel="icon" type="image/png" sizes="16x16" href=https://jr2sr.netlify.app/favicon-16x16.png>
+    <link rel="manifest" href=https://jr2sr.netlify.app/site.webmanifest>
+    <link rel="mask-icon" href=https://jr2sr.netlify.app/safari-pinned-tab.svg color="#00416a">
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    
+    
+    
+    
+    <link rel="authorization_endpoint" href=https://indieauth.com/auth />
+    <link rel="token_endpoint" href=https://tokens.indieauth.com/token />
+    
+    
+    
+    
+    <link rel="stylesheet" href=https://jr2sr.netlify.app/css/fonts.css />
+    <link rel="stylesheet" href=https://jr2sr.netlify.app/css/style.css />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169090877-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-169090877-1');
+    </script>
+</head>
+
+<body>
+    <div id="sitelogo">
+        <a class="glyph" alt="Home" href="https://jr2sr.netlify.app/"><img src=https://jr2sr.netlify.app/images/site-logo.svg alt="Site Logo" height="64px" width="64px"></a>
+    </div>
+    <header>
+        <nav>
+    
+    <div id="page-nav">
+        <div class="page-nav-item">
+            <a href="https://jr2sr.netlify.app/">Home</a>
+        </div>
+        
+    </div>
+</nav>
+        
+    </header>
+
+
+
+
+<div id="content">
+    <article class="h-entry">
+        <header>
+            <h1 class="post-title p-name">API</h1>
+            
+            <p class="post-date">Posted on
+                <time class="dt-published" datetime="2020-08-16T15:19:28&#43;02:00">
+                16 August, 2020 at 15:19 CEST
+                </time>  by <a href="https://jr2sr.netlify.app/" class="p-author h-card" rel="author">Paul DiGian</a>
+            </p>
+            
+            
+	    
+<br>
+
+<div style="background-color: #ffff645e; padding: 1.5em; margin-bottom: 1em;">
+  <p><b>API</b> is part of <a href="https://gumroad.com/l/junior2senior">Junior2Senior</a> a course to help you grow as software engineers.</p>
+  <p>It is about unloading all the knowledge that I accumulate over my career to younger engineers to help speed up their own career.</p>
+  <p> You can follow me on twitter as well 
+    <a href="https://twitter.com/DigianPaul?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-dnt="true" data-show-count="false">Follow @DigianPaul</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </p>
+  <p>The book is actually on pre-sale 50% off for only 19$.</p>
+  <script async src="https://gumroad.com/js/gumroad.js"></script>
+  <div style="text-align: center;">
+    <a class="gumroad-button" href="https://gum.co/HjDwM" target="_blank">Buy Junior2Senior</a>
+  </div>
+</div>
+
+        </header>
+        <section class="content e-content">
+            <p>In this post we are going to study the widely use term API. You will see how this connect quite nicely with the previous article about <a href="">web requests</a> and tangentially to the one about <a href="">DNS</a> and <a href="">processed</a>.</p>
+<p>Let&rsquo;s get started.</p>
+<h2 id="the-term-api">The term <code>API</code></h2>
+<p>API stand for <code>Application Programmatic Interface</code>, the term is very wide and includes all the way a program/application can interact with something else.
+Indeed the term is so wide that does not really help.
+An API can be used to make some actions happens, retrieve data, change some internal state, whatever.
+Strictly speaking whatever expose an interface callable by a software, it is exposing an API.</p>
+<p>They way you call a library in python or javascript or any other programming languange is an API.
+Indeed every library defines an API.
+All the classes, methods, functions, constants and underlining absubtion that a library define and relies on, are part of the library API.</p>
+<p>Similarly, as we will see when we will study, sockets, files and I/O, the operative system (either Linux, Windows, Mac, etc&hellip;) defines an API.
+Indeed there is an interface to display stuff on screen, read files, make web requests, and all the other things that the operative system does for us.</p>
+<p>Softwares might defines other API, for instance the browsers, like Chrome or Firefox, defines an API.
+The javascript that is executed by the browser must indeed follow the API of the browser.
+Actions like changing a <code>div</code> class, or add a CSS property must be done following the API of the browsers.</p>
+<p>Now that we have understood how wide the term API is, we should leave aside these technicalities and focus on what is colloquialy called an API.
+The Web APIs.</p>
+<h2 id="web-apis">Web APIs</h2>
+<p>Up untill now we discussed API that were used inside a programming language.
+When we discuss the API of a python library, that API is consumed using Python.
+When we talk about the APIs of a browser, those API are consumed using Javascript.
+(With the operative system APIs, those API are consumed using <code>C</code> arguably the language of the OS. Of course this is a semplification.)</p>
+<p>The idea behind web API is simple, and it starts with a question.
+What if the way to consume the API is not language specific, but it is transmitted in a widely used protocol, like HTTP?
+In this way all programming languages that can talk HTTP (basically all) would be able to consume the API.</p>
+<p>As we studied in <a href=""><code>What is a web request</code></a>, HTTP is very convenient, not only because virtually everywhere, but also because it a text based protocol.
+Which means that it is simple to inspect it and see what is going on underneath.</p>
+<p>We understand that the most common way to expose Web API is an HTTP server, but it is far from the only way.
+There are other possibilities, each for different tasks.
+For instance, we could expose a RabbitMQ, or MQTT endpoint, to allow our user to receive notification.
+We could expose a (g)RPC server, that uses the protoc protocol, to allow fast transmission of binary data.
+Another common possibility is to expose databases over the internet (usually over a private fraction of the internet) in this way applications can store and retrieve data.</p>
+<p>We now have an understaing of API.
+From consuming an API inside our favourite programming language we move into consuming it over an agnostic protocol.
+We saw that the most common protocol to use is HTTP, but there are dozens upon dozens of other way to expose an API.</p>
+<p>The next step will be to explore more throughly how the use of HTTP for exposing API.</p>
+<h2 id="advanced-http">Advanced HTTP</h2>
+<p>We studied in <a href=""><code>What is a web request</code></a> the foundantation block of an HTTP request.</p>
+<p>As you might recall an HTTP request is composed of:</p>
+<ol>
+<li>Verb</li>
+<li>Path</li>
+<li>Headers (Host is mandatory)</li>
+<li>Optional Body</li>
+</ol>
+<p>The response is composed of:</p>
+<ol>
+<li>Status Code</li>
+<li>Headers</li>
+<li>Optional Body</li>
+</ol>
+<p>Now we will focus on the less obvious part of both the requets and the response in order to understand the details.</p>
+<p>As always, we will study general, usually applied principle, however each application is different and for different reason, the API of some application might deviante from the best practise we are studying now.
+Howeve, as a developer, we should try to follow the best practises as much as possible.</p>
+<h3 id="http-verb">HTTP Verb</h3>
+<p>The verb specify what is the intention of the request.</p>
+<p>There is a verb to getting / downloading a resource, the <code>GET</code> verb.
+There is one for uploading a request <code>POST</code>.
+More advanced verbs are the one used to delete some resource <code>DELETE</code>, updated a resource <code>PATCH</code>, upload a resource of know identifier <code>PUT</code> or to check if a resources exists without downloading it <code>HEAD</code>.</p>
+<p>Using the correct verb helps a lot while designing a web API.</p>
+<p>For instance, suppose we are designing a simple API to manage a website that shows images.
+A ammateur interface would be something like:</p>
+<pre><code>POST /new-image
+GET /image/&lt;id&gt;
+POST /delete-image/&lt;id&gt;
+POST /update-image/&lt;id&gt;
+GET /image-exists/&lt;id&gt;
+</code></pre><p>You can see that we embed the action in the path of the request, <code>/new-image</code>, or <code>/delete-image</code> or <code>/image-exists</code> while we don&rsquo;t make use of the HTTP verbs.</p>
+<p>A more professional interface will look like:</p>
+<pre><code>POST /image
+GET /image/&lt;id&gt;
+DELETE /image/&lt;id&gt;
+PUT /image/&lt;id&gt;
+HEAD /image/&lt;id&gt;
+</code></pre><p>In this other interface we are making the correct use of the HTTP verbs.
+Once the meaning of each verb is being codified and respected, the advatanges are clear.
+The URL are much simpler to follow, there is just one <code>/image</code> with or without the identifier.
+It is impossible to make mistake.
+You will never need to ask if the url to upload a new image is <code>/new-image</code> or <code>/upload-image</code>.
+Or if the one to delete the image is <code>/remove-image</code> or <code>/delete-image</code>.</p>
+<p>Overall, the use of the correct HTTP verbs make the interface much nicer to use and simpler.</p>
+<h3 id="http-headers">HTTP Headers</h3>
+<p>The headers is an HTTP call are the place that provide the <code>metadata</code> for the call.
+They usually stores information like the authentication credentials, or information about the paging if you are returning an huge number of elements.</p>
+<p>Important information that are stored in the headers are the caching policy.
+Can the HTTP request be cached by any proxy or middleware? For how long? All this information should be stored in the headers.
+The cache information are provided by the <code>Cache-Control</code> header.</p>
+<p>Other important information in the header are the type of content that the caller expects.
+For instance, does the caller expect to receive data as JSON or as XML?
+This can be specified by the <code>Accept</code> header.</p>
+<p>Parsing and understading the content of ann HTTP response is complex, the body can be big, the content encoded in some weird format, etc&hellip; hence all the information that are somehow interesting to manage the request itself, should be provided as headers.
+This allow smarted proxy and middleware to optimize the messages.</p>
+<h3 id="status-code">Status code</h3>
+<p>Another fundamental piece of professional developed API is the correct use of status codes.</p>
+<p>As HTTP verbs helps in simplify the requests, status codes help in simplify the responses.
+An user of the API can immediately understand what happend to a request just from the status code without actually reading the body.
+This allow the provider of the application to don&rsquo;t provide a body for all possible errors or mistake (even though one is always a good idea).</p>
+<p>The status codes are integer numbers between 100 and 599, not all of them are used.</p>
+<p>They are divided into 5 big categories on the most signficant digit.</p>
+<h4 id="100-to-103">100 to 103</h4>
+<p>Protocol related, hardly used in every day code.</p>
+<h4 id="200-to-206">200 to 206</h4>
+<p>Succesfull request, if you get one of these status code, it means that you created the requests correctly and the server was able to reply.
+Everythng worked as expected and you can consume the result.</p>
+<p>When creating a web API, it is very useful to distinguish between <code>200 OK</code>, <code>201 Created</code>, <code>202 Accepted</code>, <code>204 No Content</code>.</p>
+<p>The first, <code>200 OK</code> is a generic positive response, it does not provide much information and it should be avoided when possible.</p>
+<p><code>201 Created</code> is a more specific response, it let the client know that the request was successfully and that a new resource was created.
+This is usually the correct status code for a <code>POST</code> request, or even to a <code>PUT</code>.</p>
+<p><code>202 Accepted</code> is more complex, it means that the request was succeffully, the server got the data and understood what the client asked.
+However the server has not yet finish to act upon the request, it may not even have started.
+It is useful if acting on the request is extremelly slow or costly, this let the client know that eventually the request will be worked on, but not now.
+This means that the client does not need to keep the connection with the server alive.
+When you return a <code>202</code> status code, you should also return some way to check the status of the request.
+In this way the client can come back to your service, at a later time, and check the progresses.</p>
+<p><code>204 No Content</code>, it means that no content is included in the body. It make sense when you are deleting something or when you are updating an old resources.</p>
+<p>There are more <code>2XX</code> status codes, but the one mentioned are the most used.</p>
+<h4 id="300-to-308">300 to 308</h4>
+<p>These status codes are not widely used when developing a Web API. They might in very complex scenarios but it is safe to omit them in our studies and just kwnoing that they exists.</p>
+<p>The most used one is the <code>301 Moved Permanently</code>, a redirect, to inform the clients  that the location (URL) of a resources having changed and point the client to the new location.</p>
+<h4 id="400-to-451">400 to 451</h4>
+<p>These status codes are errors or problems on the client side.</p>
+<p>Whil writing an API, if you catch an error on the client side and you are forced to return a 4XX status code, you should try very hard to include some information on how to fix the error.</p>
+<p>Maybe the authentication is missing? Let the user know.
+Maybe the user provided XML while you were expecting JSON? Let the user know.
+Maybe the user is not authorized? Let the user know.</p>
+<p>The more information you provide the easier will be to develop an application against your API, and developers will thank you for it.</p>
+<p><code>400 Bad Request</code> is a quite general status code, the server is not able to process the request and the client should send a different request.</p>
+<p><code>401 Unauthorized</code> the client did not provide correct authentication, so for the server was impossible to know if the request should be satisfied.</p>
+<p><code>403 Forbidden</code> the client did provide correct authentication, but its is not allowed to actually make the request.
+For instance, some user may comment to a blog post, but they cannot modify it, at least they are the authors.
+Hence a request to modify the blog post will return <code>403</code> to all users but the post author.</p>
+<p><code>404 Not Found</code> the most notorious status code. The resorce is not available.</p>
+<p>There are more 4XX status codes, but I would like to focus, on the last one, <code>451 Unavailable For Legal Reason</code>.
+This status code is to be used when some piece of data cannot be served for some legal reason, copyright infringement, embargo or something similar.
+The specific number was choosen as reference to Fahreneith 451 a novel about an dystopian universe in which books were burned.
+451 Fehreneith is the temperature at which paper burns.</p>
+<h4 id="500-to-511">500 to 511</h4>
+<p>These status codes are errors or problem on the server side.</p>
+
+        </section>
+        <footer>
+            <a class="permalink u-url" href="https://jr2sr.netlify.app/posts/api/"></a>
+            
+        </footer>
+    </article>
+
+  
+<br>
+
+<div style="background-color: #ffff645e; padding: 1.5em; margin-bottom: 1em;">
+  <p><b>API</b> is part of <a href="https://gumroad.com/l/junior2senior">Junior2Senior</a> a course to help you grow as software engineers.</p>
+  <p>It is about unloading all the knowledge that I accumulate over my career to younger engineers to help speed up their own career.</p>
+  <p> You can follow me on twitter as well 
+    <a href="https://twitter.com/DigianPaul?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-dnt="true" data-show-count="false">Follow @DigianPaul</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </p>
+  <p>The book is actually on pre-sale 50% off for only 19$.</p>
+  <script async src="https://gumroad.com/js/gumroad.js"></script>
+  <div style="text-align: center;">
+    <a class="gumroad-button" href="https://gum.co/HjDwM" target="_blank">Buy Junior2Senior</a>
+  </div>
+</div>
+
+
+  <br>
+<p>Signup to receive notification about new articles</p>
+
+
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+ 
+</style>
+<div id="mc_embed_signup">
+  <form action="https://rhcloud.us5.list-manage.com/subscribe/post?u=2c818251de1f8592ef01e8ad0&amp;id=fc2722647b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+      <label for="mce-EMAIL">Subscribe to Junior 2 Senior</label>
+      <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+      
+      <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2c818251de1f8592ef01e8ad0_fc2722647b" tabindex="-1" value=""></div>
+      <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+
+
+
+</div>
+
+    
+    <div id="footer">
+      
+      <nav id="article-skip">
+        <div class="next">
+          
+          <p>&nbsp;</p>
+          
+        </div>
+        <div class="top">
+          <a alt="Top of page" href="#">Top</a>
+        </div>
+        <div class="prev">
+          
+          <a alt="Older article" href="https://jr2sr.netlify.app/posts/process/">Older &rarr;</a>
+          
+        </div>
+      </nav>
+      
+      <aside id="social">
+  <div id="social-icons">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="icon-24x24">
+      <a class="glyph" alt="Twitter profile" href="https://twitter.com/@pauldigian"><img src=https://jr2sr.netlify.app/icons/twitter.svg height="24px" width="24px"></a>
+     </div>
+     
+  </div>
+</aside>
+
+      
+    </div>
+
+
+</body>
+</html>
